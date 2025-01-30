@@ -4,9 +4,9 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "frontend": "turbo dev --filter=frontend --filter=api",
-    "cms": "turbo dev --filter=cms --filter=api",
-    "api": "turbo dev --filter=api",
+    "frontend": "turbo dev --filter=frontend",
+    "cms": "turbo dev --filter=cms",
+    "api": "turbo dev",
     "lint": "turbo lint",
     "check-types": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
