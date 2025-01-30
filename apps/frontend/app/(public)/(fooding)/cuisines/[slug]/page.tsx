@@ -1,6 +1,6 @@
-import { CuisineHeader } from "@/components/page-components/fooding/single-cuisine/cuisine-header/cuisine-header";
-import SectionTitle from "@/components/page-components/fooding/sections/section-title/section-title";
-import { SingleCuisineProductGallery } from "@/components/page-components/fooding/single-cuisine/single-cusine-product-gallery";
+import { CuisineHeader } from "@/features/restaurant/cuisine-header";
+import SectionTitle from "@/components/section-title";
+import { SingleCuisineProductGallery } from "@/features/restaurant/single-restaurant/single-cusine-product-gallery";
 
 type Props = {
   params: Promise<{

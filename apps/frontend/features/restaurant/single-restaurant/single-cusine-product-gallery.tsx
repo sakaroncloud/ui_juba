@@ -1,7 +1,7 @@
 "use client";
 
 import { useFetch } from "@/hooks/useFetch";
-import { ProductItem } from "../sections/products-grid/product-item";
+import { ProductItem } from "../products/product-item";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";
 import { Restaurant } from "@repo/ui/types/restaurant.types";

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { settings } from "./settings";
-import { SectionCarousel } from "../section-carousel/section-carousel";
+import { SectionCarousel } from "../../../components/section-carousel";
 import { BrandCarouselItem } from "./brand-carousel-item";
 import { useFetch } from "@/hooks/useFetch";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";

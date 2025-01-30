@@ -28,12 +28,12 @@ export namespace Restaurant {
     export namespace Menu {
         /** Defines a cuisine entity */
         export type TMenu = TInTBaseWithDescription & {
-            products?: Product.TProduct[];
+            products?: Omit<Product.TProduct, "menus">[];
             totalProducts?: number;
         };
         export type TMenusResponse = {
             menus: TMenu[]
-            restaurant: Pick<TRest, "id" | "slug" | "name">
+            restaurant: Pick<TRest, "id" | "slug" | "name" | "isPureVeg">
         }
     }
 

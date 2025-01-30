@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider, { Settings } from "react-slick";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
-import SectionTitle from "../section-title/section-title";
+import SectionTitle from "./section-title";
 
 type Props = {
   title: string;
