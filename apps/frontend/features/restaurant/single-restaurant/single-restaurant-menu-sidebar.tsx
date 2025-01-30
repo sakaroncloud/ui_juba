@@ -1,14 +1,17 @@
 "use client"
-import { cn } from '@repo/ui/lib/utils'
+import { cn, generateSlug } from '@repo/ui/lib/utils'
 import { ScrollArea, ScrollBar } from '@repo/ui/components/scroll-area'
 import React from 'react'
+
 type Props = {
     menus: {
         id: number,
         name: string
-    }[]
+    }[],
+    visibleMenu: string | number
+
 }
-export const SingleRestaurantMenuSidebar = ({ menus }: Props) => {
+export const SingleRestaurantMenuSidebar = ({ menus, visibleMenu }: Props) => {
     const MOBILE_BREAKPOINT = 1024
     const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
     const [isFixed, setIsFixed] = React.useState(false)
@@ -62,11 +65,14 @@ export const SingleRestaurantMenuSidebar = ({ menus }: Props) => {
             >
                 <ScrollArea className='w-full'>
                     <div className='flex w-full lg:flex-col flex-row lg:px-0 '>
-                        {menus?.map((menu, i) => (
-                            <div key={menu.id} className={cn('md:py-4 text__small w-fit lg:w-full shrink-0  bg-[#F9F8F6] lg:bg-white text-xs py-4 px-4 lg:border-b  lg:border-gray-200 hover:text-primary transition-all cursor-pointer  uppercase lg:font-semibold font-medium', i == menus.length - 1 && "border-b-0", i == 0 && "lg:pt-2")}>
-                                {menu.name}
-                            </div>
-                        )
+                        {menus?.map((menu, i) => {
+                            const slug = generateSlug(menu.name)
+                            return (
+                                <a href={`#${slug}`} key={menu.id} className={cn('md:py-4 text__small w-fit lg:w-full shrink-0  bg-[#F9F8F6] lg:bg-white text-xs py-4 px-4 lg:border-b  lg:border-gray-200 hover:text-primary transition-all cursor-pointer  uppercase lg:font-semibold font-medium', i == menus.length - 1 && "border-b-0", i == 0 && "lg:pt-2", visibleMenu == slug && "text-primary")}>
+                                    {menu.name}
+                                </a>
+                            )
+                        }
                         )}
                     </div>
                     <ScrollBar orientation="horizontal" hidden className='mt-1' />

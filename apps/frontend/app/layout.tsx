@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
-import "./globals.css";
+import "@repo/ui/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import TanstackProvider from "@/providers/tanstack-provider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";

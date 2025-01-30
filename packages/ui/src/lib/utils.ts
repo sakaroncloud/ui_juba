@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import toast from "react-hot-toast";
 import { twMerge } from "tailwind-merge"
+import slugify from "slugify";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -93,6 +94,16 @@ export function convertFileSize(bytes: number) {
   }
 }
 
+export const generateSlug = (name: string) => {
+  return slugify(name, {
+    replacement: '-',  // replace spaces with replacement character, defaults to `-`
+    remove: /[*+~.()'"!:@]/, // remove characters that match regex, defaults to `undefined`
+    lower: true,      // convert to lower case, defaults to `false`
+    strict: false,     // strip special characters except replacement, defaults to `false`
+    locale: 'vi',      // language code of the locale to use
+    trim: true         // trim leading and trailing replacement chars, defaults to `true`
+  })
+}
 
 
 
