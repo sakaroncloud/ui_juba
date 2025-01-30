@@ -9,7 +9,7 @@ type Props = {
 const SectionTitle = ({ title, subtitle }: Props) => {
   return (
     <div>
-      <h2 className={cn("section__title")}>{title}</h2>
+      <h2 className={cn("section__title ")}>{title} </h2>
       <p className={cn("section__subtitle")}>{subtitle}</p>
     </div>
   );

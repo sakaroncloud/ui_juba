@@ -1,5 +1,5 @@
 import { settings } from "./settings";
-import { SectionCarousel } from "../section-carousel/section-carousel";
+import { SectionCarousel } from "../../../components/section-carousel";
 import CategoryCarouselItem from "./cuisines-carousel-item";
 import { getData } from "@/app/data";
 import { API_ROUTES } from "@repo/ui/lib/routes";

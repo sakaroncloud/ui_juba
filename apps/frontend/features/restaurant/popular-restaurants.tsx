@@ -1,7 +1,7 @@
 "use client";
 import { API_ROUTES } from "@repo/ui/lib/routes";
-import { ProductsGrid } from "../products-grid/products-grid";
-import SectionTitle from "../section-title/section-title";
+import { ProductsGrid } from "./products/products-grid";
+import SectionTitle from "../../components/section-title";
 
 import { useFetch } from "@/hooks/useFetch";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";

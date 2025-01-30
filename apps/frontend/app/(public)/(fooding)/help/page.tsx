@@ -1,4 +1,4 @@
-import SectionTitle from "@/components/page-components/fooding/sections/section-title/section-title";
+import SectionTitle from "@/components/section-title";
 import React from "react";
 
 const HelpPage = () => {

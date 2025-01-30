@@ -1,7 +1,6 @@
 "use client";
 
 import FallbackImage from "@/components/fallback-image";
-import { BACKEND_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 
 type TRestaurant = {

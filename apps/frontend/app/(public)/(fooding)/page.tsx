@@ -1,6 +1,6 @@
-import { BrandsCarousel } from "@/components/page-components/fooding/sections/brands/brands-carousel";
-import { CuisinesCarousel } from "@/components/page-components/fooding/sections/cuisines/cuisines-carousel";
-import { PopularRestaurantsSection } from "@/components/page-components/fooding/sections/popular-restaurants/popular-restaurants";
+import { BrandsCarousel } from "@/features/restaurant/brands/brands-carousel";
+import { CuisinesCarousel } from "@/features/restaurant/cuisines/cuisines-carousel";
+import { PopularRestaurantsSection } from "@/features/restaurant/popular-restaurants";
 
 export default function Home() {
   return (

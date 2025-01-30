@@ -20,6 +20,7 @@ const EditProductPage = async ({ params }: Props) => {
         restaurantSlug,
         productSlug
     })
+
     if (!restaurantId || slugTempered || !productId) {
         notFound()
     }
