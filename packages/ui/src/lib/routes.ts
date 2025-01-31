@@ -37,7 +37,7 @@ export const API_ROUTES = {
         queryKey: "order" as const,
     },
     singleCusineRestaurants: {
-        endpoint: "/fooding/restaurants/cuisines" as const,
+        endpoint: "/fooding/restaurants/cuisine" as const,
         queryKey: "singleCusineRestaurants" as const,
     },
     singleRestImage: {

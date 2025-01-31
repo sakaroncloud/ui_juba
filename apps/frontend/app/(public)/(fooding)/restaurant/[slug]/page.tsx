@@ -5,6 +5,7 @@ import { API_ROUTES } from "@repo/ui/lib/routes";
 import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
 import { Restaurant } from "@repo/ui/types/restaurant.types";
 import { notFound } from "next/navigation";
+import { TQueryString } from "@repo/ui/types/endpoints";
 type Props = {
   params: Promise<{
     slug: string;
@@ -12,14 +13,23 @@ type Props = {
 };
 const SingleRestaurantPage = async ({ params }: Props) => {
   const { slug } = await params;
-  const result = await getData<ResponseWithNoMeta<Restaurant.Menu.TMenusResponse>>({
-    endPoint: API_ROUTES.menu.endpoint,
-    query: {
+  const queryKeys: TQueryString[] = [
+    {
       key: "restaurantSlug",
       value: slug
     },
+    {
+      key: "filterEmpty",
+      value: "true"
+    }
+  ]
+  const result = await getData<ResponseWithNoMeta<Restaurant.Menu.TMenusResponse>>({
+    endPoint: API_ROUTES.menu.endpoint,
+    query: queryKeys,
     tags: ["menu", slug]
   })
+
+
 
   if (!result?.data) {
     notFound()

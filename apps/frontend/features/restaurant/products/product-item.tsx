@@ -13,6 +13,7 @@ type Props = {
 export const ProductItem = ({ item }: Props) => {
   const router = useRouter();
 
+
   return (
     <div
       onClick={() => router.push(`/restaurant/${item.slug}`)}
@@ -37,7 +38,7 @@ export const ProductItem = ({ item }: Props) => {
           <MdStars className="text-green-700 text-2xl" />
           <span>4.3</span>
           <Dot />
-          <span>20-25 mins</span>
+          <span>{item.averagePreparationTime + 15}-{item.averagePreparationTime + 20} mins</span>
         </div>
         <div className="text-base text-gray-600 line-clamp-1 leading-6">
           {item?.cuisines

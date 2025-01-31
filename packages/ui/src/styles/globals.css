@@ -95,16 +95,16 @@ body {
 
 
 @layer utilities {
-  .section__title {
-    @apply lg:text-[calc(18px+.008*(100vw-320px))] text-[calc(17px+.008*(100vw-320px))] font-bold text-gray-800;
+  .text__xl {
+    @apply lg:text-[calc(18px+.0075*(100vw-320px))] text-[calc(17px+.0095*(100vw-320px))] font-bold text-gray-800;
   }
 
-  .section__subtitle {
-    @apply lg:text-[calc(14px+.00375*(100vw-320px))] text-[calc(13px+.00375*(100vw-320px))] text-gray-600;
+  .text__subtitle {
+    @apply lg:text-[calc(13px+.00275*(100vw-320px))] text-[calc(13px+.00575*(100vw-320px))] text-gray-600;
   }
 
   .text__large {
-    @apply lg:text-[calc(14px+.00375*(100vw-320px))] text-[calc(13px+.00375*(100vw-320px))];
+    @apply lg:text-[calc(18px+.00375*(100vw-320px))] text-[calc(17px+.00575*(100vw-320px))] font-bold text-gray-800;
   }
 
   .text__medium {

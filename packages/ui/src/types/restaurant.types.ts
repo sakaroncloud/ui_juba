@@ -68,6 +68,7 @@ export namespace Restaurant {
         logo: TImage;
         bannerImage: TImage;
         defaultCommissionPercentage: number; // admin-only field
+        averagePreparationTime: number;
         address?: TAddress;
         dayOfWeek: EWeekDay[];
         openingTime: string;

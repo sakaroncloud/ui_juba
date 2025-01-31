@@ -87,7 +87,9 @@ export const ProductForm = ({ defaultImages, formValues, productId, restaurantSl
                         placeholder='Enter product description'
                         className='w-full'
                     />
-                    <div className="grid grid-cols-2 gap-4">
+
+
+                    <div className="grid grid-cols-3 gap-4">
                         <CustomFormField
                             elementName='input'
                             fieldId='price'
@@ -105,6 +107,15 @@ export const ProductForm = ({ defaultImages, formValues, productId, restaurantSl
                             inputType='number'
                             placeholder='eg: 30'
                             className='w-full'
+                        />
+
+                        <CustomFormField
+                            elementName="input"
+                            fieldId="commissionPercentage"
+                            label="Commission Percentage"
+                            inputType="number"
+                            placeholder="Enter Commission Percentage"
+                            className="w-full"
                         />
                     </div>
                 </FormFieldWrapper>

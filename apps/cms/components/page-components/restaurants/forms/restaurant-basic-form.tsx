@@ -75,6 +75,15 @@ export const RestaurantBasicForm = ({ formValues }: Props) => {
                     />
 
                     <CustomFormField
+                        elementName="input"
+                        fieldId="averagePreparationTime"
+                        label="Average Preparation Time"
+                        inputType="number"
+                        placeholder="Avg Preparation Time"
+                        className="w-full"
+                    />
+
+                    <CustomFormField
                         elementName="checkbox"
                         fieldId="isPureVeg"
                         label="Do this restaurant serve pure vegetarian food ?"

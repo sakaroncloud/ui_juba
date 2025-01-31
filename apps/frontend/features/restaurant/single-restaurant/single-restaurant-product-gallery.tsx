@@ -6,7 +6,7 @@ import { cn, generateSlug } from '@repo/ui/lib/utils'
 import { Restaurant } from '@repo/ui/types/restaurant.types'
 import { ShoppingBag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { InView } from "react-intersection-observer";
 
 
@@ -17,6 +17,8 @@ type Props = {
 
 export const SingleRestaurantProductGallery = ({ data, setVisibleMenu }: Props) => {
     const router = useRouter()
+    const [rootMargin, setRootMargin] = useState('');
+
 
     // callback called when a section is in view
     const setInView = (inView: boolean, entry: IntersectionObserverEntry) => {
@@ -28,13 +30,18 @@ export const SingleRestaurantProductGallery = ({ data, setVisibleMenu }: Props) 
         }
     };
 
-    const calculateRootMargin = () => {
-        const viewportHeight = window.innerHeight; // Get the current viewport height
-        const bottomMargin = viewportHeight - 60; // Subtract header height
-        return `-${60 + 50}px 0px -${bottomMargin}px 0px`; // Use dynamic bottom margin
-    };
+    useEffect(() => {
+        // Ensure that window is defined before accessing it
+        if (typeof window !== 'undefined') {
+            const calculateRootMargin = () => {
+                const viewportHeight = window.innerHeight; // Get the current viewport height
+                const bottomMargin = viewportHeight - 60; // Subtract header height
+                return `-${60 + 50}px 0px -${bottomMargin}px 0px`; // Use dynamic bottom margin
+            };
 
-    const rootMargin = calculateRootMargin();
+            setRootMargin(calculateRootMargin());
+        }
+    }, []); // Empty dependency array to run only once when the component mounts
 
     useSmoothScroll()
     // Use the custom hook to enable smooth scroll with offset

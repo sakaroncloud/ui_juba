@@ -1,20 +1,12 @@
 "use client";
 
 import FallbackImage from "@/components/fallback-image";
+import { Restaurant } from "@repo/ui/types/restaurant.types";
 import { useRouter } from "next/navigation";
 
-type TRestaurant = {
-  id: string;
-  slug: string;
-
-  name: string;
-  featuredImage: {
-    url: string;
-  };
-};
 
 type Props = {
-  item: TRestaurant;
+  item: Restaurant.TRest;
 };
 
 export const BrandCarouselItem = ({ item }: Props) => {
@@ -27,7 +19,7 @@ export const BrandCarouselItem = ({ item }: Props) => {
     >
       <div className=" flex items-center relative flex-col justify-center p-6 rounded-xl  hover:scale-95 wie__transition__200  group   cursor-pointer ">
         <FallbackImage
-          src={item.featuredImage.url}
+          src={item.bannerImage.url}
           type="square"
           alt={item.name}
           width={100}

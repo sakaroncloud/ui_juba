@@ -42,9 +42,9 @@ export const CuisineHeader = ({ slug }: Props) => {
                       />
                     </div>
                   )}
-                  <div className="space-y-3">
-                    <h1 className="text-2xl font-semibold capitalize">{name}</h1>
-                    <p className="text-xl  text-gray-600">{description}</p>
+                  <div>
+                    <h1 className="text__xl font-semibold capitalize">{name}</h1>
+                    <p className="text__subtitle  text-gray-600">{description}</p>
                   </div>
                 </div>
               )

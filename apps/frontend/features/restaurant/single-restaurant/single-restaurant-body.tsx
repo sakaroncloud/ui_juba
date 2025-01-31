@@ -14,7 +14,6 @@ type MenuRefs = {
 };
 export const SingleRestaurantBody = ({ data }: Props) => {
   const [visibleMenu, setVisibleMenu] = useState(data.menus[0]?.id || "0");
-  console.log(visibleMenu)
   return (
     <section className="bg-white"  >
       <div className="container lg:py-6 py-4  flex justify-between  flex-wrap lg:flex-row flex-col gap-10 relative">

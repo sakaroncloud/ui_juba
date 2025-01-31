@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx"
 import toast from "react-hot-toast";
 import { twMerge } from "tailwind-merge"
 import slugify from "slugify";
+import { TQueryString } from "../types/endpoints";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -173,3 +174,12 @@ export const handleToast = (response: { success: boolean; message: string }, onS
     toast.error(response.message || "Something went wrong")
   }
 }
+
+export const getQueryString = (query?: TQueryString[]): string => {
+  if (!query || query.length === 0) return "";
+
+  const params = new URLSearchParams();
+  query.forEach(({ key, value }) => params.append(key as string, value as string));
+
+  return `?${params.toString()}`;
+};

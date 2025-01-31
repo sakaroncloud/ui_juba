@@ -18,7 +18,7 @@ interface SessionProviderProps {
 
 export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
   const [session, setSession] = useState<sessionContextType["session"]>(null);
-
+  console.log(session)
   useEffect(() => {
     const fetchSession = async () => {
       const sess = await getSession()
