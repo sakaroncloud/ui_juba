@@ -6,7 +6,7 @@ import { cn, generateSlug } from '@repo/ui/lib/utils'
 import { Restaurant } from '@repo/ui/types/restaurant.types'
 import { ShoppingBag } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InView } from "react-intersection-observer";
 
 

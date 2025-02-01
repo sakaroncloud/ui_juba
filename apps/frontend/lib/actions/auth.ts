@@ -6,6 +6,8 @@ import { AllowedRoles, BACKEND_URL } from "@/lib/constants";
 import { ReturnType, TBaseResponse } from "@repo/ui/types/response.type";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { TLoginResponse } from "@repo/ui/types/auth.response.type"
+import { getQueryString } from "@repo/ui/lib/utils";
+import { PublicSubmitHandler } from "./global.action";
 
 
 export async function signIn(formData: TLogin): Promise<
@@ -78,35 +80,16 @@ export async function signUp(formData: TSignUp): Promise<ReturnType> {
 
   if (!validationFields.success) {
     return {
-      message: "Submission failed",
+      message: "Data modified",
       errors: validationFields.error.flatten().fieldErrors,
     };
   }
 
-  const response = await fetch(
-    BACKEND_URL + API_ROUTES.signUp,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(validationFields.data),
-    }
-  );
-
-  const data = await response.json();
-  if (response.ok) {
-    return {
-      success: "Sign up successful",
-    };
-  } else {
-    return {
-      message:
-        response.status === 409
-          ? "The user is already existed!"
-          : data?.message || data?.message[0],
-    };
-  }
+  return await PublicSubmitHandler({
+    ENDPOINT: API_ROUTES.signUp.endpoint,
+    METHOD: "POST",
+    DATA: validationFields.data
+  })
 }
 
 
@@ -135,4 +118,27 @@ export async function logout() {
   catch {
     await deleteSession()
   }
+}
+export async function verifyEmail(token: string, email: string) {
+
+  if (!token || !email) {
+    return {
+      error: "Invalid token or email"
+    }
+  }
+  const queryString = getQueryString([
+    {
+      key: "token",
+      value: token
+    }, {
+      key: "email",
+      value: email
+    }
+  ])
+
+  return await PublicSubmitHandler({
+    ENDPOINT: API_ROUTES.verifyEmail.endpoint + queryString,
+    METHOD: "PATCH",
+    DATA: {}
+  })
 }

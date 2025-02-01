@@ -1,4 +1,4 @@
-import { Bike, Hotel, ShoppingCart, User } from "lucide-react";
+import { Bike, User } from "lucide-react";
 
 export const HotelNavItems = [
   {

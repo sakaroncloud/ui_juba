@@ -14,7 +14,7 @@ import { z } from "zod";
 import { format } from "date-fns";
 import { Calendar } from "@repo/ui/components/calendar";
 
-export const RoomHeaderSearch = () => {
+export const LodgingHeaderSearch = () => {
   const schema = z.object({
     search: z.string(),
     checkInDate: z.date(),

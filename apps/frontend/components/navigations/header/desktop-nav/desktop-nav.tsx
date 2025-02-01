@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { SignInSheet } from "./sign-in-sheet";
 import { Menu } from "lucide-react";
-import { FoodNavItems } from "../food-header-nav-items";
-import { HotelNavItems } from "../room-header-nav-items";
+import { FoodingNavItems } from "../fooding/nav-items";
+import { HotelNavItems } from "../lodging/nav-items";
 import { getSession } from "@/lib/actions/session";
 import Image from "next/image";
 
 const DesktopNav = async ({ type }: { type: "food" | "room" }) => {
   const aaa = await getSession();
 
-  const Items = type === "food" ? FoodNavItems : HotelNavItems;
+  const Items = type === "food" ? FoodingNavItems : HotelNavItems;
   return (
     <nav className="md:flex items-center gap-8 w-fit hidden">
       {Items.map((item, index) => {

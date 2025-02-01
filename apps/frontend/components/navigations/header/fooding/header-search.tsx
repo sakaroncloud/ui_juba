@@ -1,7 +1,7 @@
 import { Input } from "@repo/ui/components/input";
 import { Search } from "lucide-react";
 
-export const FoodHeaderSearch = () => {
+export const FoodingHeaderSearch = () => {
   return (
     <>
       <div

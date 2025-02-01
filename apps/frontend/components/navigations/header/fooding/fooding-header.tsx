@@ -1,7 +1,7 @@
 import SiteLogo from "@/components/logo";
 import React from "react";
-import DesktopNav from "./desktop-nav/desktop-nav";
-import { FoodHeaderSearch } from "./desktop-nav/food-header-search";
+import DesktopNav from "../desktop-nav/desktop-nav";
+import { FoodingHeaderSearch } from "./header-search";
 
 const FoodHeader = () => {
   return (
@@ -11,7 +11,7 @@ const FoodHeader = () => {
           <SiteLogo type="light" />
         </div>
         <div className="right flex items-center md:flex-1 gap-6">
-          <FoodHeaderSearch />
+          <FoodingHeaderSearch />
           <DesktopNav type="food" />
         </div>
       </div>

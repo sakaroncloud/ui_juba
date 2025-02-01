@@ -1,6 +1,6 @@
 import { Hotel, ShoppingCart, User } from "lucide-react";
 
-export const FoodNavItems = [
+export const FoodingNavItems = [
   {
     label: "Hotel Booking",
     icon: Hotel,

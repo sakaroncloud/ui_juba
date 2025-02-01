@@ -1,6 +1,6 @@
 import { getData } from "@/app/data";
-import { SingleRestaurantBody } from "@/features/restaurant/single-restaurant/single-restaurant-body";
-import { SingleRestaurantHeader } from "@/features/restaurant/single-restaurant/single-restaurant-header";
+import { SingleRestaurantBody } from "@/features/fooding/restaurants/single/single-restaurant-body";
+import { SingleRestaurantHeader } from "@/features/fooding/restaurants/single/single-restaurant-header";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
 import { Restaurant } from "@repo/ui/types/restaurant.types";

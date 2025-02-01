@@ -1,17 +1,14 @@
 "use client"
 import { Restaurant } from '@repo/ui/types/restaurant.types'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { SingleRestaurantMenuSidebar } from './single-restaurant-menu-sidebar'
-import { ProductCard, SingleRestaurantProductGallery, } from './single-restaurant-product-gallery'
-import { useInView } from "react-intersection-observer";
+import { SingleRestaurantProductGallery, } from './single-restaurant-product-gallery'
 
 
 type Props = {
   data: Restaurant.Menu.TMenusResponse
 }
-type MenuRefs = {
-  [key: string]: React.RefObject<HTMLDivElement | null>; // Allow the ref to be null initially
-};
+
 export const SingleRestaurantBody = ({ data }: Props) => {
   const [visibleMenu, setVisibleMenu] = useState(data.menus[0]?.id || "0");
   return (

@@ -4,18 +4,19 @@ import { useForm } from "react-hook-form";
 
 import { CustomFormField } from "@/components/forms/form-field";
 import CustomButton from "@/components/custom-button";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { signUp } from "@/lib/actions/auth";
-import toast from "react-hot-toast";
-import { TSignUp } from "@repo/ui/schemas/auth.schema";
+import { signUpSchema, TSignUp } from "@repo/ui/schemas/auth.schema";
+import { handleToast } from "@repo/ui/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type TModal = {
   setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const SignUpForm = ({ setOpen }: TModal) => {
-  const [errors, setErrors] = useState({});
   const form = useForm<TSignUp>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -25,34 +26,12 @@ const SignUpForm = ({ setOpen }: TModal) => {
     },
   });
 
-  useEffect(() => {
-    if (errors) {
-      Object.keys(errors).map((key) => {
-        form.setError(key as keyof typeof errors, {
-          type: "custom",
-          message: errors[key as keyof typeof errors],
-        });
-      });
-    }
-  }, [errors]);
 
   const onSubmit = async (values: TSignUp) => {
-    setErrors({});
-
     const response = await signUp(values);
-
-    if (response?.errors) {
-      setErrors(response.errors);
-    }
-    if (response?.message) {
-      toast.error(response?.message);
-    }
-
-    if (response?.success) {
-      form.reset();
-      toast.success(response?.success);
+    handleToast(response as any, () => {
       setOpen(false);
-    }
+    })
   };
 
   return (

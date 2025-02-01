@@ -43,6 +43,11 @@ export namespace Restaurant {
             bannerImage: TImage;
             restaurants: TRest[];
         };
+
+        export type TSingleCuisinePage = {
+            cuisine: TCuisine;
+            restaurants: TRest[];
+        }
     }
 
 

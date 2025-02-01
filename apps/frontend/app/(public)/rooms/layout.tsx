@@ -1,6 +1,5 @@
 import Footer from "@/components/navigations/footer/footer";
-import RoomHeader from "@/components/navigations/header/room-header";
-import { RoomHeaderSearch } from "@/components/navigations/header/room-header-search";
+import RoomHeader from "@/components/navigations/header/lodging/lodging-header";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +11,6 @@ const HotelBookingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <RoomHeader />
-
       {children}
       <Footer />
     </>

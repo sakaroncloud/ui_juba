@@ -21,6 +21,7 @@ export type TLogin = z.infer<typeof loginSchema>;
 
 // ------ For Register
 export const signUpSchema = z.object({
+
     firstName: z
         .string()
         .min(1, {

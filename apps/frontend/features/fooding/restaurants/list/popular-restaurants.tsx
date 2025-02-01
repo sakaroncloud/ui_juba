@@ -1,11 +1,11 @@
 "use client";
 import { API_ROUTES } from "@repo/ui/lib/routes";
-import { ProductsGrid } from "./products/products-grid";
-import SectionTitle from "../../components/section-title";
 
 import { useFetch } from "@/hooks/useFetch";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";
 import { Restaurant } from "@repo/ui/types/restaurant.types";
+import SectionTitle from "@/components/section-title";
+import { ProductsGrid } from "@/features/fooding/shared/products-grid";
 
 export const PopularRestaurantsSection = () => {
   const { data: restaurants } = useFetch<ResponseWithMeta<Restaurant.TRest[]>>({

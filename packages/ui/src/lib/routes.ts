@@ -8,6 +8,10 @@ export const API_ROUTES = {
         endpoint: "/auth/signout" as const,
         queryKey: "logout" as const,
     },
+    verifyEmail: {
+        endpoint: "/auth/email-verification" as const,
+        queryKey: "verify-email" as const,
+    },
     signUp: {
         endpoint: "/auth/signup" as const,
         queryKey: "signUp" as const,
@@ -36,9 +40,9 @@ export const API_ROUTES = {
         endpoint: "/fooding/orders" as const,
         queryKey: "order" as const,
     },
-    singleCusineRestaurants: {
-        endpoint: "/fooding/restaurants/cuisine" as const,
-        queryKey: "singleCusineRestaurants" as const,
+    singleCuisinePage: {
+        endpoint: "/fooding/cuisines/single-page" as const,
+        queryKey: "singleCuisinePage" as const,
     },
     singleRestImage: {
         endpoint: "/fooding/uploads/restaurant" as const,
