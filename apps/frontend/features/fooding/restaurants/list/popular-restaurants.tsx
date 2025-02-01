@@ -5,7 +5,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";
 import { Restaurant } from "@repo/ui/types/restaurant.types";
 import SectionTitle from "@/components/section-title";
-import { ProductsGrid } from "@/features/fooding/shared/products-grid";
+import { RestaurantsGrid } from "@/features/fooding/shared/restaurants-grid";
 
 export const PopularRestaurantsSection = () => {
   const { data: restaurants } = useFetch<ResponseWithMeta<Restaurant.TRest[]>>({
@@ -20,7 +20,7 @@ export const PopularRestaurantsSection = () => {
         subtitle="Find nearby popular Restaurants."
       />
 
-      <ProductsGrid restaurants={restaurants?.data} />
+      <RestaurantsGrid restaurants={restaurants?.data} />
     </div>
   );
 };

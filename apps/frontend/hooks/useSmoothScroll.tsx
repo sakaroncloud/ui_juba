@@ -1,9 +1,13 @@
 "use client"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const useSmoothScroll = () => {
-    const headerHeight = (document.getElementById("site-header")?.clientHeight || 60); // Get the height of the header
+    const [headerHeight, setHeaderHeight] = useState(60); // Default header height
+
+
     useEffect(() => {
+        const header = document.getElementById("site-header");
+        setHeaderHeight(header?.clientHeight || 60);
         // Function to handle scroll with an offset
         const handleScroll = () => {
             const hash = window.location.hash;

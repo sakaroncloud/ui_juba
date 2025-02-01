@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { SignInSheet } from "./sign-in-sheet";
-import { Menu } from "lucide-react";
 import { FoodingNavItems } from "../fooding/nav-items";
 import { HotelNavItems } from "../lodging/nav-items";
 import { getSession } from "@/lib/actions/session";
-import Image from "next/image";
+import { SignInButton, UserNav } from "../user-nav";
 
 const DesktopNav = async ({ type }: { type: "food" | "room" }) => {
-  const aaa = await getSession();
+  const session = await getSession();
 
   const Items = type === "food" ? FoodingNavItems : HotelNavItems;
   return (
@@ -25,30 +23,12 @@ const DesktopNav = async ({ type }: { type: "food" | "room" }) => {
             </Link>
           );
         } else {
-          return aaa ? (
+          return session ? (
             <div key={index} className="flex items-center gap-2">
-              <Image
-                src={"/icons/avatar.png"}
-                alt="avatar"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <div className="flex flex-col text-sm">
-                <span className="font-light">Hi! {aaa.user.name}</span>
-                <span>My Account</span>
-              </div>
+              <UserNav />
             </div>
           ) : (
-            <SignInSheet key={index}>
-              <div
-                key={index}
-                className="flex items-center hover:shadow-md gap-2 hover:text-primary wie__transition__200 shadow rounded-3xl border border-gray-200 py-3 px-4"
-              >
-                <Menu className="size-5" />
-                <item.icon className="size-5" />
-              </div>
-            </SignInSheet>
+            <SignInButton key={index} />
           );
         }
       })}

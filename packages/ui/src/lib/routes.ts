@@ -1,5 +1,6 @@
 
 export const API_ROUTES = {
+    // auth
     login: {
         endpoint: "/auth/login" as const,
         queryKey: "login" as const,
@@ -16,14 +17,12 @@ export const API_ROUTES = {
         endpoint: "/auth/signup" as const,
         queryKey: "signUp" as const,
     },
+    // fooding
     cuisine: {
         endpoint: "/fooding/cuisines" as const,
         queryKey: "cuisine" as const,
     },
-    city: {
-        endpoint: "/cities" as const,
-        queryKey: "city" as const,
-    },
+
     product: {
         endpoint: "/fooding/products" as const,
         queryKey: "product-" as const,
@@ -52,6 +51,11 @@ export const API_ROUTES = {
         endpoint: "/fooding/uploads" as const,
         queryKey: "allRestImage" as const,
     },
+
+
+
+    // lodging
+
     propertyImage: {
         endpoint: "/lodging/uploads/properties" as const,
         queryKey: "propertyImage" as const,
@@ -64,6 +68,9 @@ export const API_ROUTES = {
         endpoint: "/lodging/rooms" as const,
         queryKey: "room" as const,
     },
+
+    // user and profile
+
     user: {
         endpoint: "/users" as const,
         queryKey: "user" as const,
@@ -75,7 +82,19 @@ export const API_ROUTES = {
     rider: {
         endpoint: "/profile/riders" as const,
         queryKey: "rider" as const,
-    }
+    },
+
+    // address
+    city: {
+        endpoint: "/cities" as const,
+        queryKey: "city" as const,
+    },
+
+    //    Fooding Frontend
+    cart: {
+        endpoint: "/fooding/carts" as const,
+        queryKey: "cart" as const,
+    },
 };
 
 

@@ -8,6 +8,7 @@ import { API_ROUTES } from "@repo/ui/lib/routes";
 import { TLoginResponse } from "@repo/ui/types/auth.response.type"
 import { getQueryString } from "@repo/ui/lib/utils";
 import { PublicSubmitHandler } from "./global.action";
+import { revalidatePath } from "next/cache";
 
 
 export async function signIn(formData: TLogin): Promise<
@@ -59,6 +60,7 @@ export async function signIn(formData: TLogin): Promise<
         refreshToken: result.data.tokens?.refreshToken || "",
         csrfId: result.data.tokens.csrfId || ""
       });
+      revalidatePath("/")
       return {
         success: "Login successful",
       };

@@ -1,7 +1,7 @@
 import { getData } from "@/app/data";
 import SectionTitle from "@/components/section-title";
 import { CuisineHeader } from "@/features/fooding/cuisines/cuisine-header";
-import { ProductsGrid } from "@/features/fooding/shared/products-grid";
+import { RestaurantsGrid } from "@/features/fooding/shared/restaurants-grid";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";
 import { Restaurant } from "@repo/ui/types/restaurant.types";
@@ -43,7 +43,7 @@ const SingleCuisinePage = async ({ params }: Props) => {
           title="Restaurants to explore"
           subtitle="Satisfy your cravings with these fresh and flavoursome burgers."
         />
-        <ProductsGrid restaurants={data.restaurants} />
+        <RestaurantsGrid restaurants={data.restaurants} />
       </div>
     </div>
   );

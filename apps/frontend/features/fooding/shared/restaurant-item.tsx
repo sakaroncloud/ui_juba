@@ -10,7 +10,7 @@ type Props = {
   item: Restaurant.TRest;
 };
 
-export const ProductItem = ({ item }: Props) => {
+export const RestaurantItem = ({ item }: Props) => {
   const router = useRouter();
 
 

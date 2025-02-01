@@ -4,17 +4,15 @@ import { useForm } from "react-hook-form";
 
 import { CustomFormField } from "@/components/forms/form-field";
 import CustomButton from "@/components/custom-button";
-import { Dispatch, SetStateAction } from "react";
 import { signUp } from "@/lib/actions/auth";
 import { signUpSchema, TSignUp } from "@repo/ui/schemas/auth.schema";
 import { handleToast } from "@repo/ui/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useModal } from "@/hooks/useModal";
 
-type TModal = {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
 
-const SignUpForm = ({ setOpen }: TModal) => {
+const SignUpForm = () => {
+  const { onClose } = useModal();
   const form = useForm<TSignUp>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -26,11 +24,10 @@ const SignUpForm = ({ setOpen }: TModal) => {
     },
   });
 
-
   const onSubmit = async (values: TSignUp) => {
     const response = await signUp(values);
     handleToast(response as any, () => {
-      setOpen(false);
+      onClose();
     })
   };
 

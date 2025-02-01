@@ -1,3 +1,4 @@
+import { UI_ROUTES } from "@/lib/routes";
 import { Hotel, ShoppingCart, User } from "lucide-react";
 
 export const FoodingNavItems = [
@@ -9,7 +10,7 @@ export const FoodingNavItems = [
   {
     label: "Cart",
     icon: ShoppingCart,
-    href: "/cart",
+    href: UI_ROUTES.ACCOUNT_CART,
   },
   {
     label: "Sign In",

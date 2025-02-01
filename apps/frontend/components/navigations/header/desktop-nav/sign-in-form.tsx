@@ -6,22 +6,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CustomFormField } from "@/components/forms/form-field";
 import CustomButton from "@/components/custom-button";
 import { signIn } from "@/lib/actions/auth";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { loginSchema, TLogin } from "@repo/ui/schemas/auth.schema";
+import { useModal } from "@/hooks/useModal";
+import { useSession } from "@/providers/session-provider";
 
-type TModal = {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
 
-const SignInForm = ({ setOpen }: TModal) => {
+
+const SignInForm = () => {
+  const { onClose } = useModal();
+  const { change, setChange } = useSession();
   const [errors, setErrors] = useState({});
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
-
     },
   });
 
@@ -50,8 +51,9 @@ const SignInForm = ({ setOpen }: TModal) => {
 
     if (response?.success) {
       form.reset();
+      setChange(!change)
       toast.success(response?.success);
-      setOpen(false);
+      onClose();
     }
   };
 

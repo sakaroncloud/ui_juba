@@ -5,6 +5,8 @@ import "@repo/ui/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import TanstackProvider from "@/providers/tanstack-provider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { SessionProvider } from "@/providers/session-provider";
+import { ModalProvider } from "@/providers/modal-provider";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
@@ -24,20 +26,23 @@ export default function RootLayout({
 }>) {
   return (
     <TanstackProvider>
-      <html lang="en">
-        <body
-          className={`${poppins.className}  antialiased pt-[80px]`}
-          suppressHydrationWarning={true}
-        >
-          {children}
-          <Toaster
-            toastOptions={{
-              className: "text-sm capitalize",
-            }}
-          />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </body>
-      </html>
+      <SessionProvider>
+        <html lang="en">
+          <body
+            className={`${poppins.className}  antialiased pt-[80px]`}
+            suppressHydrationWarning={true}
+          >
+            {children}
+            <Toaster
+              toastOptions={{
+                className: "text-sm capitalize",
+              }}
+            />
+            <ReactQueryDevtools initialIsOpen={false} />
+            <ModalProvider />
+          </body>
+        </html>
+      </SessionProvider>
     </TanstackProvider>
   );
 }

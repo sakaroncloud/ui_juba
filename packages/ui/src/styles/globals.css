@@ -79,6 +79,7 @@ body {
   }
 }
 
+
 @layer base {
   * {
     @apply border-border;
@@ -89,7 +90,7 @@ body {
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground !m-0 !overflow-y-scroll;
   }
 }
 

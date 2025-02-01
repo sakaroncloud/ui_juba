@@ -5,7 +5,6 @@
 import { jwtVerify, SignJWT } from "jose";
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { getData } from "@/app/data";
 import { revalidatePath } from "next/cache";
 import { Role } from "@repo/ui/types/user.types";
@@ -60,11 +59,9 @@ export async function getSession() {
     const { payload } = await jwtVerify(cookie, encodedKey, {
       algorithms: ["HS256"],
     });
-
-
     return payload as Session;
   } catch (err) {
-    redirect("/auth/sigin");
+
   }
 }
 
