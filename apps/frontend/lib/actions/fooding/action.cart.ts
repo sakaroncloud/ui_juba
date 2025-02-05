@@ -3,6 +3,7 @@ import { API_ROUTES } from "@repo/ui/lib/routes";
 import { OrderStatus } from "@repo/ui/types/order.types";
 import { PrivateSubmitHandler } from "../global.action";
 
+
 export async function addToCart(productId: number, restaurantId: number | string) {
 
     return await PrivateSubmitHandler({
@@ -28,3 +29,40 @@ export async function updateOrder(orderId: string | number, orderStatus: OrderSt
     })
 }
 
+export async function deleteCart() {
+    return await PrivateSubmitHandler({
+        ENDPOINT: API_ROUTES.cart.endpoint,
+        METHOD: "DELETE",
+        DATA: {
+
+        }
+    })
+}
+export async function deleteCartItem(itemId: number) {
+    return await PrivateSubmitHandler({
+        ENDPOINT: API_ROUTES.cartItem.endpoint + "/" + itemId,
+        METHOD: "DELETE",
+        DATA: {
+
+        }
+    })
+}
+export async function checkOut() {
+    return await PrivateSubmitHandler({
+        ENDPOINT: API_ROUTES.checkout.endpoint,
+        METHOD: "POST",
+        DATA: {
+
+        }
+    })
+}
+
+export async function updateCartItem(itemId: number, action: "increase" | "decrease") {
+    return await PrivateSubmitHandler({
+        ENDPOINT: API_ROUTES.cartItem.endpoint + "/" + itemId + "/" + action,
+        METHOD: "PATCH",
+        DATA: {
+
+        }
+    })
+}

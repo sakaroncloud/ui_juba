@@ -64,7 +64,6 @@ export const loadMore = async (
 
     return await response.json();
   } catch (error) {
-    console.error("Error in loadMore:", error);
     return null;
   }
 };

@@ -1,19 +1,14 @@
 "use client";
-
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@repo/ui/components/sheet";
 import SignInForm from "./sign-in-form";
 import { useState } from "react";
 import SignUpForm from "./sign-up-form";
 import { useModal } from "@/hooks/useModal";
-import { Menu, User } from "lucide-react";
-
-
 
 export const SignInSheet = () => {
   const [enableRegisterForm, setEnableRegisterForm] = useState<boolean>(false);
@@ -22,15 +17,6 @@ export const SignInSheet = () => {
 
   return (
     <Sheet open={isModalOpen} onOpenChange={onClose}>
-      <SheetTrigger className="cursor-pointer" asChild>
-        <div
-
-          className="flex items-center hover:shadow-md gap-2 hover:text-primary wie__transition__200 shadow rounded-3xl border border-gray-200 py-3 px-4"
-        >
-          <Menu className="size-5" />
-          <User className="size-5" />
-        </div>
-      </SheetTrigger>
       <SheetContent>
         <SheetHeader className="mb-6">
           <SheetTitle>{!enableRegisterForm ? "Login" : "Sign Up"}</SheetTitle>

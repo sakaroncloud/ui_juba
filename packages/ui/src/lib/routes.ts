@@ -95,6 +95,15 @@ export const API_ROUTES = {
         endpoint: "/fooding/carts" as const,
         queryKey: "cart" as const,
     },
+    cartItem: {
+        endpoint: "/fooding/carts/cart-item" as const,
+        queryKey: "cart-item" as const,
+    },
+
+    checkout: {
+        endpoint: "/fooding/orders/checkout" as const,
+        queryKey: "checkout" as const,
+    },
 };
 
 

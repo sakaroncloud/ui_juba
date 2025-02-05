@@ -4,18 +4,23 @@ import { addToCart } from '@/lib/actions/fooding/action.cart';
 import { useSession } from '@/providers/session-provider';
 import { Button } from '@repo/ui/components/button'
 import { cn, handleToast } from '@repo/ui/lib/utils';
+import { Restaurant } from '@repo/ui/types/restaurant.types';
+import { useQueryClient } from '@tanstack/react-query';
 import { ShoppingBag } from 'lucide-react'
 import { useTransition } from 'react';
 import { FaSpinner } from 'react-icons/fa6';
+import { CartIncrementButton } from '../carts/cart-increment-button';
 type Props = {
     productId: number;
     restaurantId: number | string;
+    cartItem?: Restaurant.Cart.TCartItem
 }
 
-const AddToCartButton = ({ productId, restaurantId }: Props) => {
+const AddToCartButton = ({ cartItem, productId, restaurantId }: Props) => {
     const { session } = useSession()
-    const { onOpen } = useModal()
+    const { isOpen, onOpen } = useModal()
     const [isPending, startTransition] = useTransition();
+    const queryClient = useQueryClient()
 
     const onSubmit = async () => {
         if (!session) {
@@ -24,10 +29,22 @@ const AddToCartButton = ({ productId, restaurantId }: Props) => {
         }
         startTransition(async () => {
             const response = await addToCart(productId, restaurantId)
-            handleToast(response)
+            if (response.status == 409) {
+                onOpen("cart-delete-modal")
+            }
+            handleToast(response, () => {
+                if (!isOpen) {
+                    onOpen("cart-sheet")
+                }
+            })
+            queryClient.invalidateQueries()
         })
     }
-
+    if (cartItem) {
+        return (
+            <CartIncrementButton quantity={cartItem.quantity} itemId={cartItem.id} />
+        )
+    }
     return (
         <Button
             disabled={isPending}

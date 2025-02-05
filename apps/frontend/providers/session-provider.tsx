@@ -1,5 +1,6 @@
 "use client"
 import { getSession, Session } from "@/lib/actions/session";
+import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 // Define the type for the context state
@@ -21,15 +22,16 @@ interface SessionProviderProps {
 export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
     const [change, setChange] = useState(true);
     const [session, setSession] = useState<sessionContextType["session"]>(null);
+    const pathname = usePathname();
+    console.log(pathname, "pathname")
 
     useEffect(() => {
-        console.log("fetching again")
         const fetchSession = async () => {
             const session = await getSession()
             setSession(session)
         }
         fetchSession()
-    }, [change]);
+    }, [change, pathname]);
 
     return (
         <SessionContext.Provider value={{ change, session, setChange }}>

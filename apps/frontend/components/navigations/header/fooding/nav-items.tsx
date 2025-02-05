@@ -8,7 +8,6 @@ export const FoodingNavItems = [
     href: "/rooms",
   },
   {
-    label: "Cart",
     icon: ShoppingCart,
     href: UI_ROUTES.ACCOUNT_CART,
   },

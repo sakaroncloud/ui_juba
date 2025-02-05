@@ -30,7 +30,6 @@ const SingleCuisinePage = async ({ params }: Props) => {
   if (!data) {
     notFound()
   }
-  console.log(data)
 
   return (
     <div>

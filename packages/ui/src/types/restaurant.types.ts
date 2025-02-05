@@ -1,6 +1,7 @@
 import { TAddress } from "@repo/ui/types/address.types";
 import { EDiscountType, EWeekDay, TBaseWithDescription, TImage, TInTBaseWithDescription } from "@repo/ui/types/shared.types";
 import { TAsyncGallery } from "@repo/ui/types/upload.type";
+import { User } from "./user.types";
 
 export namespace Restaurant {
 
@@ -50,6 +51,26 @@ export namespace Restaurant {
         }
     }
 
+    export namespace Cart {
+        export type TCart = {
+            id: number;
+            createdAt: string;
+            totalAmount: number;
+            cartItems: TCartItem[];
+            restaurant: Pick<TRest, "id" | "name" | "email">;
+            user: Pick<User.TUser, "id" | "email">;
+            totalQuantity: number;
+        }
+
+        export type TCartItem = {
+            id: 1,
+            quantity: number,
+            note?: string,
+            price: number,
+            totalAmount: number,
+            product: Product.TProduct
+        }
+    }
 
     // Global Offer Definition
     /** Represents a global discount or offer */

@@ -7,10 +7,13 @@ import AddToCartButton from "./add-to-cart-btn"
 export const ProductCard = ({
     product,
     restaurantId,
+    cartItem,
 }: {
     product: Restaurant.Product.TProduct,
-    restaurantId: number | string
+    restaurantId: number | string,
+    cartItem?: Restaurant.Cart.TCartItem
 }) => {
+
     return (
         <div
             className={cn("bg-white group p-2 rounded-xl border hover:scale-95 wie__transition__200 cursor-pointer hover:shadow-wie")}
@@ -35,7 +38,7 @@ export const ProductCard = ({
                     <div className='font-medium '>
                         $ {product.price}
                     </div>
-                    <AddToCartButton productId={product.id} restaurantId={restaurantId} />
+                    <AddToCartButton productId={product.id} restaurantId={restaurantId} cartItem={cartItem} />
                 </div>
             </div>
         </div>

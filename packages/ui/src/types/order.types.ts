@@ -49,10 +49,12 @@ export namespace Order {
         paymentStatus: PaymentStatus;
         isOverDue: boolean;
         totalAmount: number;
-        totalItems: number;
+        totalCommission: number;
         user: User.TUser;
-        orderItems: TOrderItem[];
         rider?: User.TRiderProfile
+        orderItems: TOrderItem[];
+        totalItems: number;
+        estimateTime: number;
     };
 
     export type TOrderItem = {

@@ -88,7 +88,7 @@ export const SignInButton = () => {
     return (
         <div
             onClick={() => onOpen("sign-in-sheet")}
-            className="flex items-center hover:shadow-md gap-2 hover:text-primary wie__transition__200 shadow rounded-3xl border border-gray-200 py-3 px-4"
+            className="flex cursor-pointer items-center hover:shadow-md gap-2 hover:text-primary wie__transition__200 shadow rounded-3xl border border-gray-200 py-3 px-4"
         >
             <Menu className="size-5" />
             <User className="size-5" />

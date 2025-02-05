@@ -16,7 +16,6 @@ export const getData = async <T>(options: TOption): Promise<T | null> => {
 
   const session = await getSession()
 
-  console.log(BACKEND_URL + options.endPoint + (options.param ? `/${options.param + queryString}` : queryString))
 
   const fetchOption: RequestInit = {
     headers: {

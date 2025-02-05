@@ -28,9 +28,7 @@ export const LodgingHeaderSearch = () => {
     resolver: zodResolver(schema),
   });
 
-  useEffect(() => {
-    console.log(console.log(form.getValues()));
-  }, [form.getValues("search")]);
+
   return (
     <div className="flex-1 max-w-fit">
       <Form {...form}>

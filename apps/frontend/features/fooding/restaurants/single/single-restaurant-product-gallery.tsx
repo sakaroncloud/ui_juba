@@ -1,7 +1,10 @@
 "use client"
 import ProductGrid from '@/features/fooding/product/products-grid'
+import { useFetch } from '@/hooks/useFetch'
 import { useSmoothScroll } from '@/hooks/useSmoothScroll'
+import { API_ROUTES } from '@repo/ui/lib/routes'
 import { generateSlug } from '@repo/ui/lib/utils'
+import { ResponseWithNoMeta } from '@repo/ui/types/response.type'
 import { Restaurant } from '@repo/ui/types/restaurant.types'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -16,6 +19,7 @@ type Props = {
 export const SingleRestaurantProductGallery = ({ data, setVisibleMenu }: Props) => {
     const router = useRouter()
     const [rootMargin, setRootMargin] = useState('');
+
 
 
     // callback called when a section is in view
