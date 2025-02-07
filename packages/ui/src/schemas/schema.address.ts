@@ -12,6 +12,7 @@ export const addressFormSchema = z.object({
         message: "Please enter at least 2 characters"
     }),
     mapLink: z.string().optional().nullable(),
+    pincode: z.string().optional().nullable(),
 
     isDefault: z.boolean().optional().default(false).nullable(),
     label: z.string().optional().default("default").nullable(),
@@ -39,6 +40,7 @@ export const addressDefaultValues: Partial<TAddressForm> = {
     city: "",
     label: "",
     landmark: "",
+    pincode: ""
 }
 
 

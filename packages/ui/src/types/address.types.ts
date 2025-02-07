@@ -16,4 +16,5 @@ export type TAddress = {
     city: TCity;
     isDefault: boolean;
     label: string;
+    pincode: string;
 };
