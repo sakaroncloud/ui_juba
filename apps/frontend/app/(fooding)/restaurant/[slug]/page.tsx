@@ -24,7 +24,7 @@ const SingleRestaurantPage = async ({ params }: Props) => {
     }
   ]
   const result = await getData<ResponseWithNoMeta<Restaurant.Menu.TMenusResponse>>({
-    endPoint: API_ROUTES.menu.endpoint,
+    endPoint: API_ROUTES.fooding.menu.endpoint,
     query: queryKeys,
     tags: ["menu", slug]
   })

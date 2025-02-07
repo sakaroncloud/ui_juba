@@ -18,7 +18,7 @@ const SingleOrderPage = async ({ params }: TParams) => {
     const { orderId } = (await params)
 
     const result = await getData<ResponseWithNoMeta<Order.TOrder>>({
-        endPoint: API_ROUTES.order.endpoint,
+        endPoint: API_ROUTES.fooding.order.endpoint,
         param: orderId,
         tags: ["orders"]
     })

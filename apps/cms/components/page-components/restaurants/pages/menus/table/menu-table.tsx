@@ -1,4 +1,4 @@
-import { DataTable } from '@/components/table/data-table'
+import { DataTable } from '@repo/ui/components/table/data-table'
 import React from 'react'
 import { columns } from './columns'
 import { API_ROUTES } from '@repo/ui/lib/routes'
@@ -24,8 +24,8 @@ export const MenusTable = async ({ restaurantSlug }: Props) => {
     }
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Menu.TMenusResponse>>({
-        endPoint: API_ROUTES.menu.endpoint + "?restaurantId=" + restaurantId,
-        tags: [API_ROUTES.menu.queryKey, restaurantId]
+        endPoint: API_ROUTES.fooding.menu.endpoint + "?restaurantId=" + restaurantId,
+        tags: [API_ROUTES.fooding.menu.queryKey, restaurantId]
     });
 
 

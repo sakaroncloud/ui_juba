@@ -35,21 +35,15 @@ export const RestaurantAddressForm = ({ restaurantId, formValues }: Props) => {
         defaultValues: formValues || addressDefaultValues
     })
 
-
     const [isPending, startTransition] = useTransition();
-
-
     const onSubmit = (values: TAddressForm) => {
         startTransition(async () => {
-            const response = await submitAddress(values, API_ROUTES.restaurant.endpoint + "/" + restaurantId + "/address");
+            const response = await submitAddress(values, API_ROUTES.fooding.restaurant.endpoint + "/" + restaurantId + "/address");
             handleToast(response)
         })
     }
 
-
     return (
-
-
         <Form {...form}>
             <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
                 <FormFieldWrapper

@@ -1,9 +1,9 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table"
 
-import { DataTableColumnHeader } from "@/components/table/column-header"
+import { DataTableColumnHeader } from "@repo/ui/components/table/column-header"
 import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
-import { CustomCell } from "@/components/table/custom-cell"
+import { CustomCell } from "@repo/ui/components/table/custom-cell"
 
 
 import { CircleAlert, CircleCheck } from "lucide-react"

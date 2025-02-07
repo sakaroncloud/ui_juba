@@ -2,13 +2,13 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Button } from "@repo/ui/components/button"
 
-import { DataTableColumnHeader } from "@/components/table/column-header"
+import { DataTableColumnHeader } from "@repo/ui/components/table/column-header"
 import FallbackImage from "@/components/fallback-image"
 import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
-import { CustomCell } from "@/components/table/custom-cell"
+import { CustomCell } from "@repo/ui/components/table/custom-cell"
 import { useState, useTransition } from "react"
 import { deleteForeverHandler, deleteHandler, restoreHandler } from "@/lib/actions/global.action"
-import { DeleteButton, DeleteForeverButton, EditButton, RestoreButton, ViewIcon } from "@/components/table/action-button"
+import { DeleteButton, DeleteForeverButton, EditButton, RestoreButton, ViewIcon } from "@repo/ui/components/table/action-button"
 import { CustomFormModal } from "@/components/form/custom-form-modal"
 import { DialogFooter } from "@repo/ui/components/dialog"
 import { API_ROUTES } from "@repo/ui/lib/routes"
@@ -73,7 +73,7 @@ export const columns: ColumnDef<Restaurant.TRest & {
 
                     startTransition(async () => {
                         const res = await handler({
-                            ENDPOINT: API_ROUTES.restaurant.endpoint,
+                            ENDPOINT: API_ROUTES.fooding.restaurant.endpoint,
                             PARAM: data.id
                         })
                         if (res.success == true) {

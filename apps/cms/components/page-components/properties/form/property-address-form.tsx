@@ -36,7 +36,7 @@ export const PropertyAddressForm = ({ propertyId, formValues }: Props) => {
     const [isPending, startTransition] = useTransition();
     const onSubmit = (values: TAddressForm) => {
         startTransition(async () => {
-            const response = await submitAddress(values, API_ROUTES.property.endpoint + "/" + propertyId + "/address");
+            const response = await submitAddress(values, API_ROUTES.lodging.property.endpoint + "/" + propertyId + "/address");
             handleToast(response)
         })
     }

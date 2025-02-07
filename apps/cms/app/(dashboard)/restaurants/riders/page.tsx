@@ -1,6 +1,6 @@
 import { StaffTable } from "@/components/page-components/users/staffs/staff-table"
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
-import { TableWrapperWithFilter } from "@/components/table/table-wrapper-with-filter"
+import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
 import { Skeleton } from "@repo/ui/components/skeleton"
 import { AddItemButton, ShowTrashOrViewButton } from "@/components/uploads/add-item-button"
 

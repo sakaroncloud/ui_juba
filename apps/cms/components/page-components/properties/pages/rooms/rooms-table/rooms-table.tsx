@@ -13,8 +13,8 @@ export const RoomsTable = async ({ propertySlug }: Props) => {
     const propertyId = propertySlug.split("--")?.[1]
 
     const result = await getData<ResponseWithNoMeta<Property.TRoom[]>>({
-        endPoint: API_ROUTES.room.endpoint + "?propertyId=" + propertyId,
-        tags: [API_ROUTES.room.queryKey, propertySlug]
+        endPoint: API_ROUTES.lodging.room.endpoint + "?propertyId=" + propertyId,
+        tags: [API_ROUTES.lodging.room.queryKey, propertySlug]
     });
 
     if (!result?.data) return null

@@ -22,8 +22,8 @@ type Props = {
 
 export const RestaurantCuisineForm = ({ restaurantId, formValues }: Props) => {
     const { data: cuisines } = useFetch<ResponseWithMeta<Restaurant.Cuisine.TCuisine[]>>({
-        endPoint: API_ROUTES.cuisine.endpoint + "?skipPagination=true",
-        queryKey: API_ROUTES.cuisine.queryKey,
+        endPoint: API_ROUTES.fooding.cuisine.endpoint + "?skipPagination=true",
+        queryKey: API_ROUTES.fooding.cuisine.queryKey,
     });
 
     const form = useForm<TRestCuisineForm>({

@@ -29,8 +29,8 @@ export const CartSheet = () => {
   const isModalOpen = isOpen && type === "cart-sheet";
 
   const { data: result } = useFetch<ResponseWithNoMeta<Restaurant.Cart.TCart>>({
-    queryKey: API_ROUTES.cart.queryKey,
-    endPoint: API_ROUTES.cart.endpoint,
+    queryKey: API_ROUTES.fooding.cart.queryKey,
+    endPoint: API_ROUTES.fooding.cart.endpoint,
   })
 
   const data = result?.data

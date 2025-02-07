@@ -27,7 +27,7 @@ const EditProductPage = async ({ params }: Props) => {
 
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Product.TProduct>>({
-        endPoint: API_ROUTES.product.endpoint,
+        endPoint: API_ROUTES.fooding.product.endpoint,
         query: {
             key: "restaurantId",
             value: restaurantId

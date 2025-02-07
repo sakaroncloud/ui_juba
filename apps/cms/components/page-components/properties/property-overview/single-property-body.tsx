@@ -12,7 +12,7 @@ type Props = {
 }
 export const SinglePropertyBody = async ({ propertyId }: Props) => {
     const result = await getData<ResponseWithNoMeta<Property.TProperty>>({
-        endPoint: API_ROUTES.property.endpoint,
+        endPoint: API_ROUTES.lodging.property.endpoint,
         param: propertyId,
         tags: ["property", propertyId]
     });

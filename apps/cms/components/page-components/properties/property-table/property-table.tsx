@@ -1,4 +1,4 @@
-import { DataTable } from '@/components/table/data-table'
+import { DataTable } from '@repo/ui/components/table/data-table'
 import React from 'react'
 import { columns } from './columns'
 import { ResponseWithMeta } from '@repo/ui/types/response.type'
@@ -16,7 +16,7 @@ type Props = {
 export const PropertyTable = async ({ showDeleted }: Props) => {
 
     const result = await getData<ResponseWithMeta<Property.TProperty[]>>({
-        endPoint: API_ROUTES.property.endpoint,
+        endPoint: API_ROUTES.lodging.property.endpoint,
         tags: ["property"]
     });
 

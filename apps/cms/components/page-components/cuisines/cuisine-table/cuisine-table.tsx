@@ -1,5 +1,5 @@
 "use client"
-import { DataTable } from '@/components/table/data-table'
+import { DataTable } from '@repo/ui/components/table/data-table'
 import React from 'react'
 import { columns } from './columns'
 import { useFetch } from '@/hooks/useFetch'
@@ -9,8 +9,8 @@ import { API_ROUTES } from '@repo/ui/lib/routes'
 
 export const CuisineTable = () => {
     const { data: result } = useFetch<ResponseWithMeta<Restaurant.Cuisine.TCuisine[]>>({
-        endPoint: API_ROUTES.cuisine.endpoint,
-        queryKey: API_ROUTES.cuisine.queryKey,
+        endPoint: API_ROUTES.fooding.cuisine.endpoint,
+        queryKey: API_ROUTES.fooding.cuisine.queryKey,
     });
     return (
         <DataTable columns={columns} data={result?.data || []}

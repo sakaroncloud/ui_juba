@@ -11,7 +11,7 @@ export async function cancelOrder(orderId: string | number, formData: TOrderCanc
         };
     }
     return await PrivateSubmitHandler({
-        ENDPOINT: API_ROUTES.order.endpoint + "/" + orderId + "/cancel",
+        ENDPOINT: API_ROUTES.fooding.order.endpoint + "/" + orderId + "/cancel",
         METHOD: "PATCH",
         DATA: validationFields.data
     })
@@ -20,9 +20,8 @@ export async function cancelOrder(orderId: string | number, formData: TOrderCanc
 
 
 export async function updateOrder(orderId: string | number, orderStatus: OrderStatus) {
-
     return await PrivateSubmitHandler({
-        ENDPOINT: API_ROUTES.order.endpoint + "/" + orderId + "/status",
+        ENDPOINT: API_ROUTES.fooding.order.endpoint + "/" + orderId + "/status",
         METHOD: "PATCH",
         DATA: {
             orderStatus

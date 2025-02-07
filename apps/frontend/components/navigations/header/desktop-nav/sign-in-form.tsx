@@ -61,18 +61,19 @@ const SignInForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
         <CustomFormField
-          apiKey="email"
+          fieldId="email"
           label="Email"
           placeholder="Email"
-          tagType="input"
-          type="email"
+          elementName="input"
+          inputType="email"
         />
         <CustomFormField
-          apiKey="password"
+          fieldId="password"
           label="Password"
           placeholder="Password"
-          tagType="input"
-          type="password"
+          elementName="input"
+          inputType="password"
+
         />
         <CustomButton
           className="!mt-6"

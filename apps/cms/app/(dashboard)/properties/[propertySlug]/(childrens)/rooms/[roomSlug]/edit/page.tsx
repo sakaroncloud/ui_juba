@@ -21,7 +21,7 @@ const RoomEditPage = async ({ params }: Props) => {
     if (slugTempered || propertyId === undefined || roomId === undefined) notFound()
 
     const result = await getData<ResponseWithNoMeta<Property.TRoom>>({
-        endPoint: API_ROUTES.room.endpoint,
+        endPoint: API_ROUTES.lodging.room.endpoint,
         query: {
             key: "propertyId",
             value: propertyId

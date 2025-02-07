@@ -1,7 +1,7 @@
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
-import { TableWrapperWithFilter } from "@/components/table/table-wrapper-with-filter"
+import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
 import { AddItemButton } from "@/components/uploads/add-item-button"
-import { TableSearchForm } from "@/components/table/table-search-form"
+import { TableSearchForm } from "@repo/ui/components/table/table-search-form"
 import { CuisineTable } from "@/components/page-components/cuisines/cuisine-table/cuisine-table"
 
 

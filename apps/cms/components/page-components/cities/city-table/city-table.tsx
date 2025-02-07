@@ -1,4 +1,4 @@
-import { DataTable } from '@/components/table/data-table'
+import { DataTable } from '@repo/ui/components/table/data-table'
 import React from 'react'
 import { columns } from './columns';
 import { API_ROUTES } from '@repo/ui/lib/routes';

@@ -166,9 +166,13 @@ export const getIDsFromSlug = (option: TSlug) => {
  * @param response 
  * @param onSuccess 
  */
-export const handleToast = (response: { success: boolean; message: string }, onSuccess?: () => void) => {
+export const handleToast = (response: {
+  success: boolean; message: string, data?: {
+    message?: string;
+  }
+}, onSuccess?: () => void) => {
   if (response.success) {
-    toast.success(response.message)
+    toast.success(response?.data?.message || response.message)
     onSuccess?.()
   } else {
     toast.error(response.message || "Something went wrong")

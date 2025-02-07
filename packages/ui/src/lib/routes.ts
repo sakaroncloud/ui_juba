@@ -1,108 +1,134 @@
 
 export const API_ROUTES = {
-    // auth
-    login: {
-        endpoint: "/auth/login" as const,
-        queryKey: "login" as const,
-    },
-    logout: {
-        endpoint: "/auth/signout" as const,
-        queryKey: "logout" as const,
-    },
-    verifyEmail: {
-        endpoint: "/auth/email-verification" as const,
-        queryKey: "verify-email" as const,
-    },
-    signUp: {
-        endpoint: "/auth/signup" as const,
-        queryKey: "signUp" as const,
-    },
-    // fooding
-    cuisine: {
-        endpoint: "/fooding/cuisines" as const,
-        queryKey: "cuisine" as const,
+    auth: {
+        login: {
+            endpoint: "/auth/login" as const,
+            queryKey: "login" as const,
+        },
+        logout: {
+            endpoint: "/auth/signout" as const,
+            queryKey: "logout" as const,
+        },
+        verifyEmail: {
+            endpoint: "/auth/email-verification" as const,
+            queryKey: "verify-email" as const,
+        },
+        forgotPassword: {
+            endpoint: "/auth/forgot-password" as const,
+            queryKey: "forgot-password" as const,
+        },
+        newPassword: {
+            endpoint: "/auth/new-password" as const,
+            queryKey: "new-password" as const,
+        },
+        signUp: {
+            endpoint: "/auth/signup" as const,
+            queryKey: "signUp" as const,
+        },
+
     },
 
-    product: {
-        endpoint: "/fooding/products" as const,
-        queryKey: "product-" as const,
-    },
-    menu: {
-        endpoint: "/fooding/menus" as const,
-        queryKey: "menu-" as const,
-    },
-    restaurant: {
-        endpoint: "/fooding/restaurants" as const,
-        queryKey: "restaurant" as const,
-    },
-    order: {
-        endpoint: "/fooding/orders" as const,
-        queryKey: "order" as const,
-    },
-    singleCuisinePage: {
-        endpoint: "/fooding/cuisines/single-page" as const,
-        queryKey: "singleCuisinePage" as const,
-    },
-    singleRestImage: {
-        endpoint: "/fooding/uploads/restaurant" as const,
-        queryKey: "singleRestImage" as const,
-    },
-    allRestImage: {
-        endpoint: "/fooding/uploads" as const,
-        queryKey: "allRestImage" as const,
+    fooding: {
+        cuisine: {
+            endpoint: "/fooding/cuisines" as const,
+            queryKey: "cuisine" as const,
+            singleCuisinePage: {
+                endpoint: "/fooding/cuisines/single-page" as const,
+                queryKey: "singleCuisinePage" as const,
+            },
+        },
+
+        product: {
+            endpoint: "/fooding/products" as const,
+            queryKey: "product-" as const,
+        },
+
+        menu: {
+            endpoint: "/fooding/menus" as const,
+            queryKey: "menu-" as const,
+        },
+        restaurant: {
+            endpoint: "/fooding/restaurants" as const,
+            queryKey: "restaurant" as const,
+        },
+        order: {
+            endpoint: "/fooding/orders" as const,
+            queryKey: "order" as const,
+
+            checkout: {
+                endpoint: "/fooding/orders/checkout" as const,
+                queryKey: "checkout" as const,
+            },
+        },
+
+        uploads: {
+            endpoint: "/fooding/uploads" as const,
+            queryKey: "allRestImage" as const,
+            singleRestImage: {
+                endpoint: "/fooding/uploads/restaurant" as const,
+                queryKey: "singleRestImage" as const,
+            },
+        },
+
+        cart: {
+            endpoint: "/fooding/carts" as const,
+            queryKey: "cart" as const,
+            cartItem: {
+                endpoint: "/fooding/carts/cart-item" as const,
+                queryKey: "cart-item" as const,
+            },
+        },
+
     },
 
-
-
-    // lodging
-
-    propertyImage: {
-        endpoint: "/lodging/uploads/properties" as const,
-        queryKey: "propertyImage" as const,
+    lodging: {
+        property: {
+            endpoint: "/lodging/properties" as const,
+            queryKey: "property" as const,
+        },
+        room: {
+            endpoint: "/lodging/rooms" as const,
+            queryKey: "room" as const,
+        },
+        uploads: {
+            endpoint: "/lodging/uploads" as const,
+            queryKey: "propertyImage" as const,
+            singlePropertyImage: {
+                endpoint: "/lodging/uploads/properties" as const,
+                queryKey: "singlePropertyImage" as const,
+            },
+        }
     },
-    property: {
-        endpoint: "/lodging/properties" as const,
-        queryKey: "property" as const,
-    },
-    room: {
-        endpoint: "/lodging/rooms" as const,
-        queryKey: "room" as const,
-    },
-
-    // user and profile
-
     user: {
         endpoint: "/users" as const,
         queryKey: "user" as const,
+
+        changePassword: {
+            endpoint: "/users/change-password" as const,
+            queryKey: "change-password" as const,
+        }
     },
     profile: {
         endpoint: "/profile" as const,
         queryKey: "profile" as const,
-    },
-    rider: {
-        endpoint: "/profile/riders" as const,
-        queryKey: "rider" as const,
-    },
 
-    // address
+        customer: {
+            endpoint: "/profile/customer" as const,
+            queryKey: "customer" as const,
+            address: {
+                endpoint: "/profile/customer/address" as const,
+                queryKey: "customer-address" as const,
+            }
+        },
+        rider: {
+            endpoint: "/profile/rider" as const,
+            queryKey: "rider" as const,
+        },
+
+    },
     city: {
         endpoint: "/cities" as const,
         queryKey: "city" as const,
-    },
-
-    //    Fooding Frontend
-    cart: {
-        endpoint: "/fooding/carts" as const,
-        queryKey: "cart" as const,
-    },
-    cartItem: {
-        endpoint: "/fooding/carts/cart-item" as const,
-        queryKey: "cart-item" as const,
-    },
-
-    checkout: {
-        endpoint: "/fooding/orders/checkout" as const,
-        queryKey: "checkout" as const,
     },
 };
 

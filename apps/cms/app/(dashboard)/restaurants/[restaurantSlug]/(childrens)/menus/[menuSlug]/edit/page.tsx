@@ -27,7 +27,7 @@ const EditMenuPage = async ({ params }: TParams) => {
 
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Menu.TMenu>>({
-        endPoint: API_ROUTES.menu.endpoint,
+        endPoint: API_ROUTES.fooding.menu.endpoint,
         query: {
             key: "restaurantId",
             value: restaurantId

@@ -8,7 +8,7 @@ import { Restaurant } from "@repo/ui/types/restaurant.types"
 
 export const CuisinesCarousel = async () => {
   const result = await getData<ResponseWithMeta<Restaurant.Cuisine.TCuisine[]>>({
-    endPoint: API_ROUTES.cuisine.endpoint,
+    endPoint: API_ROUTES.fooding.cuisine.endpoint,
     tags: ["cusines"],
   });
 

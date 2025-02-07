@@ -243,9 +243,21 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.62.7
         version: 5.65.1(@tanstack/react-query@5.65.1(react@19.0.0))(react@19.0.0)
+      '@tanstack/react-table':
+        specifier: ^8.20.6
+        version: 8.20.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      antd:
+        specifier: ^5.23.3
+        version: 5.23.3(date-fns@4.1.0)(luxon@3.5.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
+      emblor:
+        specifier: ^1.4.7
+        version: 1.4.7(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(postcss@8.5.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(ts-node@10.9.2(@types/node@22.10.10)(typescript@5.7.3))(typescript@5.7.3)
       jose:
         specifier: ^5.9.6
         version: 5.9.6
@@ -282,6 +294,9 @@ importers:
       react-phone-number-input:
         specifier: ^3.4.11
         version: 3.4.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-select:
+        specifier: ^5.10.0
+        version: 5.10.0(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-slick:
         specifier: ^0.30.3
         version: 0.30.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)

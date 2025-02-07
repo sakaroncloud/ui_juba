@@ -18,7 +18,7 @@ const EditPropertyPage = async ({ params }: Props) => {
 
     if (!propertyId) notFound()
     const result = await getData<ResponseWithNoMeta<Property.TProperty>>({
-        endPoint: API_ROUTES.property.endpoint,
+        endPoint: API_ROUTES.lodging.property.endpoint,
         param: propertyId,
         tags: ["property", propertyId]
     });

@@ -13,20 +13,20 @@ const VerifyEmailPage = () => {
     const [submitted, setSubmitted] = React.useState(false);
     const router = useRouter()
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
         const token = searchParams.get("token")
         const email = searchParams.get("email")
 
         if (token && email) {
+            console.log(token, email)
             startTransition(async () => {
-                if (token && email) {
-                    const response = await verifyEmail(token, email)
-                    handleToast(response, () => {
-                        router.push("/")
-                    })
-                    setSubmitted(true)
+                const response = await verifyEmail(token, email)
+                handleToast(response, () => {
                     router.push("/")
-                }
+                })
+                setSubmitted(true)
+                router.push("/")
+
             })
         }
 
@@ -43,7 +43,8 @@ const VerifyEmailPage = () => {
                 {!submitted && !isPending && (
                     <Slider
                         onValueChange={(e) => {
-                            if (e[0] === 100) {
+                            console.log(e)
+                            if (e[0] == 100) {
                                 onSubmit()
                             }
                         }}

@@ -64,7 +64,7 @@ const generateRestaurantCards = (restaurant: Restaurant.TSingleRestaurant) => {
 export const RestaurantBody = async ({ restaurantId }: Props) => {
 
     const result = await getData<ResponseWithNoMeta<Restaurant.TSingleRestaurant>>({
-        endPoint: API_ROUTES.restaurant.endpoint,
+        endPoint: API_ROUTES.fooding.restaurant.endpoint,
         param: restaurantId,
         tags: ["restaurant", restaurantId]
     });

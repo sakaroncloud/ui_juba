@@ -27,7 +27,7 @@ const EditRestaurantPage = async ({ params }: TParams) => {
     }
 
     const result = await getData<ResponseWithNoMeta<Restaurant.TRest>>({
-        endPoint: API_ROUTES.restaurant.endpoint,
+        endPoint: API_ROUTES.fooding.restaurant.endpoint,
         param: restaurantId,
         tags: ["restaurant", restaurantId]
     })

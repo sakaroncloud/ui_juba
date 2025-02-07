@@ -24,8 +24,8 @@ export const RiderAssignForm = ({ orderId, setOpen, defaultRiderId }: Props) => 
   const [isPending, startTransition] = useTransition();
 
   const { data: riders } = useFetch<ResponseWithNoMeta<User.TRiderProfile[]>>({
-    endPoint: API_ROUTES.rider.endpoint,
-    queryKey: API_ROUTES.rider.queryKey,
+    endPoint: API_ROUTES.profile.rider.endpoint,
+    queryKey: API_ROUTES.profile.rider.queryKey,
   });
 
 

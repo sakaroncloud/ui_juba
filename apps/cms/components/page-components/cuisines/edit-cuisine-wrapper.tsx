@@ -14,7 +14,7 @@ type Props = {
 export const EditCuisineWrapper = async ({ cuisineSlug }: Props) => {
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Cuisine.TCuisine>>({
-        endPoint: API_ROUTES.cuisine.endpoint,
+        endPoint: API_ROUTES.fooding.cuisine.endpoint,
         param: cuisineSlug,
         tags: ["cuisine", cuisineSlug]
     });

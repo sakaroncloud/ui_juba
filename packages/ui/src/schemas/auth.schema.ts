@@ -2,10 +2,34 @@ import { z } from "zod";
 import { EDocumentType, Gender, Role } from "@repo/ui/types/user.types";
 
 export const changePasswordSchema = z.object({
-    oldPassword: z.string(),
-    newPassword: z.string(),
-    confirmPassword: z.string(),
+    oldPassword: z
+        .string()
+        .trim()
+        .min(1, { message: "Old password is required." }),
+
+    newPassword: z
+        .string()
+        .trim()
+        .min(8, { message: "Password must be at least 8 characters long." })
+        .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+        .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
+        .regex(/[0-9]/, { message: "Password must contain at least one number." })
+        .regex(/[^a-zA-Z0-9]/, { message: "Password must contain at least one special character." })
+        .regex(/^(?!.*(.)\1{2,})/, { message: "Password cannot contain three or more consecutive identical characters." })
+        .regex(/^(?!.*(?:password|1234|qwerty|admin)).*$/, { message: "Password cannot contain common words or patterns like 'password', '1234', or 'qwerty'." }),
+
+    confirmPassword: z
+        .string()
+        .trim()
+        .min(1, { message: "Confirm password is required." }),
+}).refine((data) => data.newPassword !== data.oldPassword, {
+    message: "Old and new passwords cannot be the same.",
+    path: ["newPassword"],
+}).refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Confirm password does not match the new password.",
+    path: ["confirmPassword"],
 });
+
 
 
 export type TChangePassword = z.infer<typeof changePasswordSchema>;
@@ -14,7 +38,7 @@ export type TChangePassword = z.infer<typeof changePasswordSchema>;
 
 export const loginSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(2),
+    password: z.string().min(2).trim(),
 });
 
 export type TLogin = z.infer<typeof loginSchema>;
@@ -45,17 +69,14 @@ export const signUpSchema = z.object({
         .trim(),
     password: z
         .string()
-        .min(8, { message: "Be at least 8 characters long" })
-        .regex(/[a-zA-Z]/, {
-            message: "Contain at least one letter.",
-        })
-        .regex(/[0-9]/, {
-            message: "Contain at least one number.",
-        })
-        .regex(/[^a-zA-Z0-9]/, {
-            message: "Contain at least one special character.",
-        })
-        .trim(),
+        .trim()
+        .min(8, { message: "Password must be at least 8 characters long." })
+        .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+        .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
+        .regex(/[0-9]/, { message: "Password must contain at least one number." })
+        .regex(/[^a-zA-Z0-9]/, { message: "Password must contain at least one special character." })
+        .regex(/^(?!.*(.)\1{2,})/, { message: "Password cannot contain three or more consecutive identical characters." })
+        .regex(/^(?!.*(?:password|1234|qwerty|admin)).*$/, { message: "Password cannot contain common words or patterns like 'password', '1234', or 'qwerty'." }),
     phone: z.string().min(1, {
         message: "Phone is required",
     }),

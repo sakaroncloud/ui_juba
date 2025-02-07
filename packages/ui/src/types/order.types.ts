@@ -55,11 +55,13 @@ export namespace Order {
         orderItems: TOrderItem[];
         totalItems: number;
         estimateTime: number;
+        restaurant: Restaurant.TRest;
     };
 
     export type TOrderItem = {
         id: number;
         preparationTime: number,
+        name: string,
         quantity: number,
         totalAmount: number,
         price: number,

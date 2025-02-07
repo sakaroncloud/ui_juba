@@ -45,8 +45,8 @@ export const PropertyGalleryForm = ({ defaultImages, propertyId }: Props) => {
                         allowMultiple={true}
                         fieldId={"galleryIds"}
                         label={"Gallery"}
-                        fetchEndPoint={API_ROUTES.propertyImage.endpoint + "/" + propertyId}
-                        uploadEndPoint={API_ROUTES.propertyImage.endpoint + "/" + propertyId}
+                        fetchEndPoint={API_ROUTES.lodging.uploads.singlePropertyImage.endpoint + "/" + propertyId}
+                        uploadEndPoint={API_ROUTES.lodging.uploads.singlePropertyImage.endpoint + "/" + propertyId}
                     />
                 </FormFieldWrapper>
 

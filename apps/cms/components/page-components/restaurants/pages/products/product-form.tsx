@@ -33,8 +33,8 @@ export const ProductForm = ({ defaultImages, formValues, productId, restaurantSl
 
 
     const { data: menus } = useFetch<ResponseWithNoMeta<Restaurant.Menu.TMenusResponse>>({
-        endPoint: API_ROUTES.menu.endpoint + "?restaurantId=" + restaurantId,
-        queryKey: API_ROUTES.menu.queryKey + restaurantId,
+        endPoint: API_ROUTES.fooding.menu.endpoint + "?restaurantId=" + restaurantId,
+        queryKey: API_ROUTES.fooding.menu.queryKey + restaurantId,
     });
 
 
@@ -154,8 +154,8 @@ export const ProductForm = ({ defaultImages, formValues, productId, restaurantSl
                         allowMultiple={false}
                         fieldId={"bannerImage"}
                         label={"Banner Image"}
-                        fetchEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
-                        uploadEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
+                        fetchEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
+                        uploadEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
                     />
                 </FormFieldWrapper>
                 <FormFooter

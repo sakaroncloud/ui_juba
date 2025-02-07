@@ -1,5 +1,5 @@
 
-import { DataTable } from '@/components/table/data-table'
+import { DataTable } from '@repo/ui/components/table/data-table'
 import React from 'react'
 import { columns } from './columns'
 import { API_ROUTES } from '@repo/ui/lib/routes'
@@ -21,8 +21,8 @@ export const ProductsTable = async ({ restaurantSlug }: Props) => {
     if (!restaurantId) return null
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Product.TProductsResponse>>({
-        endPoint: API_ROUTES.product.endpoint + "?restaurantId=" + restaurantId,
-        tags: [API_ROUTES.product.queryKey, restaurantId]
+        endPoint: API_ROUTES.fooding.product.endpoint + "?restaurantId=" + restaurantId,
+        tags: [API_ROUTES.fooding.product.queryKey, restaurantId]
     });
 
     if (!result?.data || !result.data.products || !result.data.restaurant) return null

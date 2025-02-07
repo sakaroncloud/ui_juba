@@ -10,8 +10,8 @@ import React from 'react'
 export const CartSheetTriggerer = () => {
     const { onOpen } = useModal()
     const { data } = useFetch<ResponseWithNoMeta<Restaurant.Cart.TCart>>({
-        queryKey: API_ROUTES.cart.queryKey,
-        endPoint: API_ROUTES.cart.endpoint,
+        queryKey: API_ROUTES.fooding.cart.queryKey,
+        endPoint: API_ROUTES.fooding.cart.endpoint,
     })
     const totalItems = data?.data?.totalQuantity || 0
 

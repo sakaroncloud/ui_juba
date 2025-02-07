@@ -51,8 +51,8 @@ export const RestaurantBrandingForm = ({ restaurantId, defaultImages }: Props) =
                         allowMultiple={false}
                         fieldId={"logo"}
                         label={"Logo"}
-                        fetchEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
-                        uploadEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
+                        fetchEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
+                        uploadEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
                     />
                 </FormFieldWrapper>
 
@@ -65,8 +65,8 @@ export const RestaurantBrandingForm = ({ restaurantId, defaultImages }: Props) =
                         allowMultiple={false}
                         fieldId={"bannerImage"}
                         label={"Banner Image"}
-                        fetchEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
-                        uploadEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
+                        fetchEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
+                        uploadEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
                     />
                 </FormFieldWrapper>
 

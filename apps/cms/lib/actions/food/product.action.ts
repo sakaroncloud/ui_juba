@@ -15,7 +15,7 @@ export async function submitProduct(formData: TProductForm, param?: string | num
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.product.endpoint,
+        ENDPOINT: API_ROUTES.fooding.product.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: validationFields.data,
         PARAM: param,

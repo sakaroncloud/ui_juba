@@ -16,7 +16,7 @@ export async function submitCusine(formData: TCuisineForm, param?: string) {
     }
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.cuisine.endpoint,
+        ENDPOINT: API_ROUTES.fooding.cuisine.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: validationFields.data,
         PARAM: param

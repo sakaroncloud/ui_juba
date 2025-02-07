@@ -1,4 +1,4 @@
-import { DataTable } from "@/components/table/data-table";
+import { DataTable } from "@repo/ui/components/table/data-table";
 
 import { columns } from "./columns";
 import { getData } from "@/app/data";

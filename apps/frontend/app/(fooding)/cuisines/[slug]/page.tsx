@@ -16,7 +16,7 @@ type Props = {
 const SingleCuisinePage = async ({ params }: Props) => {
   const param = await params;
   const result = await getData<ResponseWithMeta<Restaurant.Cuisine.TSingleCuisinePage>>({
-    endPoint: API_ROUTES.singleCuisinePage.endpoint,
+    endPoint: API_ROUTES.fooding.cuisine.singleCuisinePage.endpoint,
     query: [{
       value: param.slug,
       key: "slug"

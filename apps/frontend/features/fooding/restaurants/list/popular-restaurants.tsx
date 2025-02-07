@@ -9,7 +9,7 @@ import { RestaurantsGrid } from "@/features/fooding/shared/restaurants-grid";
 
 export const PopularRestaurantsSection = () => {
   const { data: restaurants } = useFetch<ResponseWithMeta<Restaurant.TRest[]>>({
-    endPoint: API_ROUTES.restaurant.endpoint,
+    endPoint: API_ROUTES.fooding.restaurant.endpoint,
     queryKey: "restaurants",
   });
 

@@ -11,7 +11,7 @@ export async function cancelOrder(orderId: string | number, formData: TOrderCanc
         };
     }
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.order.endpoint + "/" + orderId + "/cancel",
+        ENDPOINT: API_ROUTES.fooding.order.endpoint + "/" + orderId + "/cancel",
         METHOD: "PATCH",
         DATA: validationFields.data
     })
@@ -20,7 +20,7 @@ export async function cancelOrder(orderId: string | number, formData: TOrderCanc
 export async function updateOrder(orderId: string | number, orderStatus: OrderStatus) {
     console.log(orderStatus, "orderStatus")
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.order.endpoint + "/" + orderId + "/status",
+        ENDPOINT: API_ROUTES.fooding.order.endpoint + "/" + orderId + "/status",
         METHOD: "PATCH",
         DATA: {
             orderStatus
@@ -36,7 +36,7 @@ export async function assignRider(orderId: string | number, formData: TAssignRid
         };
     }
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.order.endpoint + "/" + orderId + "/assign-rider",
+        ENDPOINT: API_ROUTES.fooding.order.endpoint + "/" + orderId + "/assign-rider",
         METHOD: "PATCH",
         DATA: validationFields.data
     })

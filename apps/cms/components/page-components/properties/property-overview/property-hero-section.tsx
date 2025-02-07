@@ -14,7 +14,7 @@ type Props = {
 
 export const PropertyHeroSection = async ({ propertyId }: Props) => {
     const result = await getData<ResponseWithNoMeta<Property.TProperty>>({
-        endPoint: API_ROUTES.property.endpoint,
+        endPoint: API_ROUTES.lodging.property.endpoint,
         param: propertyId,
         tags: ["proeprty", propertyId]
     });

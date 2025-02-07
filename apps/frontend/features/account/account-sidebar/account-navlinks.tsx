@@ -1,3 +1,4 @@
+"use client"
 import { CiUser } from "react-icons/ci";
 import { RiLockPasswordLine, RiShoppingCartLine } from "react-icons/ri";
 import { IoBagCheckOutline } from "react-icons/io5";
@@ -7,7 +8,7 @@ import { TbLayoutDashboardFilled } from "react-icons/tb"
 const sharedLinks = [
     {
         name: "Overview",
-        href: "/account/overview",
+        href: "/account",
         icon: TbLayoutDashboardFilled,
     },
     {
@@ -15,11 +16,7 @@ const sharedLinks = [
         href: "/account/orders",
         icon: IoBagCheckOutline,
     },
-    {
-        name: "My Account",
-        href: "/account/account-info",
-        icon: CiUser,
-    },
+
 
     {
         name: "Change Password",
@@ -30,11 +27,7 @@ const sharedLinks = [
 
 export const foodingAccountLinks = [
     ...sharedLinks,
-    {
-        name: "Cart",
-        href: "/account/cart",
-        icon: RiShoppingCartLine,
-    },
+
     {
         name: "Address",
         href: "/account/address",

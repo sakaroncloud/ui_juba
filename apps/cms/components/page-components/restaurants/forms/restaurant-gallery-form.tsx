@@ -46,8 +46,8 @@ export const RestaurantGalleryForm = ({ defaultImages, restaurantId }: Props) =>
                         allowMultiple={true}
                         fieldId={"galleryIds"}
                         label={"Gallery"}
-                        fetchEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
-                        uploadEndPoint={API_ROUTES.singleRestImage.endpoint + "/" + restaurantId}
+                        fetchEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
+                        uploadEndPoint={API_ROUTES.fooding.uploads.singleRestImage.endpoint + "/" + restaurantId}
                     />
                 </FormFieldWrapper>
 

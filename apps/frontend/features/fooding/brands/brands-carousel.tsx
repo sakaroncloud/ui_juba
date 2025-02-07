@@ -22,7 +22,7 @@ export const BrandsCarousel = ({
   showOnlyVeg = false,
 }: Props) => {
   const { data: restaurants } = useFetch<ResponseWithMeta<Restaurant.TRest[]>>({
-    endPoint: API_ROUTES.restaurant.endpoint,
+    endPoint: API_ROUTES.fooding.restaurant.endpoint,
     queryKey: "restaurants",
   });
 

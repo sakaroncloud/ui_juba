@@ -8,16 +8,17 @@ import { CiUser } from "react-icons/ci";
 import { CiSettings } from "react-icons/ci";
 import { IoIosLogOut } from "react-icons/io";
 import { logout } from "@/lib/actions/auth";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UI_ROUTES } from "@/lib/routes";
 import { Menu, User } from "lucide-react";
 import { useModal } from "@/hooks/useModal";
 import { useSession } from "@/providers/session-provider";
+import { cn } from "@repo/ui/lib/utils";
 
 export const UserNav = () => {
     const router = useRouter()
+    const pathname = usePathname()
     const { change, setChange } = useSession();
-
     const signout = async () => {
         await logout()
         setChange(!change)
@@ -45,28 +46,27 @@ export const UserNav = () => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem className="cursor-pointer"
+                    <DropdownMenuItem className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT) && "bg-primary text-primary")}
                         onClick={() => router.push(UI_ROUTES.ACCOUNT)}
                     >
                         <CiUser />
 
                         <span>Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer"
+                    <DropdownMenuItem className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT_ADDRESSES) && "bg-primary text-primary")}
                         onClick={() => router.push(UI_ROUTES.ACCOUNT_ADDRESSES)}
-
                     >
                         <IoLocationOutline />
                         <span>Addresses</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                        onClick={() => router.push(UI_ROUTES.ACCOUNT_CART)}
-
-                        className="cursor-pointer">
+                        onClick={() => router.push(UI_ROUTES.ACCOUNT_ORDERS)}
+                        className={cn("cursor-pointer", pathname == UI_ROUTES.ACCOUNT_ORDERS && "bg-primary text-primary")}                        >
                         <BiPurchaseTag />
                         <span>Order History</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer"
+                    <DropdownMenuItem
+                        className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT_SETTINGS) && "bg-primary text-primary")}
                         onClick={() => router.push(UI_ROUTES.ACCOUNT_SETTINGS)}
                     >
                         <CiSettings />

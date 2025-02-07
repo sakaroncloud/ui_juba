@@ -80,8 +80,8 @@ export const CuisineForm = ({ defaultImages, formValues }: Props) => {
             allowMultiple={false}
             fieldId={"bannerImage"}
             label={"Icon for Cuisine"}
-            fetchEndPoint={API_ROUTES.allRestImage.endpoint}
-            uploadEndPoint={API_ROUTES.allRestImage.endpoint}
+            fetchEndPoint={API_ROUTES.fooding.uploads.endpoint}
+            uploadEndPoint={API_ROUTES.fooding.uploads.endpoint}
           />
         </FormFieldWrapper>
 

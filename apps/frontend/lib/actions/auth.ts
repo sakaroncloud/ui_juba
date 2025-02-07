@@ -1,13 +1,13 @@
 "use server";
 
-import { loginSchema, signUpSchema, TLogin, TSignUp } from "@repo/ui/schemas/auth.schema";
+import { changePasswordSchema, loginSchema, signUpSchema, TChangePassword, TLogin, TSignUp } from "@repo/ui/schemas/auth.schema";
 import { createSession, deleteSession, getSession } from "./session";
 import { AllowedRoles, BACKEND_URL } from "@/lib/constants";
 import { ReturnType, TBaseResponse } from "@repo/ui/types/response.type";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { TLoginResponse } from "@repo/ui/types/auth.response.type"
 import { getQueryString } from "@repo/ui/lib/utils";
-import { PublicSubmitHandler } from "./global.action";
+import { PrivateSubmitHandler, PublicSubmitHandler } from "./global.action";
 import { revalidatePath } from "next/cache";
 
 
@@ -29,7 +29,7 @@ export async function signIn(formData: TLogin): Promise<
   try {
 
     const response = await fetch(
-      BACKEND_URL + API_ROUTES.login.endpoint,
+      BACKEND_URL + API_ROUTES.auth.login.endpoint,
       {
         method: "POST",
         headers: {
@@ -88,7 +88,7 @@ export async function signUp(formData: TSignUp): Promise<ReturnType> {
   }
 
   return await PublicSubmitHandler({
-    ENDPOINT: API_ROUTES.signUp.endpoint,
+    ENDPOINT: API_ROUTES.auth.signUp.endpoint,
     METHOD: "POST",
     DATA: validationFields.data
   })
@@ -103,7 +103,7 @@ export async function logout() {
   }
   try {
     await fetch(
-      BACKEND_URL + API_ROUTES.signUp,
+      BACKEND_URL + API_ROUTES.auth.signUp,
       {
         method: "POST",
         headers: {
@@ -121,6 +121,7 @@ export async function logout() {
     await deleteSession()
   }
 }
+
 export async function verifyEmail(token: string, email: string) {
 
   if (!token || !email) {
@@ -139,8 +140,26 @@ export async function verifyEmail(token: string, email: string) {
   ])
 
   return await PublicSubmitHandler({
-    ENDPOINT: API_ROUTES.verifyEmail.endpoint + queryString,
+    ENDPOINT: API_ROUTES.auth.verifyEmail.endpoint + queryString,
     METHOD: "PATCH",
     DATA: {}
+  })
+}
+
+export async function changePassword(formData: TChangePassword) {
+
+  const validationFields = changePasswordSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data modified",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await PrivateSubmitHandler({
+    ENDPOINT: API_ROUTES.user.changePassword.endpoint,
+    METHOD: "PATCH",
+    DATA: validationFields.data
   })
 }

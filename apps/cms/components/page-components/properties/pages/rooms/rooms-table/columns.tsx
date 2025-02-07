@@ -2,10 +2,10 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Button } from "@repo/ui/components/button"
 
-import { DataTableColumnHeader } from "@/components/table/column-header"
+import { DataTableColumnHeader } from "@repo/ui/components/table/column-header"
 
 import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
-import { CustomCell } from "@/components/table/custom-cell"
+import { CustomCell } from "@repo/ui/components/table/custom-cell"
 import { useState, useTransition } from "react"
 import { deleteHandler } from "@/lib/actions/global.action"
 import { DeleteButton, EditButton, ViewIcon } from "@/components/table/action-button"
@@ -63,7 +63,7 @@ export const columns: ColumnDef<Property.TRoom & {
                 const onDelete = async () => {
                     startTransition(async () => {
                         const res = await deleteHandler({
-                            ENDPOINT: API_ROUTES.room.endpoint,
+                            ENDPOINT: API_ROUTES.lodging.room.endpoint,
                             PARAM: data.id + "?property=" + data.property?.id
                         })
                         if (res.success == true) {

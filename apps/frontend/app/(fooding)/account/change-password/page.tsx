@@ -1,8 +1,8 @@
-import React from 'react'
+import { ChangePasswordForm } from '@/features/account/change-password/change-password-form'
 
 const ChangePasswordPage = () => {
     return (
-        <div>ChangePassword</div>
+        <ChangePasswordForm />
     )
 }
 

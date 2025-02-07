@@ -36,39 +36,40 @@ const SignUpForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <div className="grid grid-cols-2 gap-4">
           <CustomFormField
-            apiKey="firstName"
+            fieldId="firstName"
             label="First Name"
             placeholder="First Name"
-            tagType="input"
-            type="text"
+            inputType="text"
+            elementName="input"
           />
           <CustomFormField
-            apiKey="lastName"
+            fieldId="lastName"
             label="Last Name"
             placeholder="Last Name"
-            tagType="input"
-            type="text"
+            elementName="input"
           />
         </div>
         <CustomFormField
-          apiKey="email"
+          fieldId="email"
           label="Email"
           placeholder="Email"
-          tagType="input"
-          type="email"
+          elementName="input"
         />
         <CustomFormField
-          apiKey="password"
+          fieldId="password"
           label="Password"
           placeholder="Password"
-          tagType="input"
-          type="password"
+          elementName="input"
+          inputType="password"
+
         />
         <CustomFormField
-          apiKey="phone"
+          fieldId="phone"
           label="Phone"
           placeholder="Phone"
-          tagType="phone"
+          elementName="input"
+          inputType="phone"
+
         />
         <CustomButton
           className="!mt-6"
