@@ -113,6 +113,7 @@ export async function updateSessionWhenProfileModified() {
     email: string,
     role: Role,
     fullName: string,
+    newEmail: string,
     profile?: {
       id: string
     }
@@ -120,12 +121,16 @@ export async function updateSessionWhenProfileModified() {
     endPoint: "/auth/profile",
     tags: ["users", payload.user.id]
   });
+  console.log(result?.data, "result")
+
+  if (!result?.data) return
 
   const newPayload: Session = {
     user: {
       ...payload.user,
-      fullName: result?.data?.fullName,
-      profile: result?.data?.profile
+      fullName: result.data?.fullName,
+      profile: result.data?.profile,
+      email: result.data.email
     },
     accessToken: payload.accessToken,
     refreshToken: payload.refreshToken,

@@ -13,6 +13,10 @@ export const API_ROUTES = {
             endpoint: "/auth/email-verification" as const,
             queryKey: "verify-email" as const,
         },
+        verifyNewEmail: {
+            endpoint: "/auth/email-verification/new" as const,
+            queryKey: "verify-email" as const,
+        },
         forgotPassword: {
             endpoint: "/auth/forgot-password" as const,
             queryKey: "forgot-password" as const,
@@ -106,6 +110,10 @@ export const API_ROUTES = {
         changePassword: {
             endpoint: "/users/change-password" as const,
             queryKey: "change-password" as const,
+        },
+        changeEmail: {
+            endpoint: "/users/change-email" as const,
+            queryKey: "change-email" as const,
         }
     },
     profile: {
@@ -113,16 +121,16 @@ export const API_ROUTES = {
         queryKey: "profile" as const,
 
         customer: {
-            endpoint: "/profile/customer" as const,
+            endpoint: "/profile/customers" as const,
             queryKey: "customer" as const,
             address: {
-                endpoint: "/profile/customer/address" as const,
+                endpoint: "/profile/customers/address" as const,
                 queryKey: "customer-address" as const,
             },
 
         },
         rider: {
-            endpoint: "/profile/rider" as const,
+            endpoint: "/profile/riders" as const,
             queryKey: "rider" as const,
         },
 

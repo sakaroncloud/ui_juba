@@ -77,11 +77,16 @@ export const signUpSchema = z.object({
 });
 export type TSignUp = z.infer<typeof signUpSchema>;
 
-
-// ------ For Forget Password
-export const forgetPasswordSchema = z.object({
+export const emailSchema = z.object({
     email: z.string().email(),
 });
+
+export type TEmail = z.infer<typeof emailSchema>;
+
+
+
+// ------ For Forget Password
+export const forgetPasswordSchema = emailSchema
 
 export type TForgetPassword = z.infer<typeof forgetPasswordSchema>;
 

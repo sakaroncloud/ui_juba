@@ -16,12 +16,10 @@ import { updateSessionWhenProfileModified } from "@/lib/actions/session";
 
 type Props = {
     formValues: TProfileBasic;
-    unverifiedEmail?: string;
 };
 
 export const AccountInformationForm = ({
     formValues,
-    unverifiedEmail,
 }: Props) => {
     const [pending, startTransition] = useTransition();
     console.log(formValues, "from formValues")
@@ -36,7 +34,6 @@ export const AccountInformationForm = ({
     });
 
     const onSubmit = (values: TProfileBasic) => {
-        console.log(values)
         startTransition(async () => {
             const response = await updateProfile(values)
             handleToast(response, async () => {
@@ -80,9 +77,9 @@ export const AccountInformationForm = ({
                         />
                     </div>
                     <CustomButton
-                        className="rounded-full  text-white"
-                        size={"lg"}
-                        label={"Save changes"}
+                        className="rounded-full  text-white ml-auto"
+                        size={"sm"}
+                        label={"Update"}
                         pending={pending}
                     />
                 </form>

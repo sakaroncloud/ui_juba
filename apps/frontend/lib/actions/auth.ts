@@ -1,6 +1,6 @@
 "use server";
 
-import { changePasswordSchema, loginSchema, profileBasicSchema, signUpSchema, TChangePassword, TLogin, TProfileBasic, TSignUp } from "@repo/ui/schemas/auth.schema";
+import { changePasswordSchema, emailSchema, loginSchema, profileBasicSchema, signUpSchema, TChangePassword, TEmail, TLogin, TProfileBasic, TSignUp } from "@repo/ui/schemas/auth.schema";
 import { createSession, deleteSession, getSession } from "./session";
 import { AllowedRoles, BACKEND_URL } from "@/lib/constants";
 import { ReturnType, TBaseResponse } from "@repo/ui/types/response.type";
@@ -122,7 +122,7 @@ export async function logout() {
   }
 }
 
-export async function verifyEmail(token: string, email: string) {
+export async function verifyEmail(token: string, email: string, type: "new" | "primary") {
 
   if (!token || !email) {
     return {
@@ -139,8 +139,10 @@ export async function verifyEmail(token: string, email: string) {
     }
   ])
 
+  const endPoint = type === "new" ? API_ROUTES.auth.verifyNewEmail.endpoint : API_ROUTES.auth.verifyEmail.endpoint
+
   return await PublicSubmitHandler({
-    ENDPOINT: API_ROUTES.auth.verifyEmail.endpoint + queryString,
+    ENDPOINT: endPoint + queryString,
     METHOD: "PATCH",
     DATA: {}
   })
@@ -179,5 +181,25 @@ export async function updateProfile(formData: TProfileBasic) {
     ENDPOINT: API_ROUTES.profile.customer.endpoint,
     METHOD: "PATCH",
     DATA: validationFields.data
+  })
+}
+
+export async function updateEmail(formData: TEmail) {
+
+  const validationFields = emailSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data tempered",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await PrivateSubmitHandler({
+    ENDPOINT: API_ROUTES.user.changeEmail.endpoint,
+    METHOD: "PATCH",
+    DATA: {
+      newEmail: validationFields.data.email
+    }
   })
 }

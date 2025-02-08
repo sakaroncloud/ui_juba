@@ -1,8 +1,8 @@
 import { CustomerTable } from "@/components/page-components/users/customers/customer-table"
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
-import { TableSearchForm } from "@repo/ui/components/table/table-search-form"
 import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
-import { AddItemButton, ShowTrashOrViewButton } from "@/components/uploads/add-item-button"
+import { ShowTrashOrViewButton } from "@/components/uploads/add-item-button"
+import { TableSearchForm } from "@/components/table/table-search-form"
 
 type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>

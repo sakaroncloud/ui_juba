@@ -1,9 +1,9 @@
 import { CityTable } from '@/components/page-components/cities/city-table/city-table'
 import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
-import { TableSearchForm } from '@repo/ui/components/table/table-search-form'
 import { TableWrapperWithFilter } from '@repo/ui/components/table/table-wrapper-with-filter'
 import { AddItemButton } from '@/components/uploads/add-item-button'
 import React from 'react'
+import { TableSearchForm } from '@/components/table/table-search-form'
 
 const CitiesPage = () => {
 

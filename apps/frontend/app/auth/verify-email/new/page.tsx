@@ -3,13 +3,13 @@ import { verifyEmail } from "@/lib/actions/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/components/card";
 import { cn, handleToast } from "@repo/ui/lib/utils";
 import { Slider } from "@repo/ui/components/slider";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useTransition } from "react";
 import { SyncLoader } from "react-spinners";
 import { updateSessionWhenProfileModified } from "@/lib/actions/session";
 import Link from "next/link";
 
-const VerifyEmailPage = () => {
+const VerifyNewEmailPage = () => {
     const searchParams = useSearchParams()
     const [isPending, startTransition] = useTransition();
     const [submitted, setSubmitted] = React.useState(false);
@@ -20,13 +20,14 @@ const VerifyEmailPage = () => {
 
         if (token && email) {
             startTransition(async () => {
-                const response = await verifyEmail(token, email, "primary")
+                const response = await verifyEmail(token, email, "new")
                 handleToast(response, async () => {
                     await updateSessionWhenProfileModified()
                 })
                 setSubmitted(true)
             })
         }
+
     }
 
     if (submitted) {
@@ -60,9 +61,12 @@ const VerifyEmailPage = () => {
 
                     />
                 )}
+
+
+
             </CardContent>
         </Card>
     )
 }
 
-export default VerifyEmailPage
+export default VerifyNewEmailPage

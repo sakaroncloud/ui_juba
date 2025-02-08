@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@repo/ui/compo
 import { Form } from "@repo/ui/components/form";
 import { handleToast } from "@repo/ui/lib/utils";
 import { orderCancelSchema, TOrderCancelSchema } from "@repo/ui/schemas/fooding/restaurant/restaurant.order.schema";
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
@@ -16,6 +17,7 @@ export const OrderCancelModal = () => {
     const isModalOpen = isOpen && type === "order-cancel-modal";
 
     const [isPending, startTransition] = useTransition();
+    const queryClient = useQueryClient()
 
     const form = useForm<TOrderCancelSchema>({
         resolver: zodResolver(orderCancelSchema),
@@ -28,6 +30,7 @@ export const OrderCancelModal = () => {
         startTransition(async () => {
             const response = await cancelOrder(data?.orderId, values)
             handleToast(response, () => {
+                queryClient.invalidateQueries()
                 handleClose()
             })
         })

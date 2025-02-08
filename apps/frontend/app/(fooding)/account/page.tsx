@@ -1,4 +1,5 @@
 import { getData } from '@/app/data';
+import { ChangeEmailForm } from '@/features/account/overview/change-email-form';
 import { AccountInformationForm } from '@/features/account/overview/profile-form';
 import { API_ROUTES } from '@repo/ui/lib/routes';
 import { ResponseWithNoMeta } from '@repo/ui/types/response.type';
@@ -12,8 +13,17 @@ const AccountPage = async () => {
 
     if (!result?.data) return null
     const data = result.data
+
+
     return (
-        <AccountInformationForm formValues={data} />
+        <div className='space-y-4'>
+            <AccountInformationForm formValues={data} />
+            <ChangeEmailForm formValues={{
+                email: data.user.email
+            }}
+                newEmail={data.user?.newEmail}
+            />
+        </div>
     )
 }
 

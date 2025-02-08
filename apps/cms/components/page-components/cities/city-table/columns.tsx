@@ -7,7 +7,6 @@ import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
 import { CustomCell } from "@repo/ui/components/table/custom-cell"
 import { useState, useTransition } from "react"
 import { deleteHandler } from "@/lib/actions/global.action"
-import { DeleteButton, EditButton } from "@repo/ui/components/table/action-button"
 import { CustomFormModal } from "@/components/form/custom-form-modal"
 import { DialogFooter } from "@repo/ui/components/dialog"
 import toast from "react-hot-toast"
@@ -15,6 +14,7 @@ import { useQueryClient } from "@tanstack/react-query"
 import { TableBadge } from "@repo/ui/components/table/table-badge"
 import { TCity } from "@repo/ui/types/address.types"
 import { API_ROUTES } from "@repo/ui/lib/routes"
+import { DeleteButton, EditButton } from "@/components/table/action-button"
 
 export const columns: ColumnDef<TCity>[] = [
 

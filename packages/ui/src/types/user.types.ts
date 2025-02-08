@@ -32,6 +32,7 @@ export namespace User {
     export type TUser = {
         id: string;
         email: string;
+        newEmail?: string;
         emailVerified: null | string;
         customerProfile?: TBaseProfile;
         staffProfile?: TBaseProfile;
@@ -53,7 +54,7 @@ export namespace User {
     }
 
     export type TCustomerProfile = TBaseProfile & {
-        user: Pick<TUser, "id" | "email" | "role">
+        user: Pick<TUser, "id" | "email" | "role" | "newEmail">
     }
 
 }
