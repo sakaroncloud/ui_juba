@@ -22,7 +22,6 @@ export const ProfileBasicForm = ({ formValues, role }: Props) => {
         resolver: zodResolver(profileBasicSchema),
         defaultValues: formValues || {
             firstName: "",
-            lastName: "",
             phone: "",
             dob: null,
         }
@@ -55,12 +54,7 @@ export const ProfileBasicForm = ({ formValues, role }: Props) => {
                             inputType='text'
                             label='First Name'
                         />
-                        <CustomFormField
-                            elementName='input'
-                            fieldId='lastName'
-                            inputType='text'
-                            label='Last Name'
-                        />
+
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">

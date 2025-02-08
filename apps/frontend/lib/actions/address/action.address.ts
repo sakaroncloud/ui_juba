@@ -16,3 +16,12 @@ export async function submitAddress(formData: TAddressForm, param?: string) {
         PARAM: param
     })
 }
+
+export async function deleteAddress(addressId: string) {
+    return await PrivateSubmitHandler({
+        ENDPOINT: API_ROUTES.profile.customer.address.endpoint + "/" + addressId,
+        METHOD: "DELETE",
+        DATA: {}
+    })
+}
+

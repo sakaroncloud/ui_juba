@@ -38,13 +38,16 @@ export namespace User {
     type TBaseProfile = {
         id: string;
         firstName: string;
-        lastName: string;
         phone?: string;
         dob?: string;
         gender: Gender;
     }
 
     export type TRiderProfile = TBaseProfile & {
+        user: Pick<TUser, "id" | "email" | "role">
+    }
+
+    export type TCustomerProfile = TBaseProfile & {
         user: Pick<TUser, "id" | "email" | "role">
     }
 

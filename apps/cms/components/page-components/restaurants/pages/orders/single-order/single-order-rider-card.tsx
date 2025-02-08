@@ -42,7 +42,7 @@ export const SingleOrderRiderCard = ({ orderStatus, rider, orderId }: Props) => 
                 <div className='size-14 border-1 border rounded-xl'></div>
                 <div>
                     <div className='font-medium text-sm'>
-                        {rider?.firstName} {rider?.lastName}
+                        {rider?.firstName}
                     </div>
                     <div className='font-normal text-xs space-x-1'>
                         <span>Rider</span>  <CustomFormModal

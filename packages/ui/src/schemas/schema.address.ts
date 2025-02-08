@@ -18,9 +18,7 @@ export const addressFormSchema = z.object({
     label: z.string().optional().default("default").nullable(),
     landmark: z.string().optional().nullable(),
 
-    buildingName: z.string().min(2, {
-        message: "Please enter at least 2 characters"
-    }).optional().nullable(),
+    buildingName: z.string().optional().nullable(),
     floor: z.string().min(1, {
         message: "Please enter at least 1 characters"
     }).or(z.string().nullable().optional()),

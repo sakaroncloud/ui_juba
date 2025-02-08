@@ -46,7 +46,6 @@ const SingleOrderPage = async ({ params }: TParams) => {
                         createdAt={order.createdAt}
                         orderId={order.id}
                         firstName={order.user.customerProfile?.firstName || ""}
-                        lastName={order.user.customerProfile?.lastName || ""}
                         joinedAt={order.user.createdAt}
                     />
                     <div className='w-full flex justify-between gap-3'>

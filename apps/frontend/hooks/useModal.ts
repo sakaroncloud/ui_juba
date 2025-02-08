@@ -1,7 +1,8 @@
 import { create } from "zustand";
 
 export type ModalType =
-    | "sign-in-sheet" | "cart-sheet" | "cart-delete-modal" | "order-cancel-modal" | "address-modal";
+    | "sign-in-sheet" | "cart-sheet" | "cart-delete-modal" |
+    "order-cancel-modal" | "address-modal" | "address-delete-modal" | "name-change-modal";
 
 type ModalStore<T = any> = {
     type: ModalType | null;

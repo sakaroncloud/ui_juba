@@ -58,7 +58,7 @@ export const RiderAssignForm = ({ orderId, setOpen, defaultRiderId }: Props) => 
           className="w-full"
           isMulti={true}
           selectOptions={
-            riders?.data?.map((rider) => ({ value: rider.id, label: `${rider.firstName} ${rider.lastName}` })) || []
+            riders?.data?.map((rider) => ({ value: rider.id, label: `${rider.firstName}` })) || []
           }
         />
         <SubmitButton

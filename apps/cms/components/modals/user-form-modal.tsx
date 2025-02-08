@@ -25,7 +25,6 @@ export const UserFormModal = ({ formValues, userId, customButton }: props) => {
         defaultValues: formValues || {
             email: "",
             // firstName: "",
-            // lastName: "",
             role: Role.CUSTOMER
         }
     })

@@ -118,6 +118,19 @@ export const API_ROUTES = {
             address: {
                 endpoint: "/profile/customer/address" as const,
                 queryKey: "customer-address" as const,
+            },
+            changeName: {
+                endpoint: "/profile/customer/change-name" as const,
+                queryKey: "change-name" as const,
+            }, changePhone: {
+                endpoint: "/profile/customer/change-phone" as const,
+                queryKey: "change-name" as const,
+            }, changeDOB: {
+                endpoint: "/profile/customer/change-dob" as const,
+                queryKey: "change-name" as const,
+            }, changeGender: {
+                endpoint: "/profile/customer/change-gender" as const,
+                queryKey: "change-name" as const,
             }
         },
         rider: {

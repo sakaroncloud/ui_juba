@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState, useTransition } from 'react'
+import React, { useTransition } from 'react'
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,10 +19,8 @@ import CustomButton from '@/components/custom-button';
 import { submitAddress } from '@/lib/actions/address/action.address';
 
 
-
 export const AddressFormModal = () => {
     const { isOpen, onClose, type, data } = useModal();
-    const isModalOpen = isOpen && type === "address-modal";
     const { data: cities } = useFetch<ResponseWithNoMeta<TCity[]>>({
         endPoint: API_ROUTES.city.endpoint,
         queryKey: API_ROUTES.city.queryKey,
@@ -49,11 +47,7 @@ export const AddressFormModal = () => {
             })
         })
     }
-    console.log(form.formState.errors)
-    console.log(data, "data")
 
-
-    if (!isModalOpen) return null
     return (
         <Dialog open={isOpen} onOpenChange={handleClose} >
             <DialogContent className={"px-0 py-0"}>

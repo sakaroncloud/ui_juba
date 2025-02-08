@@ -53,12 +53,6 @@ export const signUpSchema = z.object({
         })
         .trim(),
 
-    lastName: z
-        .string()
-        .min(1, {
-            message: "Last Name is required",
-        })
-        .trim(),
     email: z
         .string({
             required_error: "Email is required",
@@ -141,12 +135,7 @@ export const profileBasicSchema = z.object({
         })
         .trim(),
 
-    lastName: z
-        .string()
-        .min(1, {
-            message: "Last Name is required",
-        })
-        .trim(),
+
 
     phone: z.string().min(1, {
         message: "Phone is required",

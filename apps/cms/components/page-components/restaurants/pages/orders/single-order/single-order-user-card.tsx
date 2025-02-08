@@ -5,11 +5,10 @@ type Props = {
     createdAt: string,
     orderId: number,
     firstName: string,
-    lastName: string,
     joinedAt: string,
 }
 
-export const SingleOrderUserCard = ({ createdAt, orderId, firstName, lastName, joinedAt }: Props) => {
+export const SingleOrderUserCard = ({ createdAt, orderId, firstName, joinedAt }: Props) => {
 
     const orderDate = formatDate(createdAt, {
         year: "numeric",
@@ -30,7 +29,7 @@ export const SingleOrderUserCard = ({ createdAt, orderId, firstName, lastName, j
                 <div className='size-14 border-1 border rounded-xl'></div>
                 <div>
                     <div className='font-medium text-sm'>
-                        {firstName} {lastName}
+                        {firstName}
                     </div>
                     <div className='font-normal text-xs'>
                         User Since {

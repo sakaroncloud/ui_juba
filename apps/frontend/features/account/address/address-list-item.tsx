@@ -51,7 +51,11 @@ export const AddressListItem = ({ address }: { address: TAddress }) => {
                             className="rounded-sm rounded-b-none text-sm  border-0 border-b pt-1 px-2">
                             Edit
                         </button>
-                        <button className="rounded-sm rounded-t-none text-sm  border-0 py-1 px-2">
+                        <button
+                            onClick={() => onOpen("address-delete-modal", {
+                                addressId: address.id
+                            })}
+                            className="rounded-sm rounded-t-none text-sm  border-0 py-1 px-2">
                             Delete
                         </button>
                     </PopoverContent>

@@ -20,7 +20,6 @@ const SignUpForm = () => {
       password: "",
       phone: "",
       firstName: "",
-      lastName: "",
     },
   });
 
@@ -42,12 +41,7 @@ const SignUpForm = () => {
             inputType="text"
             elementName="input"
           />
-          <CustomFormField
-            fieldId="lastName"
-            label="Last Name"
-            placeholder="Last Name"
-            elementName="input"
-          />
+
         </div>
         <CustomFormField
           fieldId="email"

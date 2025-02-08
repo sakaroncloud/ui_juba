@@ -18,7 +18,6 @@ export type Session = {
     name?: string;
     profile?: {
       firstName?: string;
-      lastName?: string;
       id?: string;
     }
   };

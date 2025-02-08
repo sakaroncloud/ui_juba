@@ -123,7 +123,6 @@ export const columns: ColumnDef<User.TUser>[] = [
                             {
                                 email: data.email,
                                 // firstName: data.firstName,
-                                // lastName: data.lastName,
                                 // phone: data.phone,
                                 role: data.role
                             }
