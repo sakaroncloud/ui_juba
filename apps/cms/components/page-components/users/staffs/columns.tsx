@@ -26,7 +26,7 @@ export const columns: ColumnDef<User.TUser>[] = [
     },
 
     {
-        accessorKey: "firstName",
+        accessorKey: "fullName",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Name" />
         ),

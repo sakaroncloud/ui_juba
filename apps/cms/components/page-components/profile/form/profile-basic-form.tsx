@@ -21,7 +21,7 @@ export const ProfileBasicForm = ({ formValues, role }: Props) => {
     const form = useForm<TStaffProfile>({
         resolver: zodResolver(profileBasicSchema),
         defaultValues: formValues || {
-            firstName: "",
+            fullName: "",
             phone: "",
             dob: null,
         }
@@ -50,9 +50,9 @@ export const ProfileBasicForm = ({ formValues, role }: Props) => {
                     <div className="w-full grid grid-cols-2 gap-4">
                         <CustomFormField
                             elementName='input'
-                            fieldId='firstName'
+                            fieldId='fullName'
                             inputType='text'
-                            label='First Name'
+                            label='Full Name'
                         />
 
                     </div>

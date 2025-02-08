@@ -20,7 +20,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 const schema = z.object({
-    firstName: z.string().min(2, {
+    fullName: z.string().min(2, {
         message: "Please enter at least 2 characters"
     }),
 
@@ -36,7 +36,7 @@ export const NameChangeModal = () => {
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
-            firstName: data?.firstName || "",
+            fullName: data?.fullName || "",
         }
     })
 
@@ -72,7 +72,7 @@ export const NameChangeModal = () => {
                         <div className="space-y-3">
                             <CustomFormField
                                 elementName='input'
-                                fieldId='firstName'
+                                fieldId='fullName'
                                 label='First Name'
                                 inputType='text'
                                 placeholder=''

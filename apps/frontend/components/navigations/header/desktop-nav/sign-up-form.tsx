@@ -19,7 +19,7 @@ const SignUpForm = () => {
       email: "",
       password: "",
       phone: "",
-      firstName: "",
+      fullName: "",
     },
   });
 
@@ -35,7 +35,7 @@ const SignUpForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <div className="grid grid-cols-2 gap-4">
           <CustomFormField
-            fieldId="firstName"
+            fieldId="fullName"
             label="First Name"
             placeholder="First Name"
             inputType="text"

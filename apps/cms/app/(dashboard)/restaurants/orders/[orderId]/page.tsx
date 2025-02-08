@@ -45,7 +45,7 @@ const SingleOrderPage = async ({ params }: TParams) => {
                     <SingleOrderUserCard
                         createdAt={order.createdAt}
                         orderId={order.id}
-                        firstName={order.user.customerProfile?.firstName || ""}
+                        fullName={order.user.customerProfile?.fullName || ""}
                         joinedAt={order.user.createdAt}
                     />
                     <div className='w-full flex justify-between gap-3'>

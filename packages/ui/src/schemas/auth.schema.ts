@@ -46,7 +46,7 @@ export type TLogin = z.infer<typeof loginSchema>;
 // ------ For Register
 export const signUpSchema = z.object({
 
-    firstName: z
+    fullName: z
         .string()
         .min(1, {
             message: "First Name is required",
@@ -128,7 +128,7 @@ export const newUserSchema = z.object({
 export type TNewUser = z.infer<typeof newUserSchema>
 
 export const profileBasicSchema = z.object({
-    firstName: z
+    fullName: z
         .string()
         .min(1, {
             message: "First Name is required",

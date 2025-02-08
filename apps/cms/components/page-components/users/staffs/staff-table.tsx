@@ -20,7 +20,7 @@ export const StaffTable = async () => {
 
     return (
         <DataTable columns={session?.user?.role === Role.SUPER_ADMIN ? superAdminStaffColumn : columns} data={result?.data || []}
-            searchKey="firstName"
+            searchKey="fullName"
         />
     )
 }

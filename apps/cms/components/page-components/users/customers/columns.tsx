@@ -34,7 +34,7 @@ export const columns: ColumnDef<User.TUser>[] = [
     },
 
     {
-        accessorKey: "firstName",
+        accessorKey: "fullName",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Name" />
         ),
@@ -122,7 +122,7 @@ export const columns: ColumnDef<User.TUser>[] = [
                         formValues={
                             {
                                 email: data.email,
-                                // firstName: data.firstName,
+                                // fullName: data.fullName,
                                 // phone: data.phone,
                                 role: data.role
                             }

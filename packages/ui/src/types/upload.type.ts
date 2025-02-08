@@ -25,7 +25,7 @@ export type TAsyncImage = {
     height: number;
     width: number;
     uploadedBy: {
-        firstName: string;
+        fullName: string;
         email: string;
     };
 } & TBase;

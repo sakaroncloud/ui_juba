@@ -24,7 +24,7 @@ export const UserFormModal = ({ formValues, userId, customButton }: props) => {
         resolver: zodResolver(newUserSchema),
         defaultValues: formValues || {
             email: "",
-            // firstName: "",
+            // fullName: "",
             role: Role.CUSTOMER
         }
     })

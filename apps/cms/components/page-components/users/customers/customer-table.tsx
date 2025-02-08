@@ -17,6 +17,6 @@ export const CustomerTable = async () => {
 
     return (
         <DataTable columns={columns} data={result?.data || []}
-            searchKey="firstName"
+            searchKey="fullName"
         />)
 }

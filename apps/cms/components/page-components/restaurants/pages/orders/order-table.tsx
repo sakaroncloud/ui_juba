@@ -19,7 +19,7 @@ export const OrderTable = async ({ showDeleted }: Props) => {
 
     const filteredData = result?.data?.map((order) => ({
         ...order,
-        name: order.user.customerProfile?.firstName
+        name: order.user.customerProfile?.fullName
     }))
 
 

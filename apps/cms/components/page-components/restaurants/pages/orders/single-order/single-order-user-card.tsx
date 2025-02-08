@@ -4,11 +4,11 @@ import React from 'react'
 type Props = {
     createdAt: string,
     orderId: number,
-    firstName: string,
+    fullName: string,
     joinedAt: string,
 }
 
-export const SingleOrderUserCard = ({ createdAt, orderId, firstName, joinedAt }: Props) => {
+export const SingleOrderUserCard = ({ createdAt, orderId, fullName, joinedAt }: Props) => {
 
     const orderDate = formatDate(createdAt, {
         year: "numeric",
@@ -29,7 +29,7 @@ export const SingleOrderUserCard = ({ createdAt, orderId, firstName, joinedAt }:
                 <div className='size-14 border-1 border rounded-xl'></div>
                 <div>
                     <div className='font-medium text-sm'>
-                        {firstName}
+                        {fullName}
                     </div>
                     <div className='font-normal text-xs'>
                         User Since {

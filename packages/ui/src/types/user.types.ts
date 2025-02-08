@@ -37,7 +37,7 @@ export namespace User {
 
     type TBaseProfile = {
         id: string;
-        firstName: string;
+        fullName: string;
         phone?: string;
         dob?: string;
         gender: Gender;

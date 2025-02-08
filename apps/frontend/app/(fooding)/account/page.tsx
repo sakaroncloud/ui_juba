@@ -21,7 +21,7 @@ const AccountPage = async () => {
             title='Manage your account'
         >
             <div className='grid lg:grid-cols-2 grid-cols-1 gap-4'>
-                <OverviewCard title='Name' value={data.firstName} modalType='name-change-modal' data={data} />
+                <OverviewCard title='Name' value={data.fullName} modalType='name-change-modal' data={data} />
                 <OverviewCard title='Date of Birth' value={data.dob} />
                 <OverviewCard title='Email' value={data.user.email} />
                 <OverviewCard title='Phone' value={data.phone} />
