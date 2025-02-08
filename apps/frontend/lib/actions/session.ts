@@ -13,7 +13,7 @@ export type Session = {
     id: string;
     role: Role;
     email: string;
-    name?: string;
+    fullName?: string;
     profile?: {
       fullName?: string;
       id?: string;
@@ -112,7 +112,7 @@ export async function updateSessionWhenProfileModified() {
     id: string,
     email: string,
     role: Role,
-    name: string,
+    fullName: string,
     profile?: {
       id: string
     }
@@ -124,7 +124,7 @@ export async function updateSessionWhenProfileModified() {
   const newPayload: Session = {
     user: {
       ...payload.user,
-      name: result?.data?.name,
+      fullName: result?.data?.fullName,
       profile: result?.data?.profile
     },
     accessToken: payload.accessToken,

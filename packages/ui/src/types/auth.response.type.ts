@@ -5,7 +5,7 @@ export type TLoginResponse = {
     id: string;
     role: Role;
     email: string;
-    name?: string;
+    fullName?: string;
     profile?: {
         id: string
     }

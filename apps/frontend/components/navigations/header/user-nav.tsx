@@ -46,14 +46,14 @@ export const UserNav = () => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT) && "bg-primary text-primary")}
+                    <DropdownMenuItem className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT) && "text-primary")}
                         onClick={() => router.push(UI_ROUTES.ACCOUNT)}
                     >
                         <CiUser />
 
                         <span>Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT_ADDRESSES) && "bg-primary text-primary")}
+                    <DropdownMenuItem className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT_ADDRESSES) && "text-primary")}
                         onClick={() => router.push(UI_ROUTES.ACCOUNT_ADDRESSES)}
                     >
                         <IoLocationOutline />
@@ -61,12 +61,12 @@ export const UserNav = () => {
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => router.push(UI_ROUTES.ACCOUNT_ORDERS)}
-                        className={cn("cursor-pointer", pathname == UI_ROUTES.ACCOUNT_ORDERS && "bg-primary text-primary")}                        >
+                        className={cn("cursor-pointer", pathname == UI_ROUTES.ACCOUNT_ORDERS && "text-primary")}                        >
                         <BiPurchaseTag />
                         <span>Order History</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                        className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT_SETTINGS) && "bg-primary text-primary")}
+                        className={cn("cursor-pointer", pathname.includes(UI_ROUTES.ACCOUNT_SETTINGS) && "text-primary")}
                         onClick={() => router.push(UI_ROUTES.ACCOUNT_SETTINGS)}
                     >
                         <CiSettings />

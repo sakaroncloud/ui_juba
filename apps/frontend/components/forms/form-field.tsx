@@ -83,7 +83,7 @@ const RenderField = ({ children, className, step, min, max, minDate, maxDate, de
               </div> :
 
               inputType === "number" ? <Input {...field} step={step} placeholder={placeholder} min={min || 0} max={max || 1000000} type={inputType} />
-                : <Input placeholder={placeholder}  {...field} type={inputType || "text"} />}
+                : <Input className="h-11" placeholder={placeholder}  {...field} type={inputType || "text"} />}
           </FormControl>
           {showError && <FormMessage />}
         </FormItem>
@@ -109,7 +109,7 @@ const RenderField = ({ children, className, step, min, max, minDate, maxDate, de
           {label && <Label>{label}</Label>}
           <ShadcnSelect onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger>
+              <SelectTrigger className="h-11">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>

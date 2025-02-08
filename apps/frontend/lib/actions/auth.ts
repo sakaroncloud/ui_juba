@@ -1,6 +1,6 @@
 "use server";
 
-import { changePasswordSchema, loginSchema, signUpSchema, TChangePassword, TLogin, TSignUp } from "@repo/ui/schemas/auth.schema";
+import { changePasswordSchema, loginSchema, profileBasicSchema, signUpSchema, TChangePassword, TLogin, TProfileBasic, TSignUp } from "@repo/ui/schemas/auth.schema";
 import { createSession, deleteSession, getSession } from "./session";
 import { AllowedRoles, BACKEND_URL } from "@/lib/constants";
 import { ReturnType, TBaseResponse } from "@repo/ui/types/response.type";
@@ -53,7 +53,7 @@ export async function signIn(formData: TLogin): Promise<
           id: result.data.id,
           role: result.data.role,
           email: result.data?.email,
-          name: result?.data?.name,
+          fullName: result?.data?.fullName,
           profile: result?.data?.profile
         },
         accessToken: result.data.tokens.accessToken,
@@ -159,6 +159,24 @@ export async function changePassword(formData: TChangePassword) {
 
   return await PrivateSubmitHandler({
     ENDPOINT: API_ROUTES.user.changePassword.endpoint,
+    METHOD: "PATCH",
+    DATA: validationFields.data
+  })
+}
+
+export async function updateProfile(formData: TProfileBasic) {
+
+  const validationFields = profileBasicSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data tempered",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await PrivateSubmitHandler({
+    ENDPOINT: API_ROUTES.profile.customer.endpoint,
     METHOD: "PATCH",
     DATA: validationFields.data
   })

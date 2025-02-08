@@ -135,8 +135,6 @@ export const profileBasicSchema = z.object({
         })
         .trim(),
 
-
-
     phone: z.string().min(1, {
         message: "Phone is required",
     }).nullable().optional(),
@@ -146,7 +144,7 @@ export const profileBasicSchema = z.object({
     }).optional().nullable(),
 
     dob: z.string().optional().nullable(),
-    gender: z.nativeEnum(Gender)
+    gender: z.nativeEnum(Gender).optional().nullable()
 });
 export type TProfileBasic = z.infer<typeof profileBasicSchema>
 

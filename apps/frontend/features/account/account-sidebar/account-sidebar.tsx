@@ -1,6 +1,5 @@
 "use client"
-import FallbackImage from "@/components/fallback-image";
-import { useSession } from "@/providers/session-provider";
+
 import { cn } from "@repo/ui/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,33 +10,15 @@ type Props = {
         name: string;
         href: string;
         icon: IconType
-    }[]
+    }[],
+    children: React.ReactNode
 }
 
-export const AccountSidebar = ({ navLinks }: Props) => {
-    const { session } = useSession();
+export const AccountSidebar = ({ children, navLinks }: Props) => {
     const pathname = usePathname()
-
     return (
         <aside className="w-full pt-4 rounded-xl">
-            {session && (
-                <div className="flex items-center  flex-col justify-center gap-y-2 p-3">
-                    <FallbackImage
-                        src={"/assets/icons/user.png"}
-                        type="square"
-                        width={80}
-                        height={80}
-                        alt={"user"}
-                        errorClassName="size-20 border-slate-100 border rounded-full uppercase text-sm text-slate-200"
-                        errorMessage="Image"
-                    />
-                    <div className="text-center">
-                        <div className="font-medium text-lg">{session?.user.name}</div>
-                        <div className="capitalize text-sm">({session?.user.email})</div>
-                    </div>
-                </div>
-            )}
-
+            {children}
             <div className="pt-3 font-normal  flex flex-col pb-3">
                 {navLinks?.map((link, index) => {
                     const Icon = link.icon;

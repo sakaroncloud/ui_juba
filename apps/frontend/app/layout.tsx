@@ -29,10 +29,13 @@ export default function RootLayout({
       <SessionProvider>
         <html lang="en">
           <body
-            className={`${poppins.className}  antialiased pt-[80px]`}
+            className={`${poppins.className}  antialiased`}
             suppressHydrationWarning={true}
           >
-            {children}
+            <div className="pt-[80px] relative">
+
+              {children}
+            </div>
             <Toaster
               toastOptions={{
                 className: "text-sm capitalize",

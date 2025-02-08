@@ -2,7 +2,6 @@
 import { SignInSheet } from "@/components/navigations/header/desktop-nav/sign-in-sheet";
 import { AddressDeleteModal } from "@/features/account/address/address-delete-modal";
 import { AddressFormModal } from "@/features/account/address/address-form-modal";
-import { NameChangeModal } from "@/features/account/overview/name-change-modal";
 import { CartDeleteModal } from "@/features/fooding/carts/cart-delete-modal";
 import { CartSheet } from "@/features/fooding/carts/cart-sheet";
 import { OrderCancelModal } from "@/features/fooding/orders/order-cancel-modal";
@@ -35,8 +34,7 @@ export const ModalProvider = () => {
             return <OrderCancelModal />
         case "address-delete-modal":
             return <AddressDeleteModal />
-        case "name-change-modal":
-            return <NameChangeModal />
+
         default:
             return null
     }

@@ -2,9 +2,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 
 import { DataTableColumnHeader } from "@repo/ui/components/table/column-header"
-import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
 import { CustomCell } from "@repo/ui/components/table/custom-cell"
-
 
 import Link from "next/link"
 import { Order } from "@repo/ui/types/order.types"
@@ -12,22 +10,19 @@ import { formatDate } from "@repo/ui/lib/utils"
 
 export const columns: ColumnDef<Order.TOrder & {
     isDeleted?: boolean | undefined,
-    name: string
+    fullName?: string
 }>[] = [
 
         {
             accessorKey: "id",
             header: "SN",
             cell: ({ row }) => {
-                const { searchParams } = useCustomSearchParams();
-
-
                 return <CustomCell label={"#ORDER: " + row.original.id} />;
             },
         },
 
         {
-            accessorKey: "name",
+            accessorKey: "fullName",
             header: ({ column }) => (
                 <DataTableColumnHeader column={column} title="Name" />
             ),
@@ -36,7 +31,7 @@ export const columns: ColumnDef<Order.TOrder & {
                 return (
                     <div className="flex items-center gap-2">
                         <div className="p-1 border border-slate-200 bg-white rounded-lg size-[41px] flex items-center justify-center"> </div>
-                        <div className="text-sm font-medium capitalize">{data.name}</div>
+                        <div className="text-sm font-medium capitalize">{data.fullName}</div>
                     </div>
                 )
             }

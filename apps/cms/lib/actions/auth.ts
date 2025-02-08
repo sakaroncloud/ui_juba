@@ -49,7 +49,7 @@ export async function signIn(formData: TLogin): Promise<
                     id: result.data.id,
                     role: result.data.role,
                     email: result.data?.email,
-                    name: result?.data?.name,
+                    fullName: result?.data?.fullName,
                     profile: result?.data?.profile
                 },
                 accessToken: result.data.tokens.accessToken,

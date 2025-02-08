@@ -22,6 +22,11 @@ export enum Gender {
     OTHER = "OTHER"
 }
 
+export const GendersOptions = Object.keys(Gender).map((key) => ({
+    value: Gender[key as keyof typeof Gender],
+    label: key.slice(0, 1).toUpperCase() + key.slice(1)
+}))
+
 
 export namespace User {
     export type TUser = {
