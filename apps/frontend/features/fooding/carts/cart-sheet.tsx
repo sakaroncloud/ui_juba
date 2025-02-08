@@ -14,23 +14,35 @@ import { Separator } from "@repo/ui/components/separator";
 import FallbackImage from "@/components/fallback-image";
 import { Button } from "@repo/ui/components/button";
 import { Trash2, X } from "lucide-react";
-import { useTransition } from "react";
+import React, { useEffect, useTransition } from "react";
 import { checkOut, deleteCart, deleteCartItem } from "@/lib/actions/fooding/action.cart";
-import { handleToast } from "@repo/ui/lib/utils";
+import { cn, handleToast } from "@repo/ui/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import EmptyCart from "@/public/icons/empty-cart.png"
 import Image from "next/image";
 import CustomButton from "@/components/custom-button";
 import { ScrollArea } from "@repo/ui/components/scroll-area";
 import { CartIncrementButton } from "./cart-increment-button";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { TAddress } from "@repo/ui/types/address.types";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
 
 export const CartSheet = () => {
+  const router = useRouter()
   const { isOpen, onClose, type } = useModal();
   const isModalOpen = isOpen && type === "cart-sheet";
+  const [selectedAddressId, setSelectedAddressId] = React.useState<string | null>(null);
 
   const { data: result } = useFetch<ResponseWithNoMeta<Restaurant.Cart.TCart>>({
     queryKey: API_ROUTES.fooding.cart.queryKey,
     endPoint: API_ROUTES.fooding.cart.endpoint,
+  })
+
+  const { data: address } = useFetch<ResponseWithNoMeta<TAddress[]>>({
+    queryKey: API_ROUTES.profile.customer.address.queryKey,
+    endPoint: API_ROUTES.profile.customer.address.endpoint,
   })
 
   const data = result?.data
@@ -47,20 +59,51 @@ export const CartSheet = () => {
     })
   }
 
+  const defaultAddress = address?.data.find(address => address.isDefault)
+
+  useEffect(() => {
+    if (defaultAddress) {
+      setSelectedAddressId(defaultAddress.id)
+    }
+  }, [defaultAddress])
+
   return (
     <Sheet open={isModalOpen} onOpenChange={onClose} modal={false} >
-
       <SheetContent
         onInteractOutside={(e) => {
           e.preventDefault();
         }}
-        className="p-0 flex flex-col">
+        className="p-0 flex flex-col gap-0">
         <SheetHeader className="p-4">
-          <SheetTitle className="">My Cart</SheetTitle>
+          <SheetTitle className="p-0 text-base space-y-1">
+            <div>My Cart</div>
+
+            {
+              address?.data.map((address) => {
+                const addressText = [
+                  address?.streetOne,
+                  address?.area,
+                  address?.pincode,
+                  address?.buildingName,
+                  address?.landmark,
+                  address?.city.name
+                ].filter(Boolean).join(", ")
+                return (
+                  <div key={address.id} onClick={() => {
+                    setSelectedAddressId(address.id)
+                  }} className={cn("text-xs px-3 py-1 cursor-pointer  transition-all  bg-slate-100 font-light text-gray-800 rounded-xl inline-flex gap-x-1 items-center", selectedAddressId === address.id && "bg-emerald-200/60")}>
+                    <FaMapMarkerAlt className="text-primary size-3" />
+
+                    {addressText}</div>
+                )
+              })
+            }
+
+          </SheetTitle>
         </SheetHeader>
-        <ScrollArea className="flex-1">
+        <ScrollArea className="flex-1 py-0">
           <div className="">
-            <Separator className="bg-slate-100 h-1 w-full" />
+            <Separator className="bg-slate-100 h-0.5 w-full" />
             {!data && <EmptyCartImage />}
             {data && (
               <div className="p-4">
@@ -81,7 +124,9 @@ export const CartSheet = () => {
                   ))}
                 </div>
 
-                <CartSheetFooter totalQuantity={data.totalQuantity} totalAmount={data.totalAmount} />
+                {selectedAddressId && (
+                  <CartSheetFooter totalQuantity={data.totalQuantity} totalAmount={data.totalAmount} defaultAddressId={selectedAddressId} />
+                )}
               </div>
             )}
           </div>
@@ -90,9 +135,6 @@ export const CartSheet = () => {
     </Sheet>
   );
 };
-
-
-
 
 const CartItem = ({ restaurantName, item }: { restaurantName: string, item: Restaurant.Cart.TCartItem }) => {
   const queryClient = useQueryClient()
@@ -135,16 +177,22 @@ const EmptyCartImage = () => {
   )
 }
 
-const CartSheetFooter = ({ totalAmount, totalQuantity }: { totalAmount: number, totalQuantity: number }) => {
+const CartSheetFooter = ({ totalAmount, totalQuantity, defaultAddressId }: { totalAmount: number, totalQuantity: number, defaultAddressId: string }) => {
 
   const [pending, startTransition] = useTransition()
   const queryClient = useQueryClient()
   const onCheckOut = async () => {
     startTransition(async () => {
-      const res = await checkOut()
-      handleToast(res, () => {
-        queryClient.invalidateQueries()
-      })
+      if (defaultAddressId) {
+        const res = await checkOut(defaultAddressId)
+        handleToast(res, () => {
+          queryClient.invalidateQueries()
+        })
+      }
+      else {
+        toast.error("Please add an address to checkout")
+      }
+
     })
   }
 

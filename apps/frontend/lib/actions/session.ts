@@ -121,7 +121,6 @@ export async function updateSessionWhenProfileModified() {
     endPoint: "/auth/profile",
     tags: ["users", payload.user.id]
   });
-  console.log(result?.data, "result")
 
   if (!result?.data) return
 

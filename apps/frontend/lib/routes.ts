@@ -1,6 +1,6 @@
 export enum UI_ROUTES {
     ACCOUNT = "/account",
-    ACCOUNT_ADDRESSES = "/account/addresses",
+    ACCOUNT_ADDRESSES = "/account/address",
     ACCOUNT_CHANGE_PASSWORD = "/account/change-password",
     ACCOUNT_SETTINGS = "/account/settings",
     ACCOUNT_TRANSACTIONS = "/account/transactions",

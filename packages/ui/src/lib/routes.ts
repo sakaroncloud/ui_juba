@@ -29,6 +29,10 @@ export const API_ROUTES = {
             endpoint: "/auth/signup" as const,
             queryKey: "signUp" as const,
         },
+        profile: {
+            endpoint: "/auth/profile" as const,
+            queryKey: "profile" as const,
+        },
 
     },
 

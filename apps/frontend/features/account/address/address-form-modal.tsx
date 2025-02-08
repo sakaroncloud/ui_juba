@@ -17,6 +17,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@repo/ui/compo
 import { Separator } from '@repo/ui/components/separator';
 import CustomButton from '@/components/custom-button';
 import { submitAddress } from '@/lib/actions/address/action.address';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 export const AddressFormModal = () => {
@@ -26,6 +27,7 @@ export const AddressFormModal = () => {
         queryKey: API_ROUTES.city.queryKey,
     });
 
+    const queryClient = useQueryClient()
 
     const form = useForm<TAddressForm>({
         resolver: zodResolver(addressFormSchema),
@@ -39,10 +41,10 @@ export const AddressFormModal = () => {
         onClose()
     }
     const onSubmit = (values: TAddressForm) => {
-        console.log(values)
         startTransition(async () => {
             const response = await submitAddress(values, data?.addressId);
             handleToast(response, () => {
+                queryClient.invalidateQueries()
                 handleClose()
             })
         })

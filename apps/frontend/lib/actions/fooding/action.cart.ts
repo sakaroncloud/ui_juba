@@ -45,12 +45,12 @@ export async function deleteCartItem(itemId: number) {
         }
     })
 }
-export async function checkOut() {
+export async function checkOut(addressId: string) {
     return await PrivateSubmitHandler({
         ENDPOINT: API_ROUTES.fooding.order.checkout.endpoint,
         METHOD: "POST",
         DATA: {
-
+            addressId
         }
     })
 }

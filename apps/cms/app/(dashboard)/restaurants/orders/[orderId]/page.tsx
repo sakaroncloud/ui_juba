@@ -20,7 +20,7 @@ const SingleOrderPage = async ({ params }: TParams) => {
     const result = await getData<ResponseWithNoMeta<Order.TOrder>>({
         endPoint: API_ROUTES.fooding.order.endpoint,
         param: orderId,
-        tags: ["orders"]
+        tags: ["orders", orderId]
     })
 
     if (!result?.data) {
@@ -28,6 +28,8 @@ const SingleOrderPage = async ({ params }: TParams) => {
     }
 
     const order = result.data
+
+    console.log(order)
 
     return (
         <DashboardProvider>
@@ -50,6 +52,7 @@ const SingleOrderPage = async ({ params }: TParams) => {
                     />
                     <div className='w-full flex justify-between gap-3'>
                         <SingleOrderAddressCard />
+
                         <SingleOrderRiderCard
                             rider={order?.rider}
                             orderStatus={order.orderStatus}
@@ -61,7 +64,7 @@ const SingleOrderPage = async ({ params }: TParams) => {
                         headingTwo='Order Items'
                     />
                     {/* Order Items */}
-                    <OrderItemCard orderItems={order.orderItems} totalAmount={order.totalAmount} />
+                    <OrderItemCard orderItems={order.orderItems} totalAmount={order.totalAmount} totalCommission={order.totalCommission} />
 
                     <SingleOrderFooterAction order={order} />
                 </div>

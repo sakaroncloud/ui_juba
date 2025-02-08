@@ -1,4 +1,4 @@
-import { Role } from "@repo/ui/types/user.types";
+import { Gender, Role } from "@repo/ui/types/user.types";
 
 
 export type TLoginResponse = {
@@ -15,3 +15,18 @@ export type TLoginResponse = {
         csrfId: string;
     };
 };
+
+export type TProfile = {
+    id: string;
+    role: Role;
+    email: string;
+    newEmail?: string;
+    fullName: string;
+    profile: {
+        fullName: string;
+        phone: string;
+        dob: string;
+        gender: Gender;
+        countryCode: string;
+    }
+}

@@ -66,7 +66,7 @@ export namespace Order {
         totalAmount: number,
         price: number,
         note: string | null,
-        comissionPercentage: number,
+        commissionPercentage: number,
         totalCommission: number,
         product?: Pick<Restaurant.Product.TProduct, "id" | "name" | "slug" | "price" | "preparationTime" | "bannerImage">
     }

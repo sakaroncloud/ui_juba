@@ -22,7 +22,6 @@ export const AccountInformationForm = ({
     formValues,
 }: Props) => {
     const [pending, startTransition] = useTransition();
-    console.log(formValues, "from formValues")
     const form = useForm<TProfileBasic>({
         resolver: zodResolver(profileBasicSchema),
         defaultValues: {

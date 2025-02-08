@@ -14,10 +14,11 @@ import { Order } from '@repo/ui/types/order.types'
 
 type Props = {
     orderItems: Order.TOrderItem[]
-    totalAmount: number
+    totalAmount: number,
+    totalCommission: number
 }
 
-export const OrderItemCard = ({ orderItems, totalAmount }: Props) => {
+export const OrderItemCard = ({ orderItems, totalAmount, totalCommission }: Props) => {
     return (
         <div className=' pb-4 border-gray-300'>
             <Table>
@@ -47,7 +48,7 @@ export const OrderItemCard = ({ orderItems, totalAmount }: Props) => {
                             <TableCell>${item.price}</TableCell>
                             <TableCell>x{item.quantity}</TableCell>
                             <TableCell>
-                                {item.comissionPercentage}%
+                                {item.commissionPercentage}%
                             </TableCell>
                             <TableCell>
                                 $ {item.totalCommission}
@@ -58,8 +59,17 @@ export const OrderItemCard = ({ orderItems, totalAmount }: Props) => {
                 </TableBody>
                 <TableFooter>
                     <TableRow>
+                        <TableCell colSpan={6}>Total Commission Earned</TableCell>
+                        <TableCell className="text-right">${totalCommission}</TableCell>
+                    </TableRow>
+                    <TableRow>
                         <TableCell colSpan={6}>Total</TableCell>
                         <TableCell className="text-right">${totalAmount}</TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                        <TableCell colSpan={6}>To Pay</TableCell>
+                        <TableCell className="text-right">${totalAmount - totalCommission}</TableCell>
                     </TableRow>
                 </TableFooter>
             </Table>

@@ -44,21 +44,27 @@ export const SingleOrderRiderCard = ({ orderStatus, rider, orderId }: Props) => 
                     <div className='font-medium text-sm'>
                         {rider?.fullName}
                     </div>
-                    <div className='font-normal text-xs space-x-1'>
-                        <span>Rider</span>  <CustomFormModal
-                            open={open}
-                            setOpen={setOpen}
-                            title="Assign Rider"
-                            description="Assign Rider to this order"
-                            customButton={<span className='text-primary italic text-[10px] cursor-pointer'>Change Rider</span>}
-                        >
-                            <RiderAssignForm orderId={orderId}
-                                setOpen={setOpen}
-                                defaultRiderId={rider?.id}
-                            />
-                        </CustomFormModal>
+                    <div className='font-normal text-xs'>
+                        {rider?.phone}
                     </div>
-
+                    {orderStatus !== OrderStatus.DELIVERED && (
+                        <div className='font-normal text-xs space-x-1'>
+                            <span>Rider</span>
+                            <CustomFormModal
+                                open={open}
+                                setOpen={setOpen}
+                                title="Assign Rider"
+                                description="Assign Rider to this order"
+                                customButton={<span className='text-primary italic text-[10px] cursor-pointer'>Change Rider</span>
+                                }
+                            >
+                                <RiderAssignForm orderId={orderId}
+                                    setOpen={setOpen}
+                                    defaultRiderId={rider?.id}
+                                />
+                            </CustomFormModal>
+                        </div>
+                    )}
                 </div>
             </div>
 

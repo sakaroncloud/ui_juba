@@ -2,12 +2,12 @@ import { getData } from '@/app/data';
 import { ChangeEmailForm } from '@/features/account/overview/change-email-form';
 import { AccountInformationForm } from '@/features/account/overview/profile-form';
 import { API_ROUTES } from '@repo/ui/lib/routes';
+import { TProfile } from '@repo/ui/types/auth.response.type';
 import { ResponseWithNoMeta } from '@repo/ui/types/response.type';
-import { User } from '@repo/ui/types/user.types';
 
 const AccountPage = async () => {
-    const result = await getData<ResponseWithNoMeta<User.TCustomerProfile>>({
-        endPoint: API_ROUTES.profile.customer.endpoint,
+    const result = await getData<ResponseWithNoMeta<TProfile>>({
+        endPoint: API_ROUTES.auth.profile.endpoint,
         tags: ["profile"]
     });
 
@@ -17,11 +17,11 @@ const AccountPage = async () => {
 
     return (
         <div className='space-y-4'>
-            <AccountInformationForm formValues={data} />
+            <AccountInformationForm formValues={data.profile} />
             <ChangeEmailForm formValues={{
-                email: data.user.email
+                email: data.email
             }}
-                newEmail={data.user?.newEmail}
+                newEmail={data?.newEmail}
             />
         </div>
     )
