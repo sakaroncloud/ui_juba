@@ -1,4 +1,4 @@
-import { StaffTable } from "@/components/page-components/users/staffs/staff-table"
+import { StaffTable } from "@/features/users/staffs/staff-table"
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
 import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
 import { Skeleton } from "@repo/ui/components/skeleton"

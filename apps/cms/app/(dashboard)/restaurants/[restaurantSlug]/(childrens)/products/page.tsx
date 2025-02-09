@@ -1,4 +1,4 @@
-import { ProductsTable } from '@/components/page-components/restaurants/pages/products/table/product-table'
+import { ProductsTable } from '@/features/fooding/restaurants/products/table/product-table'
 import { AddItemButton } from '@/components/uploads/add-item-button'
 import { cn } from '@repo/ui/lib/utils'
 

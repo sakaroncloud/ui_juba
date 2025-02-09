@@ -1,6 +1,6 @@
 
 import { formatDate } from "@repo/ui/lib/utils";
-import { RestaurantBodyCard } from "../../restaurants/restaurant-overview/restaurant-body/restaurant-body-card";
+import { RestaurantBodyCard } from "../../fooding/restaurants/restaurant-overview/restaurant-body/restaurant-body-card";
 import { Calendar, CircleDollarSign, DoorClosed, GalleryHorizontalIcon } from "lucide-react";
 import { getData } from "@/app/data";
 import { ResponseWithNoMeta } from "@repo/ui/types/response.type";

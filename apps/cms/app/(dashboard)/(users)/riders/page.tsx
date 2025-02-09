@@ -2,7 +2,7 @@ import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
 import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
 import { ShowTrashOrViewButton } from "@/components/uploads/add-item-button"
 import { TableSearchForm } from "@/components/table/table-search-form"
-import { RiderTable } from "@/components/page-components/users/riders/rider-table"
+import { RiderTable } from "@/features/users/riders/rider-table"
 
 type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>

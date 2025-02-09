@@ -1,17 +1,18 @@
 import { getData } from '@/app/data';
-import { OrderItemCard } from '@/components/page-components/restaurants/pages/orders/single-order/order-item';
-import { SingleOrderStage } from '@/components/page-components/restaurants/pages/orders/single-order/order-stage';
-import { SingleOrderAddressCard } from '@/components/page-components/restaurants/pages/orders/single-order/single-order-address-card';
-import { SingleOrderFooterAction } from '@/components/page-components/restaurants/pages/orders/single-order/single-order-footer-action';
-import { SingleOrderRiderCard } from '@/components/page-components/restaurants/pages/orders/single-order/single-order-rider-card';
-import { SingleOrderSectionTitle } from '@/components/page-components/restaurants/pages/orders/single-order/single-order-single-title';
-import { SingleOrderUserCard } from '@/components/page-components/restaurants/pages/orders/single-order/single-order-user-card';
+import { OrderItemCard } from '@/features/fooding/restaurants/orders/single-order/order-item';
+import { SingleOrderStage } from '@/features/fooding/restaurants/orders/single-order/order-stage';
+import { SingleOrderUserAddressCard } from '@/features/fooding/restaurants/orders/single-order/single-order-user-address-card';
+import { SingleOrderFooterAction } from '@/features/fooding/restaurants/orders/single-order/single-order-footer-action';
+import { SingleOrderRiderCard } from '@/features/fooding/restaurants/orders/single-order/single-order-rider-card';
+import { SingleOrderSectionTitle } from '@/features/fooding/restaurants/orders/single-order/single-order-single-title';
+import { SingleOrderUserCard } from '@/features/fooding/restaurants/orders/single-order/single-order-user-card';
 import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
 import { API_ROUTES } from '@repo/ui/lib/routes';
 import { TParams } from '@repo/ui/types/global.type';
 import { Order } from '@repo/ui/types/order.types';
 import { ResponseWithNoMeta } from '@repo/ui/types/response.type';
 import { notFound } from 'next/navigation';
+import { SingleOrderRestaurantAddressCard } from '@/features/fooding/restaurants/orders/single-order/single-order-restaurantr-address-card';
 
 const SingleOrderPage = async ({ params }: TParams) => {
 
@@ -29,7 +30,6 @@ const SingleOrderPage = async ({ params }: TParams) => {
 
     const order = result.data
 
-    console.log(order)
 
     return (
         <DashboardProvider>
@@ -50,15 +50,24 @@ const SingleOrderPage = async ({ params }: TParams) => {
                         fullName={order.user.customerProfile?.fullName || ""}
                         joinedAt={order.user.createdAt}
                     />
-                    <div className='w-full flex justify-between gap-3'>
-                        <SingleOrderAddressCard />
+                    <div className='grid grid-cols-2'>
+                        <div className='w-full gap-3 '>
+                            <SingleOrderUserAddressCard address={order.address}
+                                estimateTime={order.estimateTime}
+                                phone={order.user.customerProfile?.phone}
+                            />
 
-                        <SingleOrderRiderCard
-                            rider={order?.rider}
-                            orderStatus={order.orderStatus}
-                            orderId={order.id}
+                            <SingleOrderRiderCard
+                                rider={order?.rider}
+                                orderStatus={order.orderStatus}
+                                orderId={order.id}
+                            />
+                        </div>
+                        <SingleOrderRestaurantAddressCard restaurant={order.restaurant}
                         />
                     </div>
+
+
 
                     <SingleOrderSectionTitle
                         headingTwo='Order Items'

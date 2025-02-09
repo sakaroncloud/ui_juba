@@ -1,5 +1,5 @@
 import { UserFormModal } from "@/components/modals/user-form-modal"
-import { StaffTable } from "@/components/page-components/users/staffs/staff-table"
+import { StaffTable } from "@/features/users/staffs/staff-table"
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
 import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
 import { AddItemButton } from "@/components/uploads/add-item-button"

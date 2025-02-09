@@ -1,4 +1,4 @@
-import { MenusTable } from '@/components/page-components/restaurants/pages/menus/table/menu-table'
+import { MenusTable } from '@/features/fooding/restaurants/menus/table/menu-table'
 import { AddItemButton } from '@/components/uploads/add-item-button'
 import { cn, getIDsFromSlug } from '@repo/ui/lib/utils'
 import { notFound } from 'next/navigation'

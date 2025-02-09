@@ -1,4 +1,4 @@
-import { CityTable } from '@/components/page-components/cities/city-table/city-table'
+import { CityTable } from '@/features/cities/city-table/city-table'
 import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
 import { TableWrapperWithFilter } from '@repo/ui/components/table/table-wrapper-with-filter'
 import { AddItemButton } from '@/components/uploads/add-item-button'

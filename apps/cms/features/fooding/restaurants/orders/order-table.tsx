@@ -17,12 +17,13 @@ export const OrderTable = async ({ showDeleted }: Props) => {
         tags: ["orders"]
     });
 
+
     const filteredData = result?.data?.map((order) => ({
         ...order,
         fullName: order.user.customerProfile?.fullName
     }))
 
-
+    console.log(filteredData)
     return (
         <DataTable columns={columns} data={filteredData || []} showDeleted={showDeleted}
         />

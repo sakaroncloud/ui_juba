@@ -55,7 +55,7 @@ export namespace Order {
         orderItems: TOrderItem[];
         totalItems: number;
         estimateTime: number;
-        restaurant: Restaurant.TRest;
+        restaurant: Pick<Restaurant.TRest, "id" | "name" | "phone" | "email" | "address">;
         address: {
             area: string;
             city: string;

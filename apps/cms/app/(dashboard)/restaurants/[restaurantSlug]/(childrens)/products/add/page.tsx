@@ -1,4 +1,4 @@
-import { ProductForm } from '@/components/page-components/restaurants/pages/products/product-form'
+import { ProductForm } from '@/features/fooding/restaurants/products/product-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 import { TParams } from '@repo/ui/types/global.type'
 

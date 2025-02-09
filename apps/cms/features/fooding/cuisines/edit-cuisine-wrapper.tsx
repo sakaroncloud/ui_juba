@@ -1,5 +1,5 @@
 import { getData } from '@/app/data'
-import { CuisineForm } from '@/components/page-components/cuisines/cuisine-form'
+import { CuisineForm } from '@/features/fooding/cuisines/cuisine-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 import { API_ROUTES } from '@repo/ui/lib/routes'
 import { ResponseWithNoMeta } from '@repo/ui/types/response.type'

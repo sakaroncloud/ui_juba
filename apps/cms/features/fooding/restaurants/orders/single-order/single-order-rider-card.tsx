@@ -37,7 +37,7 @@ export const SingleOrderRiderCard = ({ orderStatus, rider, orderId }: Props) => 
     }
 
     return (
-        <div className="border-b pb-4 border-gray-200">
+        <div className="pb-4 ">
             <div className='flex items-center gap-3'>
                 <div className='size-14 border-1 border rounded-xl'></div>
                 <div>

@@ -1,8 +1,10 @@
-import React from 'react'
+import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
 
 const EditCustomerPage = () => {
     return (
-        <div>EditCustomerPage</div>
+        <DashboardProvider >
+            Customer
+        </DashboardProvider>
     )
 }
 

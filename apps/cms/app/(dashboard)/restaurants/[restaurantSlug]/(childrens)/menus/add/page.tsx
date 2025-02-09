@@ -1,4 +1,4 @@
-import { MenuForm } from '@/components/page-components/restaurants/pages/menus/menu-form'
+import { MenuForm } from '@/features/fooding/restaurants/menus/menu-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 import { TParams } from '@repo/ui/types/global.type'
 import { getIDsFromSlug } from '@repo/ui/lib/utils'

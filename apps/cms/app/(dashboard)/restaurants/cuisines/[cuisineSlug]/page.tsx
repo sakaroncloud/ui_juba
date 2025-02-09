@@ -1,4 +1,4 @@
-import { EditCuisineWrapper } from "@/components/page-components/cuisines/edit-cuisine-wrapper"
+import { EditCuisineWrapper } from "@/features/fooding/cuisines/edit-cuisine-wrapper"
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
 import { TParams } from "@repo/ui/types/global.type"
 

@@ -1,4 +1,4 @@
-import { RestaurantBasicForm } from '@/components/page-components/restaurants/forms/restaurant-basic-form'
+import { RestaurantBasicForm } from '@/features/fooding/restaurants/forms/restaurant-basic-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
 

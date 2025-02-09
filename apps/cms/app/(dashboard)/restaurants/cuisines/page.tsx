@@ -1,7 +1,7 @@
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
 import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
 import { AddItemButton } from "@/components/uploads/add-item-button"
-import { CuisineTable } from "@/components/page-components/cuisines/cuisine-table/cuisine-table"
+import { CuisineTable } from "@/features/fooding/cuisines/cuisine-table/cuisine-table"
 
 
 const CuisinesPage = () => {

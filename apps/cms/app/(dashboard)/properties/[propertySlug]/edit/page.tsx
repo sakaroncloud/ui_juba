@@ -1,5 +1,5 @@
 import { getData } from '@/app/data'
-import { EditPropertyWrapper } from '@/components/page-components/properties/edit-property-wrapper'
+import { EditPropertyWrapper } from '@/features/lodging/edit-property-wrapper'
 import { API_ROUTES } from '@repo/ui/lib/routes'
 
 import { TPropertyBasicForm } from '@repo/ui/schemas/lodging/property/property-basic.schema'
