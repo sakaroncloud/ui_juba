@@ -67,7 +67,10 @@ const RenderField = ({ children, className, step, min, max, minDate, maxDate, de
                     {formLabel && <FormLabel>{formLabel}</FormLabel>}
                     {label && <Label>{label}</Label>}
                     <FormControl>
-                        {inputType === "password" ? <PasswordInput placeholder={placeholder} {...field} /> : inputType === "phone" ?
+                        {inputType === "password" ? <PasswordInput placeholder={placeholder} {...field}
+
+
+                        /> : inputType === "phone" ?
 
                             <div className="flex h-11 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm">
                                 <PhoneInput
@@ -80,7 +83,7 @@ const RenderField = ({ children, className, step, min, max, minDate, maxDate, de
                             </div> :
 
                             inputType === "number" ? <Input {...field} step={step} placeholder={placeholder} min={min || 0} max={max || 1000000} type={inputType} />
-                                : <Input placeholder={placeholder}  {...field} type={inputType || "text"} />}
+                                : <Input className="h-11" placeholder={placeholder}  {...field} type={inputType || "text"} />}
                     </FormControl>
                     {showError && <FormMessage />}
                 </FormItem>
@@ -106,7 +109,7 @@ const RenderField = ({ children, className, step, min, max, minDate, maxDate, de
                     {label && <Label>{label}</Label>}
                     <ShadcnSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="h-10">
                                 <SelectValue placeholder={placeholder} />
                             </SelectTrigger>
                         </FormControl>

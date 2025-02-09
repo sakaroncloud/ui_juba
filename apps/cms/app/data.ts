@@ -37,6 +37,8 @@ export const getData = async <T>(options: TOption): Promise<T | null> => {
         tags: options.tags
     } : fetchOption
 
+    console.log(BACKEND_URL + options.endPoint + (options.param ? `/${options.param + queryString}` : queryString))
+
     try {
         const response = await fetch(
             BACKEND_URL + options.endPoint + (options.param ? `/${options.param + queryString}` : queryString),

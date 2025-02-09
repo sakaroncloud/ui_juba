@@ -4,7 +4,7 @@ type Props = {
     title: string;
     children: React.ReactNode;
 };
-export const AccountFormWrapper = ({ title, children }: Props) => {
+export const CardWrapper = ({ title, children }: Props) => {
     return (
         <Card>
             <CardHeader>

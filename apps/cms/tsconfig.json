@@ -21,7 +21,8 @@
     "**/*.tsx",
     "next-env.d.ts",
     "next.config.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../../packages/ui/src/components/card-wrapper.tsx"
   ],
   "exclude": [
     "node_modules"

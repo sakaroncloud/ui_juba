@@ -8,8 +8,8 @@ import {
 } from "@repo/ui/components/card"
 
 import Logo from "@/public/logo.png"
-import FallbackImage from "../fallback-image";
 import { cn } from "@repo/ui/lib/utils";
+import FallbackImage from "@/components/fallback-image";
 
 type Props = {
     cardTitle: string;

@@ -1,6 +1,5 @@
 
 "use client"
-import AuthWrapper from "@/components/auth/auth-wrapper"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import SubmitButton from "@/components/form/submit-button";
@@ -14,6 +13,7 @@ import { loginSchema, TLogin } from "@repo/ui/schemas/auth.schema";
 import { Form, FormControl, FormField, FormItem } from "@repo/ui/components/form";
 import { Label } from "@repo/ui/components/label";
 import { Input } from "@repo/ui/components/input";
+import AuthWrapper from "@/features/auth/auth-wrapper";
 
 const LoginPage = () => {
   const router = useRouter()

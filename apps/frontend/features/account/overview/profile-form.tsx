@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { profileBasicSchema, TProfileBasic } from "@repo/ui/schemas/auth.schema";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { AccountFormWrapper } from "../account-form-wrapper";
 import { Form } from "@repo/ui/components/form";
 import { CustomFormField } from "@/components/forms/form-field";
 import CustomButton from "@/components/custom-button";
@@ -12,6 +11,7 @@ import { GendersOptions } from "@repo/ui/types/user.types";
 import { updateProfile } from "@/lib/actions/auth";
 import { handleToast } from "@repo/ui/lib/utils";
 import { updateSessionWhenProfileModified } from "@/lib/actions/session";
+import { CardWrapper } from "@repo/ui/components/card-wrapper";
 
 
 type Props = {
@@ -41,7 +41,7 @@ export const AccountInformationForm = ({
         });
     };
     return (
-        <AccountFormWrapper title="Account Information">
+        <CardWrapper title="Account Information">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid grid-cols-2 gap-2">
@@ -83,6 +83,6 @@ export const AccountInformationForm = ({
                     />
                 </form>
             </Form>
-        </AccountFormWrapper>
+        </CardWrapper>
     );
 };

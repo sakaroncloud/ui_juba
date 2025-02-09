@@ -4,13 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { emailSchema, TEmail, } from "@repo/ui/schemas/auth.schema";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { AccountFormWrapper } from "../account-form-wrapper";
 import { Form } from "@repo/ui/components/form";
 import { CustomFormField } from "@/components/forms/form-field";
 import CustomButton from "@/components/custom-button";
 import { updateEmail } from "@/lib/actions/auth";
 import { handleToast } from "@repo/ui/lib/utils";
 import { updateSessionWhenProfileModified } from "@/lib/actions/session";
+import { CardWrapper } from "@repo/ui/components/card-wrapper";
 
 
 type Props = {
@@ -41,7 +41,7 @@ export const ChangeEmailForm = ({
         });
     };
     return (
-        <AccountFormWrapper title="Update Your Email">
+        <CardWrapper title="Update Your Email">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-1">
@@ -66,6 +66,6 @@ export const ChangeEmailForm = ({
                     />
                 </form>
             </Form>
-        </AccountFormWrapper>
+        </CardWrapper>
     );
 };

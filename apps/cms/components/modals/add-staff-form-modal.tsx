@@ -13,11 +13,11 @@ import { newUserSchema, TNewUser, } from '@repo/ui/schemas/auth.schema'
 
 type props = {
     formValues?: TNewUser
-    userId?: string
-    customButton: React.ReactNode
+    customButton: React.ReactNode,
+    role: Role
 }
 
-export const UserFormModal = ({ formValues, userId, customButton }: props) => {
+export const AddStaffFormModal = ({ formValues, customButton }: props) => {
     const [open, setOpen] = React.useState(false);
     const [isPending, startTransition] = useTransition();
     const form = useForm<TNewUser>({
@@ -31,7 +31,7 @@ export const UserFormModal = ({ formValues, userId, customButton }: props) => {
 
     const onSubmit = async (values: TNewUser) => {
         startTransition(async () => {
-            const response = await submitUser(values, userId);
+            const response = await submitUser(values);
             handleToast(response, () => setOpen(false))
         })
     }

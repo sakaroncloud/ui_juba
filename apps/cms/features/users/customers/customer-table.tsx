@@ -17,7 +17,7 @@ export const CustomerTable = async () => {
     });
 
     const filteredData = result?.data?.map((staff) => ({
-        id: staff.id,
+        id: staff.user.id,
         fullName: staff.fullName,
         email: staff.user.email,
         phone: staff.phone,
