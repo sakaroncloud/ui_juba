@@ -1,16 +1,33 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table"
+import { Button } from "@repo/ui/components/button"
 
 import { DataTableColumnHeader } from "@repo/ui/components/table/column-header"
 import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
 import { CustomCell } from "@repo/ui/components/table/custom-cell"
-
-
+import { useState, useTransition } from "react"
+import { deleteForeverHandler, deleteHandler, restoreHandler } from "@/lib/actions/global.action"
+import { CustomFormModal } from "@/components/form/custom-form-modal"
+import { DialogFooter } from "@repo/ui/components/dialog"
+import { API_ROUTES } from "@repo/ui/lib/routes"
+import toast from "react-hot-toast"
+import { UserFormModal } from "@/components/modals/user-form-modal"
+import { useSession } from "@/components/providers/session-context"
 import { CircleAlert, CircleCheck } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip"
-import { User } from "@repo/ui/types/user.types"
+import { Gender, Role } from "@repo/ui/types/user.types"
+import { DeleteButton, EditButton } from "@/components/table/action-button"
 
-export const columns: ColumnDef<User.TUser>[] = [
+type TColumn = {
+    id: string;
+    fullName: string;
+    email: string;
+    phone: string | undefined;
+    role: Role;
+    gender: Gender;
+}
+
+export const staffColumn: ColumnDef<TColumn>[] = [
 
     {
         accessorKey: "id",
@@ -35,7 +52,9 @@ export const columns: ColumnDef<User.TUser>[] = [
             return (
                 <div className="flex items-center gap-2">
                     <div className="p-1 border border-slate-200 bg-white rounded-lg size-[41px] flex items-center justify-center"> </div>
-                    <div className="text-sm font-medium capitalize"></div>
+                    <div className="text-sm font-medium capitalize">
+                        {data.fullName}
+                    </div>
                 </div>
             )
         }
@@ -51,11 +70,11 @@ export const columns: ColumnDef<User.TUser>[] = [
                     <TooltipProvider delayDuration={50}>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                {data.emailVerified ? <CircleCheck className="w-5 h-5 text-emerald-500" /> : <CircleAlert className="w-5 h-5 text-red-500" />}
+                                {data ? <CircleCheck className="w-5 h-5 text-emerald-500" /> : <CircleAlert className="w-5 h-5 text-red-500" />}
                             </TooltipTrigger>
                             <TooltipContent>
                                 <p>
-                                    {data.emailVerified ? "Verified" : "NotVerified"}
+                                    {data ? "Verified" : "NotVerified"}
                                 </p>
                             </TooltipContent>
                         </Tooltip>
@@ -76,4 +95,5 @@ export const columns: ColumnDef<User.TUser>[] = [
         accessorKey: "role",
         header: "Role"
     },
+
 ]

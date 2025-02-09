@@ -32,11 +32,7 @@ const AddToCartButton = ({ cartItem, productId, restaurantId }: Props) => {
             if (response.status == 409) {
                 onOpen("cart-delete-modal")
             }
-            handleToast(response, () => {
-                if (!isOpen) {
-                    onOpen("cart-sheet")
-                }
-            })
+            handleToast(response)
             queryClient.invalidateQueries()
         })
     }

@@ -138,6 +138,11 @@ export const API_ROUTES = {
             queryKey: "rider" as const,
         },
 
+        staff: {
+            endpoint: "/profile/staffs" as const,
+            queryKey: "rider" as const,
+        },
+
     },
     city: {
         endpoint: "/cities" as const,

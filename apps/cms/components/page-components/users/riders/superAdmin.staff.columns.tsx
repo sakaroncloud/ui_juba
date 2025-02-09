@@ -1,22 +1,14 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table"
-import { Button } from "@repo/ui/components/button"
 
 import { DataTableColumnHeader } from "@repo/ui/components/table/column-header"
 import { useCustomSearchParams } from "@/hooks/useCustomSearchParams"
 import { CustomCell } from "@repo/ui/components/table/custom-cell"
-import { useState, useTransition } from "react"
-import { deleteForeverHandler, deleteHandler, restoreHandler } from "@/lib/actions/global.action"
-import { CustomFormModal } from "@/components/form/custom-form-modal"
-import { DialogFooter } from "@repo/ui/components/dialog"
-import { API_ROUTES } from "@repo/ui/lib/routes"
-import toast from "react-hot-toast"
-import { UserFormModal } from "@/components/modals/user-form-modal"
-import { useSession } from "@/components/providers/session-context"
+
 import { CircleAlert, CircleCheck } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip"
 import { Gender, Role } from "@repo/ui/types/user.types"
-import { DeleteButton, EditButton, ViewIcon } from "@/components/table/action-button"
+import { EditButton, ViewIcon } from "@/components/table/action-button"
 
 type TColumn = {
     id: string;
@@ -104,8 +96,8 @@ export const superAdminStaffColumn: ColumnDef<TColumn>[] = [
             const data = row.original;
             return (
                 <div className="flex gap-2">
-                    <ViewIcon path={`/staffs/${data.id}`} />
-                    <EditButton path={`/staffs/${data.id}/edit`} />
+                    <ViewIcon path={`/riders/${data.id}`} />
+                    <EditButton path={`/riders/${data.id}/edit`} />
                 </div>
             )
         }

@@ -49,12 +49,16 @@ export namespace User {
         gender: Gender;
     }
 
+    export type TStaffProfile = TBaseProfile & {
+        user: Pick<TUser, "id" | "email" | "role" | "emailVerified">
+    }
+
     export type TRiderProfile = TBaseProfile & {
-        user: Pick<TUser, "id" | "email" | "role">
+        user: Pick<TUser, "id" | "email" | "role" | "emailVerified">
     }
 
     export type TCustomerProfile = TBaseProfile & {
-        user: Pick<TUser, "id" | "email" | "role" | "newEmail">
+        user: Pick<TUser, "id" | "email" | "role" | "emailVerified">
     }
 
 }

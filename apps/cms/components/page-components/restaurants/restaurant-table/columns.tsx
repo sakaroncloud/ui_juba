@@ -13,8 +13,7 @@ import { DialogFooter } from "@repo/ui/components/dialog"
 import { API_ROUTES } from "@repo/ui/lib/routes"
 import toast from "react-hot-toast"
 import { Restaurant } from "@repo/ui/types/restaurant.types"
-import { DeleteButton, DeleteForeverButton, EditButton, RestoreButton } from "@/components/table/action-button"
-import { ViewIcon } from "lucide-react"
+import { DeleteButton, DeleteForeverButton, EditButton, RestoreButton, ViewIcon } from "@/components/table/action-button"
 
 export const columns: ColumnDef<Restaurant.TRest & {
     isDeleted?: boolean | undefined

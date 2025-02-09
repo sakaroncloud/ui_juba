@@ -6,6 +6,7 @@ import { OrderItem } from './order-item';
 import { OrderHeader } from './order-header';
 import { useFetch } from '@/hooks/useFetch';
 import Link from 'next/link';
+import { ScrollArea } from '@repo/ui/components/scroll-area';
 
 type Props = {
     status: string
@@ -38,20 +39,22 @@ export const OrderTable = ({ status }: Props) => {
 
 
     return (
-        <div className='space-y-4'>
-            {orders?.map((order) => {
-                return (
-                    <div key={order.id} className='space-y-2 '>
-                        <OrderHeader order={order} />
-                        {order?.orderItems.map((item) => {
-                            return (
-                                <OrderItem key={item.id} item={item} />
-                            )
-                        })}
-                    </div>
-                )
-            })}
-        </div>
+        <ScrollArea>
+            <div className='space-y-4 max-h-[620px]'>
+                {orders?.map((order) => {
+                    return (
+                        <div key={order.id} className='space-y-2 '>
+                            <OrderHeader order={order} />
+                            {order?.orderItems.map((item) => {
+                                return (
+                                    <OrderItem key={item.id} item={item} />
+                                )
+                            })}
+                        </div>
+                    )
+                })}
+            </div>
+        </ScrollArea>
     )
 }
 

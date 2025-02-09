@@ -5,6 +5,15 @@ import { Order, OrderStatus } from "@repo/ui/types/order.types"
 export const OrderHeader = ({ order }: { order: Order.TOrder }) => {
     const { onOpen } = useModal();
     const isCancellable = [OrderStatus.PENDING, OrderStatus.CONFIRMED].includes(order.orderStatus)
+    const addressText = [
+        order.address?.streetOne,
+        order.address?.area,
+        order.address?.pincode,
+        order.address?.buildingName,
+        order.address?.landmark,
+        order.address?.city,
+        order.user.customerProfile?.phone
+    ].filter(Boolean).join(", ")
 
     return (
         <div className='p-4 rounded-lg  shadow-sm bg-white flex border border-gray-200 items-center gap-3 justify-between'>
@@ -28,6 +37,11 @@ export const OrderHeader = ({ order }: { order: Order.TOrder }) => {
                     <span className='font-semibold'>Total Amount:</span> $
                     {
                         order.totalAmount
+                    }
+                </div>
+                <div className='text-xs'>
+                    {
+                        addressText
                     }
                 </div>
                 {

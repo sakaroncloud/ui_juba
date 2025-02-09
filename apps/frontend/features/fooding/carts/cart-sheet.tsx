@@ -13,7 +13,7 @@ import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
 import { Separator } from "@repo/ui/components/separator";
 import FallbackImage from "@/components/fallback-image";
 import { Button } from "@repo/ui/components/button";
-import { Trash2, X } from "lucide-react";
+import { Router, Trash2, X } from "lucide-react";
 import React, { useEffect, useTransition } from "react";
 import { checkOut, deleteCart, deleteCartItem } from "@/lib/actions/fooding/action.cart";
 import { cn, handleToast } from "@repo/ui/lib/utils";
@@ -178,15 +178,18 @@ const EmptyCartImage = () => {
 }
 
 const CartSheetFooter = ({ totalAmount, totalQuantity, defaultAddressId }: { totalAmount: number, totalQuantity: number, defaultAddressId: string }) => {
-
+  const router = useRouter()
   const [pending, startTransition] = useTransition()
+  const { onClose } = useModal()
   const queryClient = useQueryClient()
   const onCheckOut = async () => {
     startTransition(async () => {
       if (defaultAddressId) {
         const res = await checkOut(defaultAddressId)
         handleToast(res, () => {
+          router.push("/account/orders")
           queryClient.invalidateQueries()
+          onClose()
         })
       }
       else {

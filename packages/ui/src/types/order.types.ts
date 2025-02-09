@@ -56,6 +56,14 @@ export namespace Order {
         totalItems: number;
         estimateTime: number;
         restaurant: Restaurant.TRest;
+        address: {
+            area: string;
+            city: string;
+            pincode?: string;
+            buildingName?: string;
+            landmark?: string;
+            streetOne?: string;
+        }
     };
 
     export type TOrderItem = {

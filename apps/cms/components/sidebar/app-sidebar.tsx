@@ -97,21 +97,7 @@ const data = {
                 },
             ]
         },
-        {
-            name: "Riders",
-            url: "/riders",
-            icon: Bike,
-            items: [
-                {
-                    name: "All riders",
-                    url: "/restaurants/riders",
-                },
-                {
-                    name: "Add New",
-                    url: "/restaurants/riders/add",
-                },
-            ]
-        },
+
 
         {
             name: "Orders & Transactions",
@@ -213,6 +199,12 @@ const data = {
             name: "Staffs",
             url: "/staffs",
             icon: ShieldCheck,
+        },
+
+        {
+            name: "Riders",
+            url: "/riders",
+            icon: Bike,
         },
 
         {

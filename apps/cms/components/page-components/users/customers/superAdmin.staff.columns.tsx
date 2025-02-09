@@ -13,10 +13,12 @@ import { API_ROUTES } from "@repo/ui/lib/routes"
 import toast from "react-hot-toast"
 import { UserFormModal } from "@/components/modals/user-form-modal"
 import { useSession } from "@/components/providers/session-context"
-import { CircleAlert, CircleCheck } from "lucide-react"
+import { CircleAlert, CircleCheck, Eye, MoreHorizontal } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip"
 import { Gender, Role } from "@repo/ui/types/user.types"
 import { DeleteButton, EditButton, ViewIcon } from "@/components/table/action-button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@repo/ui/components/dropdown-menu"
+import Link from "next/link"
 
 type TColumn = {
     id: string;
@@ -104,10 +106,12 @@ export const superAdminStaffColumn: ColumnDef<TColumn>[] = [
             const data = row.original;
             return (
                 <div className="flex gap-2">
-                    <ViewIcon path={`/staffs/${data.id}`} />
-                    <EditButton path={`/staffs/${data.id}/edit`} />
+                    <ViewIcon path={`/customers/${data.id}`} />
+                    <EditButton path={`/customers/${data.id}/edit`} />
                 </div>
             )
         }
     },
+
+
 ]

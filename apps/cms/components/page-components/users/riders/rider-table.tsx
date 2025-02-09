@@ -9,11 +9,11 @@ import { API_ROUTES } from "@repo/ui/lib/routes";
 import { staffColumn } from "./columns";
 
 
-export const StaffTable = async () => {
+export const RiderTable = async () => {
     const session = await getSession()
     const result = await getData<ResponseWithMeta<User.TStaffProfile[]>>({
-        endPoint: API_ROUTES.profile.staff.endpoint,
-        tags: ["staffs"]
+        endPoint: API_ROUTES.profile.rider.endpoint,
+        tags: ["riders"]
     });
 
     const filteredData = result?.data?.map((staff) => ({
