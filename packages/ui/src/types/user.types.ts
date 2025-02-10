@@ -36,7 +36,7 @@ export namespace User {
     id: string;
     email: string;
     newEmail?: string;
-    emailVerified: null | string;
+    emailVerified?: string;
     customerProfile?: TBaseProfile;
     staffProfile?: TBaseProfile;
     riderProfile?: Omit<TRiderProfile, "user">;
