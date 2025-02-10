@@ -117,6 +117,10 @@ export const API_ROUTES = {
       endpoint: "/users/change-password" as const,
       queryKey: "change-password" as const,
     },
+    changeMyEmail: {
+      endpoint: "/users/change-my-email" as const,
+      queryKey: "change-my-email" as const,
+    },
     changeEmail: {
       endpoint: "/users/change-email" as const,
       queryKey: "change-email" as const,

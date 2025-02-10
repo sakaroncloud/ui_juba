@@ -5,20 +5,18 @@ import { emailSchema, TEmail } from "@repo/ui/schemas/auth.schema";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "@repo/ui/components/form";
-import { CustomFormField } from "@/components/forms/form-field";
-import CustomButton from "@/components/custom-button";
-import { updateMyEmail } from "@/lib/actions/auth";
 import { handleToast } from "@repo/ui/lib/utils";
-import { updateSessionWhenProfileModified } from "@/lib/actions/session";
 import { CardWrapper } from "@repo/ui/components/card-wrapper";
+import { CustomFormField } from "@/components/form/custom-form-field";
+import CustomButton from "@/components/form/custom-button";
+import { updateEmail } from "@/lib/actions/food/action.user";
 
 type Props = {
   formValues: TEmail;
-  newEmail?: string;
-  unverifiedEmail?: string;
+  userId: string;
 };
 
-export const ChangeEmailForm = ({ formValues, newEmail }: Props) => {
+export const ChangeEmailForm = ({ formValues, userId }: Props) => {
   const [pending, startTransition] = useTransition();
   const form = useForm<TEmail>({
     resolver: zodResolver(emailSchema),
@@ -30,14 +28,12 @@ export const ChangeEmailForm = ({ formValues, newEmail }: Props) => {
   const onSubmit = (values: TEmail) => {
     console.log(values);
     startTransition(async () => {
-      const response = await updateMyEmail(values);
-      handleToast(response, async () => {
-        await updateSessionWhenProfileModified();
-      });
+      const response = await updateEmail(values, userId);
+      handleToast(response, async () => {});
     });
   };
   return (
-    <CardWrapper title="Update Your Email">
+    <CardWrapper title="Update Email">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-1">
@@ -48,12 +44,6 @@ export const ChangeEmailForm = ({ formValues, newEmail }: Props) => {
               fieldId="email"
               placeholder="Enter your email"
             />
-            {newEmail && (
-              <p className="text-xs ">
-                Check your email for a verification{" "}
-                <span className="text-primary">{newEmail}</span>
-              </p>
-            )}
           </div>
           <CustomButton
             className="rounded-full  text-white"

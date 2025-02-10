@@ -14,6 +14,7 @@ import {
 } from "@repo/ui/schemas/auth.schema";
 import { handleToast } from "@repo/ui/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
+import CustomButton from "@/components/form/custom-button";
 
 type Props = {
   profileId: string;
@@ -49,14 +50,12 @@ export const ProfileBasicForm = ({ formValues, role, profileId }: Props) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <div className="w-full grid grid-cols-2 gap-4">
-          <CustomFormField
-            elementName="input"
-            fieldId="fullName"
-            inputType="text"
-            label="Full Name"
-          />
-        </div>
+        <CustomFormField
+          elementName="input"
+          fieldId="fullName"
+          inputType="text"
+          label="Full Name"
+        />
 
         <div className="grid grid-cols-2 gap-4">
           <CustomFormField
@@ -88,7 +87,12 @@ export const ProfileBasicForm = ({ formValues, role, profileId }: Props) => {
           />
         </div>
 
-        <FormFooter buttonLabel={"Update"} pending={isPending} />
+        <CustomButton
+          className="rounded-full  text-white w-fit"
+          size={"sm"}
+          label={"Update"}
+          pending={isPending}
+        />
       </form>
     </Form>
   );

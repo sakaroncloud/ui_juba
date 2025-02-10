@@ -2,9 +2,11 @@ import { SubmitHandler } from "../global.action";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import {
   addStaffSchema,
+  emailSchema,
   newUserSchema,
   profileBasicSchema,
   TAddStaffSchema,
+  TEmail,
   TNewUser,
   TProfileBasic,
 } from "@repo/ui/schemas/auth.schema";
@@ -78,5 +80,23 @@ export async function submitProfileBasic(
     METHOD: "PATCH",
     DATA: validationFields.data,
     PARAM: param,
+  });
+}
+
+export async function updateEmail(formData: TEmail, param: string) {
+  const validationFields = emailSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data tempered",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await SubmitHandler({
+    ENDPOINT: API_ROUTES.user.endpoint,
+    METHOD: "PATCH",
+    DATA: validationFields.data,
+    PARAM: param + "/change-email",
   });
 }
