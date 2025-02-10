@@ -11,13 +11,14 @@ export const addressFormSchema = z.object({
     area: z.string().min(2, {
         message: "Please enter at least 2 characters"
     }),
-    mapLink: z.string().min(2, {
-        message: "Please enter at least 2 characters"
-    }).optional().nullable(),
+    mapLink: z.string().optional().nullable(),
+    pincode: z.string().optional().nullable(),
 
-    buildingName: z.string().min(2, {
-        message: "Please enter at least 2 characters"
-    }).optional().nullable(),
+    isDefault: z.boolean().optional().default(false).nullable(),
+    label: z.string().optional().default("default").nullable(),
+    landmark: z.string().optional().nullable(),
+
+    buildingName: z.string().optional().nullable(),
     floor: z.string().min(1, {
         message: "Please enter at least 1 characters"
     }).or(z.string().nullable().optional()),
@@ -28,13 +29,16 @@ export const addressFormSchema = z.object({
 
 export type TAddressForm = z.infer<typeof addressFormSchema>
 
-export const addressDefaultValues: TAddressForm = {
+export const addressDefaultValues: Partial<TAddressForm> = {
     streetOne: "",
-    area: "Mall Road",
+    area: "",
     mapLink: "",
     buildingName: "",
     floor: "",
-    city: ""
+    city: "",
+    label: "",
+    landmark: "",
+    pincode: ""
 }
 
 

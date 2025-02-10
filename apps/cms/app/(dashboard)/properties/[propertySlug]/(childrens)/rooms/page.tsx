@@ -1,4 +1,4 @@
-import { RoomsTable } from '@/components/page-components/properties/pages/rooms/rooms-table/rooms-table'
+import { RoomsTable } from '@/features/lodging/pages/rooms/rooms-table/rooms-table'
 import { AddItemButton } from '@/components/uploads/add-item-button'
 import { cn } from '@repo/ui/lib/utils'
 

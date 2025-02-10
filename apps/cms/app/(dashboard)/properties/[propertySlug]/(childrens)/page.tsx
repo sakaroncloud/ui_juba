@@ -1,5 +1,5 @@
-import { PropertyHeroSection } from "@/components/page-components/properties/property-overview/property-hero-section"
-import { SinglePropertyBody } from "@/components/page-components/properties/property-overview/single-property-body"
+import { PropertyHeroSection } from "@/features/lodging/property-overview/property-hero-section"
+import { SinglePropertyBody } from "@/features/lodging/property-overview/single-property-body"
 
 type Props = {
     params: Promise<{ propertySlug: string }>

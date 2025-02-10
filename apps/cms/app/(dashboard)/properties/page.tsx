@@ -1,7 +1,7 @@
-import { PropertyTable } from '@/components/page-components/properties/property-table/property-table'
-import { TableSearchForm } from '@/components/table/table-search-form'
-import { TableWrapperWithFilter } from '@/components/table/table-wrapper-with-filter'
+import { PropertyTable } from '@/features/lodging/property-table/property-table'
+import { TableWrapperWithFilter } from '@repo/ui/components/table/table-wrapper-with-filter'
 import { AddItemButton, ShowTrashOrViewButton } from '@/components/uploads/add-item-button'
+import { TableSearchForm } from '@/components/table/table-search-form'
 type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }

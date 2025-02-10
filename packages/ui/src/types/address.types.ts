@@ -6,10 +6,15 @@ export type TCity = TBaseWithSlug & {
 };
 
 export type TAddress = {
+    id: string,
     streetOne: string;
     area: string;
     mapLink?: string;
     buildingName?: string;
+    landmark?: string;
     floor?: string;
     city: TCity;
+    isDefault: boolean;
+    label: string;
+    pincode: string;
 };

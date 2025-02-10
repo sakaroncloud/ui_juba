@@ -26,3 +26,7 @@ export enum ENDPOINT {
 
 export type POST_METHOD = "post" | "patch" | "delete";
 export type HTTP_METHOD = "post" | "get" | "patch" | "delete";
+
+export type TQueryString = {
+    [key: string]: string | number | boolean | undefined;
+}

@@ -56,6 +56,7 @@ const basicSchema = z.object({
     isEnabled: z.boolean(),
 
     defaultCommissionPercentage: z.coerce.number().positive(),
+    averagePreparationTime: z.coerce.number().positive(),
 })
 
 export const restaurantBasicFormSchema = basicSchema.extend({
@@ -89,4 +90,5 @@ export const restaurantBasicDefaultValues: TRestBasicForm = {
     isPureVeg: false,
     name: "McDonald's",
     openingTime: "",
+    averagePreparationTime: 15
 }

@@ -79,28 +79,41 @@ body {
   }
 }
 
+
 @layer base {
   * {
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground !m-0 !overflow-y-scroll;
   }
 }
 
 
 @layer utilities {
-  .section__title {
-    @apply text-[calc(18px+.008*(100vw-320px))] font-bold text-gray-800;
+  .text__xl {
+    @apply lg:text-[calc(18px+.0075*(100vw-320px))] text-[calc(17px+.0095*(100vw-320px))] font-bold text-gray-800;
   }
 
-  .section__subtitle {
-    @apply text-[calc(14px+.00375*(100vw-320px))] text-gray-600;
+  .text__subtitle {
+    @apply lg:text-[calc(13px+.00275*(100vw-320px))] text-[calc(13px+.00575*(100vw-320px))] text-gray-600;
   }
 
   .text__large {
-    @apply text-[calc(14px+.00375*(100vw-320px))];
+    @apply lg:text-[calc(18px+.00375*(100vw-320px))] text-[calc(17px+.00575*(100vw-320px))] font-bold text-gray-800;
+  }
+
+  .text__medium {
+    @apply lg:text-[calc(14px+.00370*(100vw-320px))] text-[calc(13px+.00370*(100vw-320px))];
+  }
+
+  .text__small {
+    @apply lg:text-[calc(13px+.00220*(100vw-320px))] text-[calc(13px+.00375*(100vw-320px))];
   }
 
   .widget__title {

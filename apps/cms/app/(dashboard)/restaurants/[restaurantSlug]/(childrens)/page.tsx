@@ -1,5 +1,5 @@
-import { RestaurantBody } from '@/components/page-components/restaurants/restaurant-overview/restaurant-body/restaurant-body'
-import SingleRestaurantProvider from '@/components/page-components/restaurants/single-restaurant-provider'
+import { RestaurantBody } from '@/features/fooding/restaurants/restaurant-overview/restaurant-body/restaurant-body'
+import SingleRestaurantProvider from '@/features/fooding/restaurants/single-restaurant-provider'
 import { getIDsFromSlug } from '@repo/ui/lib/utils'
 import { notFound } from 'next/navigation'
 

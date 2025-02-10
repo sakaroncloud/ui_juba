@@ -19,7 +19,7 @@ export async function submitUser(formData: TNewUser, param?: string) {
     })
 }
 
-export async function submitProfileBasic(formData: TProfileBasic, role: Role) {
+export async function submitProfileBasic(formData: TProfileBasic, role: Role, param: string) {
     const validationFields = profileBasicSchema.safeParse(formData)
     if (!validationFields.success) {
         return {
@@ -31,7 +31,7 @@ export async function submitProfileBasic(formData: TProfileBasic, role: Role) {
 
     switch (role) {
         case Role.CUSTOMER:
-            endpoint += "/customer"
+            endpoint += "/customers"
             break;
         case Role.RIDER:
             endpoint += "/riders"
@@ -54,5 +54,6 @@ export async function submitProfileBasic(formData: TProfileBasic, role: Role) {
         ENDPOINT: endpoint,
         METHOD: "PATCH",
         DATA: validationFields.data,
+        PARAM: param
     })
 }

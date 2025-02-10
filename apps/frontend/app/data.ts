@@ -2,24 +2,20 @@ type TOption = {
   endPoint: string;
   param?: string;
   tags: string[];
-  query?: {
-    key: string,
-    value: string
-  };
+  query?: TQueryString[]
 };
 
 import { getSession } from "@/lib/actions/session";
 import { BACKEND_URL } from "@/lib/constants";
+import { getQueryString } from "@repo/ui/lib/utils";
+import { TQueryString } from "@repo/ui/types/endpoints";
 
 export const getData = async <T>(options: TOption): Promise<T | null> => {
 
-  let queryString = ""
-  if (options.query) {
-    queryString = `?${options.query.key}=${options.query.value}`
-  }
-
+  const queryString = getQueryString(options.query);
 
   const session = await getSession()
+
 
   const fetchOption: RequestInit = {
     headers: {

@@ -1,6 +1,6 @@
 import { getData } from '@/app/data'
-import { CustomerProfileForm } from '@/components/page-components/profile/form/customer-profile-form'
-import { ProfileBasicForm } from '@/components/page-components/profile/form/profile-basic-form'
+import { CustomerProfileForm } from '@/features/profile/form/customer-profile-form'
+import { ProfileBasicForm } from '@/features/profiles/form/profile-basic-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 import { getSession } from '@/lib/actions/session'
 import { API_ROUTES } from '@repo/ui/lib/routes'

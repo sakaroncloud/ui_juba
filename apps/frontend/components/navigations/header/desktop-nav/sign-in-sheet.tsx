@@ -1,28 +1,22 @@
 "use client";
-
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@repo/ui/components/sheet";
 import SignInForm from "./sign-in-form";
 import { useState } from "react";
 import SignUpForm from "./sign-up-form";
+import { useModal } from "@/hooks/useModal";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export const SignInSheet = ({ children }: Props) => {
+export const SignInSheet = () => {
   const [enableRegisterForm, setEnableRegisterForm] = useState<boolean>(false);
-  const [open, setOpen] = useState(false);
+  const { isOpen, onClose, type } = useModal();
+  const isModalOpen = isOpen && type === "sign-in-sheet";
+
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className="cursor-pointer" asChild>
-        {children}
-      </SheetTrigger>
+    <Sheet open={isModalOpen} onOpenChange={onClose}>
       <SheetContent>
         <SheetHeader className="mb-6">
           <SheetTitle>{!enableRegisterForm ? "Login" : "Sign Up"}</SheetTitle>
@@ -41,9 +35,9 @@ export const SignInSheet = ({ children }: Props) => {
           </div>
         </SheetHeader>
         {!enableRegisterForm ? (
-          <SignInForm setOpen={setOpen} />
+          <SignInForm />
         ) : (
-          <SignUpForm setOpen={setOpen} />
+          <SignUpForm />
         )}
         <p className="text-xs mt-4">
           By clicking on {enableRegisterForm ? "Sign Up" : "Login"}, I accept

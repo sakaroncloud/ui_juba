@@ -146,7 +146,7 @@ export const UploadImageCard = ({ uploadEndPoint, image, refetch }: Props) => {
                                     Uploaded By :
                                 </Label>
                                 <span className="text-xs font-light">
-                                    {image?.uploadedBy?.firstName} {image?.uploadedBy?.lastName}
+                                    {image?.uploadedBy?.fullName}
                                 </span>
                             </div>
                             <div>

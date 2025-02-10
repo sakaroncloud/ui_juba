@@ -1,6 +1,6 @@
 import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
-import { CuisineForm } from '@/components/page-components/cuisines/cuisine-form'
+import { CuisineForm } from '@/features/fooding/cuisines/cuisine-form'
 
 export default function CreateCuisinePage() {
     return (

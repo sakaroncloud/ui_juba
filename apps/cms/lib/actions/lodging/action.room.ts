@@ -13,7 +13,7 @@ export async function submitRoom(formData: TRoomBasicForm, param?: string) {
     }
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.room.endpoint,
+        ENDPOINT: API_ROUTES.lodging.room.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: validationFields.data,
         PARAM: param
@@ -30,7 +30,7 @@ export async function updateRoomAmenities(formData: TRoomAmenitiesClientForm, pa
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.room.endpoint + "/" + param + "/amenities",
+        ENDPOINT: API_ROUTES.lodging.room.endpoint + "/" + param + "/amenities",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -45,7 +45,7 @@ export async function updateRoomRules(formData: TRoomRulesClientForm, param: str
     }
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.room.endpoint + "/" + param + "/rules",
+        ENDPOINT: API_ROUTES.lodging.room.endpoint + "/" + param + "/rules",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })

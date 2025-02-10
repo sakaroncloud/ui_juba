@@ -43,3 +43,4 @@ export enum EWeekDay {
     SATURDAY = "saturday",
     SUNDAY = "sunday"
 }
+

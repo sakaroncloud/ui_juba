@@ -17,7 +17,7 @@ export async function submitMenu(formData: TMenuForm, param?: string | number) {
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.menu.endpoint,
+        ENDPOINT: API_ROUTES.fooding.menu.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: validationFields.data,
         PARAM: param

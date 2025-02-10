@@ -1,5 +1,5 @@
 import { getData } from '@/app/data'
-import { EditPropertyWrapper } from '@/components/page-components/properties/edit-property-wrapper'
+import { EditPropertyWrapper } from '@/features/lodging/edit-property-wrapper'
 import { API_ROUTES } from '@repo/ui/lib/routes'
 
 import { TPropertyBasicForm } from '@repo/ui/schemas/lodging/property/property-basic.schema'
@@ -18,7 +18,7 @@ const EditPropertyPage = async ({ params }: Props) => {
 
     if (!propertyId) notFound()
     const result = await getData<ResponseWithNoMeta<Property.TProperty>>({
-        endPoint: API_ROUTES.property.endpoint,
+        endPoint: API_ROUTES.lodging.property.endpoint,
         param: propertyId,
         tags: ["property", propertyId]
     });

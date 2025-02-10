@@ -1,5 +1,5 @@
 import { getData } from '@/app/data'
-import { EditRoomWrapper } from '@/components/page-components/properties/pages/rooms/edit-room-wrapper'
+import { EditRoomWrapper } from '@/features/lodging/pages/rooms/edit-room-wrapper'
 import { parseRoomAmenitiesFromS2C, parseRoomGeneralInfoFromS2C, parseRoomRulesFromS2C } from '@/lib/utils/property.utils'
 import { API_ROUTES } from '@repo/ui/lib/routes'
 
@@ -21,7 +21,7 @@ const RoomEditPage = async ({ params }: Props) => {
     if (slugTempered || propertyId === undefined || roomId === undefined) notFound()
 
     const result = await getData<ResponseWithNoMeta<Property.TRoom>>({
-        endPoint: API_ROUTES.room.endpoint,
+        endPoint: API_ROUTES.lodging.room.endpoint,
         query: {
             key: "propertyId",
             value: propertyId

@@ -1,5 +1,5 @@
 import { getData } from '@/app/data'
-import { EditRestaurantWrapper } from '@/components/page-components/restaurants/edit-restaurant-wrapper'
+import { EditRestaurantWrapper } from '@/features/fooding/restaurants/edit-restaurant-wrapper'
 import { DashboardProvider } from '@/components/providers/dashboard-wrapper'
 import { parseAddressFromS2C } from '@/lib/utils/address.utils'
 import { parseRestBasicFormFromS2C, parseRestCuisineFromS2C } from '@/lib/utils/restaurant.utils'
@@ -27,7 +27,7 @@ const EditRestaurantPage = async ({ params }: TParams) => {
     }
 
     const result = await getData<ResponseWithNoMeta<Restaurant.TRest>>({
-        endPoint: API_ROUTES.restaurant.endpoint,
+        endPoint: API_ROUTES.fooding.restaurant.endpoint,
         param: restaurantId,
         tags: ["restaurant", restaurantId]
     })

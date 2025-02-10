@@ -25,7 +25,7 @@ export async function signIn(formData: TLogin): Promise<
     try {
 
         const response = await fetch(
-            BACKEND_URL + API_ROUTES.login.endpoint,
+            BACKEND_URL + API_ROUTES.auth.login.endpoint,
             {
                 method: "POST",
                 headers: {
@@ -49,7 +49,7 @@ export async function signIn(formData: TLogin): Promise<
                     id: result.data.id,
                     role: result.data.role,
                     email: result.data?.email,
-                    name: result?.data?.name,
+                    fullName: result?.data?.fullName,
                     profile: result?.data?.profile
                 },
                 accessToken: result.data.tokens.accessToken,
@@ -83,7 +83,7 @@ export async function signUp(formData: TSignUp): Promise<ReturnType> {
     }
 
     const response = await fetch(
-        BACKEND_URL + API_ROUTES.signUp,
+        BACKEND_URL + API_ROUTES.auth.signUp,
         {
             method: "POST",
             headers: {
@@ -117,7 +117,7 @@ export async function logout() {
     }
     try {
         await fetch(
-            BACKEND_URL + API_ROUTES.signUp,
+            BACKEND_URL + API_ROUTES.auth.signUp,
             {
                 method: "POST",
                 headers: {

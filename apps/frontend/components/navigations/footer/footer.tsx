@@ -3,10 +3,7 @@ import { AboutWidget } from "./widgets/about-widget";
 import { WidgetLinkItems } from "./widgets/widget-link-items";
 
 import { PaymentMethodWidget } from "./widgets/payment-method-widget";
-type TLink = {
-  title: string,
-  href: string,
-}
+
 
 const Footer = async () => {
 

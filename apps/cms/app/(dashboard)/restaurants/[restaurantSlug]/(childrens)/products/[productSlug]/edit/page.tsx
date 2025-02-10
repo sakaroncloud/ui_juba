@@ -3,7 +3,7 @@ import React from 'react'
 import { getData } from '@/app/data'
 import { notFound } from 'next/navigation'
 import { getIDsFromSlug } from '@repo/ui/lib/utils'
-import { ProductForm } from '@/components/page-components/restaurants/pages/products/product-form'
+import { ProductForm } from '@/features/fooding/restaurants/products/product-form'
 import { Restaurant } from '@repo/ui/types/restaurant.types'
 import { API_ROUTES } from '@repo/ui/lib/routes'
 import { ResponseWithNoMeta } from '@repo/ui/types/response.type'
@@ -27,7 +27,7 @@ const EditProductPage = async ({ params }: Props) => {
 
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Product.TProduct>>({
-        endPoint: API_ROUTES.product.endpoint,
+        endPoint: API_ROUTES.fooding.product.endpoint,
         query: {
             key: "restaurantId",
             value: restaurantId

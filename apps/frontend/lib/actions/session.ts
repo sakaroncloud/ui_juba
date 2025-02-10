@@ -1,25 +1,21 @@
 "use server";
 
-
-
 import { jwtVerify, SignJWT } from "jose";
-
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { getData } from "@/app/data";
 import { revalidatePath } from "next/cache";
 import { Role } from "@repo/ui/types/user.types";
 import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
+import { JUBA_FRONTEND_SESSION_KEY } from "@repo/ui/lib/constants";
 
 export type Session = {
   user: {
     id: string;
     role: Role;
     email: string;
-    name?: string;
+    fullName?: string;
     profile?: {
-      firstName?: string;
-      lastName?: string;
+      fullName?: string;
       id?: string;
     }
   };
@@ -41,7 +37,7 @@ export async function createSession(payload: Session) {
     .setExpirationTime("7d")
     .sign(encodedKey);
 
-  cookieStore.set("session", session, {
+  cookieStore.set(JUBA_FRONTEND_SESSION_KEY, session, {
     httpOnly: true,
     secure: true,
     expires: expiredAt,
@@ -53,24 +49,22 @@ export async function createSession(payload: Session) {
 
 export async function getSession() {
   const cookieStore = await cookies();
-  const cookie = cookieStore.get("session")?.value;
+  const cookie = cookieStore.get(JUBA_FRONTEND_SESSION_KEY)?.value;
   if (!cookie) return null;
 
   try {
     const { payload } = await jwtVerify(cookie, encodedKey, {
       algorithms: ["HS256"],
     });
-
-
     return payload as Session;
   } catch (err) {
-    redirect("/auth/sigin");
+    return null;
   }
 }
 
 export async function deleteSession() {
   const cookieStore = await cookies();
-  cookieStore.delete("session");
+  cookieStore.delete(JUBA_FRONTEND_SESSION_KEY);
 }
 
 export async function updateTokens({
@@ -84,7 +78,7 @@ export async function updateTokens({
 }) {
   const cookieStore = await cookies();
 
-  const cookie = cookieStore.get("session")?.value;
+  const cookie = cookieStore.get(JUBA_FRONTEND_SESSION_KEY)?.value;
   if (!cookie) return null;
 
   const { payload } = await jwtVerify<Session>(cookie, encodedKey);
@@ -107,7 +101,7 @@ export async function updateTokens({
 export async function updateSessionWhenProfileModified() {
   const cookieStore = await cookies();
 
-  const cookie = cookieStore.get("session")?.value;
+  const cookie = cookieStore.get(JUBA_FRONTEND_SESSION_KEY)?.value;
   if (!cookie) return null;
 
   const { payload } = await jwtVerify<Session>(cookie, encodedKey);
@@ -118,7 +112,8 @@ export async function updateSessionWhenProfileModified() {
     id: string,
     email: string,
     role: Role,
-    name: string,
+    fullName: string,
+    newEmail: string,
     profile?: {
       id: string
     }
@@ -127,11 +122,14 @@ export async function updateSessionWhenProfileModified() {
     tags: ["users", payload.user.id]
   });
 
+  if (!result?.data) return
+
   const newPayload: Session = {
     user: {
       ...payload.user,
-      name: result?.data?.name,
-      profile: result?.data?.profile
+      fullName: result.data?.fullName,
+      profile: result.data?.profile,
+      email: result.data.email
     },
     accessToken: payload.accessToken,
     refreshToken: payload.refreshToken,

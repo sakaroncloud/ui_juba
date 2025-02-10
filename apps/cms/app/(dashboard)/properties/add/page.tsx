@@ -1,4 +1,4 @@
-import { PropertyBasicForm } from '@/components/page-components/properties/form/property-basic-form'
+import { PropertyBasicForm } from '@/features/lodging/form/property-basic-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 
 const AddNewPropertyPage = () => {

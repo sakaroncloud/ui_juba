@@ -1,4 +1,4 @@
-import { RoomBasicForm } from '@/components/page-components/properties/pages/rooms/forms/room-form'
+import { RoomBasicForm } from '@/features/lodging/pages/rooms/forms/room-form'
 import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
 import { getIDsFromSlug } from '@repo/ui/lib/utils'
 import { notFound } from 'next/navigation'

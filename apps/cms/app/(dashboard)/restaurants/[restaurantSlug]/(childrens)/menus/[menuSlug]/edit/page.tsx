@@ -4,7 +4,7 @@ import { getData } from '@/app/data'
 import { API_ROUTES } from '@repo/ui/lib/routes'
 import { notFound } from 'next/navigation'
 import { getIDsFromSlug } from '@repo/ui/lib/utils'
-import { MenuForm } from '@/components/page-components/restaurants/pages/menus/menu-form'
+import { MenuForm } from '@/features/fooding/restaurants/menus/menu-form'
 import { ResponseWithNoMeta } from '@repo/ui/types/response.type'
 import { TParams } from '@repo/ui/types/global.type'
 import { Restaurant } from '@repo/ui/types/restaurant.types'
@@ -27,7 +27,7 @@ const EditMenuPage = async ({ params }: TParams) => {
 
 
     const result = await getData<ResponseWithNoMeta<Restaurant.Menu.TMenu>>({
-        endPoint: API_ROUTES.menu.endpoint,
+        endPoint: API_ROUTES.fooding.menu.endpoint,
         query: {
             key: "restaurantId",
             value: restaurantId

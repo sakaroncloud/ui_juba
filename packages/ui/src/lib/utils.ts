@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx"
 import toast from "react-hot-toast";
 import { twMerge } from "tailwind-merge"
+import slugify from "slugify";
+import { TQueryString } from "../types/endpoints";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -93,6 +95,16 @@ export function convertFileSize(bytes: number) {
   }
 }
 
+export const generateSlug = (name: string) => {
+  return slugify(name, {
+    replacement: '-',  // replace spaces with replacement character, defaults to `-`
+    remove: /[*+~.()'"!:@]/, // remove characters that match regex, defaults to `undefined`
+    lower: true,      // convert to lower case, defaults to `false`
+    strict: false,     // strip special characters except replacement, defaults to `false`
+    locale: 'vi',      // language code of the locale to use
+    trim: true         // trim leading and trailing replacement chars, defaults to `true`
+  })
+}
 
 
 
@@ -154,11 +166,24 @@ export const getIDsFromSlug = (option: TSlug) => {
  * @param response 
  * @param onSuccess 
  */
-export const handleToast = (response: { success: boolean; message: string }, onSuccess?: () => void) => {
+export const handleToast = (response: {
+  success: boolean; message: string, data?: {
+    message?: string;
+  }
+}, onSuccess?: () => void) => {
   if (response.success) {
-    toast.success(response.message)
+    toast.success(response?.data?.message || response.message)
     onSuccess?.()
   } else {
     toast.error(response.message || "Something went wrong")
   }
 }
+
+export const getQueryString = (query?: TQueryString[]): string => {
+  if (!query || query.length === 0) return "";
+
+  const params = new URLSearchParams();
+  query.forEach(({ key, value }) => params.append(key as string, value as string));
+
+  return `?${params.toString()}`;
+};

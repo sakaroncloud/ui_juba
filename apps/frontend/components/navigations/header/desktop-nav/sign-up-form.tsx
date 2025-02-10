@@ -4,55 +4,30 @@ import { useForm } from "react-hook-form";
 
 import { CustomFormField } from "@/components/forms/form-field";
 import CustomButton from "@/components/custom-button";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { signUp } from "@/lib/actions/auth";
-import toast from "react-hot-toast";
-import { TSignUp } from "@repo/ui/schemas/auth.schema";
+import { signUpSchema, TSignUp } from "@repo/ui/schemas/auth.schema";
+import { handleToast } from "@repo/ui/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useModal } from "@/hooks/useModal";
 
-type TModal = {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
 
-const SignUpForm = ({ setOpen }: TModal) => {
-  const [errors, setErrors] = useState({});
+const SignUpForm = () => {
+  const { onClose } = useModal();
   const form = useForm<TSignUp>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
       phone: "",
-      firstName: "",
-      lastName: "",
+      fullName: "",
     },
   });
 
-  useEffect(() => {
-    if (errors) {
-      Object.keys(errors).map((key) => {
-        form.setError(key as keyof typeof errors, {
-          type: "custom",
-          message: errors[key as keyof typeof errors],
-        });
-      });
-    }
-  }, [errors]);
-
   const onSubmit = async (values: TSignUp) => {
-    setErrors({});
-
     const response = await signUp(values);
-
-    if (response?.errors) {
-      setErrors(response.errors);
-    }
-    if (response?.message) {
-      toast.error(response?.message);
-    }
-
-    if (response?.success) {
-      form.reset();
-      toast.success(response?.success);
-      setOpen(false);
-    }
+    handleToast(response as any, () => {
+      onClose();
+    })
   };
 
   return (
@@ -60,39 +35,35 @@ const SignUpForm = ({ setOpen }: TModal) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <div className="grid grid-cols-2 gap-4">
           <CustomFormField
-            apiKey="firstName"
+            fieldId="fullName"
             label="First Name"
             placeholder="First Name"
-            tagType="input"
-            type="text"
+            inputType="text"
+            elementName="input"
           />
-          <CustomFormField
-            apiKey="lastName"
-            label="Last Name"
-            placeholder="Last Name"
-            tagType="input"
-            type="text"
-          />
+
         </div>
         <CustomFormField
-          apiKey="email"
+          fieldId="email"
           label="Email"
           placeholder="Email"
-          tagType="input"
-          type="email"
+          elementName="input"
         />
         <CustomFormField
-          apiKey="password"
+          fieldId="password"
           label="Password"
           placeholder="Password"
-          tagType="input"
-          type="password"
+          elementName="input"
+          inputType="password"
+
         />
         <CustomFormField
-          apiKey="phone"
+          fieldId="phone"
           label="Phone"
           placeholder="Phone"
-          tagType="phone"
+          elementName="input"
+          inputType="phone"
+
         />
         <CustomButton
           className="!mt-6"

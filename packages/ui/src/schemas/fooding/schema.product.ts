@@ -45,6 +45,7 @@ const productBaseSchema = z.object({
     description: z.string().min(3, {
         message: "Desccription must be at least 3 characters"
     }),
+    commissionPercentage: z.coerce.number().positive(),
 })
 
 
@@ -72,7 +73,8 @@ export type TProductForm = z.infer<typeof productFormSchema>
 export const productDefaultValues: Omit<TProductForm, "restaurantId"> = {
     name: "",
     description: "",
-    price: 0,
-    preparationTime: 0,
+    price: 499,
+    preparationTime: 10,
     bannerImage: "",
+    commissionPercentage: 5,
 }

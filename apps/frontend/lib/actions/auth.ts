@@ -1,11 +1,14 @@
 "use server";
 
-import { loginSchema, signUpSchema, TLogin, TSignUp } from "@repo/ui/schemas/auth.schema";
+import { changePasswordSchema, emailSchema, loginSchema, profileBasicSchema, signUpSchema, TChangePassword, TEmail, TLogin, TProfileBasic, TSignUp } from "@repo/ui/schemas/auth.schema";
 import { createSession, deleteSession, getSession } from "./session";
 import { AllowedRoles, BACKEND_URL } from "@/lib/constants";
 import { ReturnType, TBaseResponse } from "@repo/ui/types/response.type";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { TLoginResponse } from "@repo/ui/types/auth.response.type"
+import { getQueryString } from "@repo/ui/lib/utils";
+import { PrivateSubmitHandler, PublicSubmitHandler } from "./global.action";
+import { revalidatePath } from "next/cache";
 
 
 export async function signIn(formData: TLogin): Promise<
@@ -26,7 +29,7 @@ export async function signIn(formData: TLogin): Promise<
   try {
 
     const response = await fetch(
-      BACKEND_URL + API_ROUTES.login.endpoint,
+      BACKEND_URL + API_ROUTES.auth.login.endpoint,
       {
         method: "POST",
         headers: {
@@ -50,13 +53,14 @@ export async function signIn(formData: TLogin): Promise<
           id: result.data.id,
           role: result.data.role,
           email: result.data?.email,
-          name: result?.data?.name,
+          fullName: result?.data?.fullName,
           profile: result?.data?.profile
         },
         accessToken: result.data.tokens.accessToken,
         refreshToken: result.data.tokens?.refreshToken || "",
         csrfId: result.data.tokens.csrfId || ""
       });
+      revalidatePath("/")
       return {
         success: "Login successful",
       };
@@ -78,35 +82,16 @@ export async function signUp(formData: TSignUp): Promise<ReturnType> {
 
   if (!validationFields.success) {
     return {
-      message: "Submission failed",
+      message: "Data modified",
       errors: validationFields.error.flatten().fieldErrors,
     };
   }
 
-  const response = await fetch(
-    BACKEND_URL + API_ROUTES.signUp,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(validationFields.data),
-    }
-  );
-
-  const data = await response.json();
-  if (response.ok) {
-    return {
-      success: "Sign up successful",
-    };
-  } else {
-    return {
-      message:
-        response.status === 409
-          ? "The user is already existed!"
-          : data?.message || data?.message[0],
-    };
-  }
+  return await PublicSubmitHandler({
+    ENDPOINT: API_ROUTES.auth.signUp.endpoint,
+    METHOD: "POST",
+    DATA: validationFields.data
+  })
 }
 
 
@@ -118,7 +103,7 @@ export async function logout() {
   }
   try {
     await fetch(
-      BACKEND_URL + API_ROUTES.signUp,
+      BACKEND_URL + API_ROUTES.auth.signUp,
       {
         method: "POST",
         headers: {
@@ -135,4 +120,86 @@ export async function logout() {
   catch {
     await deleteSession()
   }
+}
+
+export async function verifyEmail(token: string, email: string, type: "new" | "primary") {
+
+  if (!token || !email) {
+    return {
+      error: "Invalid token or email"
+    }
+  }
+  const queryString = getQueryString([
+    {
+      key: "token",
+      value: token
+    }, {
+      key: "email",
+      value: email
+    }
+  ])
+
+  const endPoint = type === "new" ? API_ROUTES.auth.verifyNewEmail.endpoint : API_ROUTES.auth.verifyEmail.endpoint
+
+  return await PublicSubmitHandler({
+    ENDPOINT: endPoint + queryString,
+    METHOD: "PATCH",
+    DATA: {}
+  })
+}
+
+export async function changePassword(formData: TChangePassword) {
+
+  const validationFields = changePasswordSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data modified",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await PrivateSubmitHandler({
+    ENDPOINT: API_ROUTES.user.changePassword.endpoint,
+    METHOD: "PATCH",
+    DATA: validationFields.data
+  })
+}
+
+export async function updateProfile(formData: TProfileBasic) {
+
+  const validationFields = profileBasicSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data tempered",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await PrivateSubmitHandler({
+    ENDPOINT: API_ROUTES.profile.customer.endpoint,
+    METHOD: "PATCH",
+    DATA: validationFields.data
+  })
+}
+
+export async function updateEmail(formData: TEmail) {
+
+  const validationFields = emailSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data tempered",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  return await PrivateSubmitHandler({
+    ENDPOINT: API_ROUTES.user.changeEmail.endpoint,
+    METHOD: "PATCH",
+    DATA: {
+      newEmail: validationFields.data.email
+    }
+  })
 }

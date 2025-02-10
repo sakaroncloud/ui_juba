@@ -97,21 +97,7 @@ const data = {
                 },
             ]
         },
-        {
-            name: "Riders",
-            url: "/riders",
-            icon: Bike,
-            items: [
-                {
-                    name: "All riders",
-                    url: "/restaurants/riders",
-                },
-                {
-                    name: "Add New",
-                    url: "/restaurants/riders/add",
-                },
-            ]
-        },
+
 
         {
             name: "Orders & Transactions",
@@ -216,6 +202,12 @@ const data = {
         },
 
         {
+            name: "Riders",
+            url: "/riders",
+            icon: Bike,
+        },
+
+        {
             name: "Customers",
             url: "/customers",
             icon: Users,
@@ -247,7 +239,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={{
-                    name: session?.user.name || "Profile NA",
+                    name: session?.user.fullName || "Profile NA",
                     email: session?.user.email || "",
                     avatar: "/avatars/shadcn.jpg",
                 }} />

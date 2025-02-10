@@ -49,20 +49,32 @@ export namespace Order {
         paymentStatus: PaymentStatus;
         isOverDue: boolean;
         totalAmount: number;
-        totalItems: number;
+        totalCommission: number;
         user: User.TUser;
-        orderItems: TOrderItem[];
         rider?: User.TRiderProfile
+        orderItems: TOrderItem[];
+        totalItems: number;
+        estimateTime: number;
+        restaurant: Pick<Restaurant.TRest, "id" | "name" | "phone" | "email" | "address">;
+        address: {
+            area: string;
+            city: string;
+            pincode?: string;
+            buildingName?: string;
+            landmark?: string;
+            streetOne?: string;
+        }
     };
 
     export type TOrderItem = {
         id: number;
         preparationTime: number,
+        name: string,
         quantity: number,
         totalAmount: number,
         price: number,
         note: string | null,
-        comissionPercentage: number,
+        commissionPercentage: number,
         totalCommission: number,
         product?: Pick<Restaurant.Product.TProduct, "id" | "name" | "slug" | "price" | "preparationTime" | "bannerImage">
     }

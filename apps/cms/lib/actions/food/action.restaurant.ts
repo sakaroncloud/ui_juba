@@ -20,7 +20,7 @@ export async function submitRestaurantBasic(formData: TRestBasicForm, param?: st
         dayOfWeek: validationFields.data?.dayOfWeek?.map((day) => day.value),
     }
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.restaurant.endpoint,
+        ENDPOINT: API_ROUTES.fooding.restaurant.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: formattedValues,
         PARAM: param
@@ -43,7 +43,7 @@ export async function submitRestaurant(formData: TRestBasicForm, param?: string)
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.restaurant.endpoint,
+        ENDPOINT: API_ROUTES.fooding.restaurant.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: formattedValues,
         PARAM: param
@@ -66,7 +66,7 @@ export async function submitRestaurantCuisine(formData: TRestCuisineForm, param:
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.restaurant.endpoint + "/" + param + "/cuisines",
+        ENDPOINT: API_ROUTES.fooding.restaurant.endpoint + "/" + param + "/cuisines",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -89,7 +89,7 @@ export async function updateRestaurantBrandings(formData: TRestBrandingForm, par
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.restaurant.endpoint + "/" + param + "/brandings",
+        ENDPOINT: API_ROUTES.fooding.restaurant.endpoint + "/" + param + "/brandings",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -106,7 +106,7 @@ export async function submitRestaurantGallery(formData: TRestaurantGalleryClient
     }
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.restaurant.endpoint + "/" + param + "/gallery",
+        ENDPOINT: API_ROUTES.fooding.restaurant.endpoint + "/" + param + "/gallery",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })

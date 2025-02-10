@@ -29,7 +29,7 @@ export async function submitProperty(formData: TPropertyBasicForm, param?: strin
     formattedValues.checkOutTime = dayjs(`1970-01-01T${formattedValues.checkOutTime}`).format("HH:mm");
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.property.endpoint,
+        ENDPOINT: API_ROUTES.lodging.property.endpoint,
         METHOD: param ? "PATCH" : "POST",
         DATA: formattedValues,
         PARAM: param
@@ -51,7 +51,7 @@ export async function submitPropertyAmenities(formData: TPropertyAmenitiesClient
     }
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.property.endpoint + "/" + param + "/amenities",
+        ENDPOINT: API_ROUTES.lodging.property.endpoint + "/" + param + "/amenities",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -66,7 +66,7 @@ export async function submitPropertyRules(formData: TPropertyRulesClientForm, pa
         };
     }
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.property.endpoint + "/" + param + "/rules",
+        ENDPOINT: API_ROUTES.lodging.property.endpoint + "/" + param + "/rules",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -81,7 +81,7 @@ export async function submitPropertyLocations(formData: TPropertyLocationsForm, 
         };
     }
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.property.endpoint + "/" + param + "/nearest-locations",
+        ENDPOINT: API_ROUTES.lodging.property.endpoint + "/" + param + "/nearest-locations",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -99,7 +99,7 @@ export async function submitPropertyGallery(formData: TPropertyGalleryClientForm
     }
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.property.endpoint + "/" + param + "/gallery",
+        ENDPOINT: API_ROUTES.lodging.property.endpoint + "/" + param + "/gallery",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
@@ -117,7 +117,7 @@ export async function submitRoomGallery(formData: TRoomGalleryClientForm, param:
 
 
     return await SubmitHandler({
-        ENDPOINT: API_ROUTES.room.endpoint + "/" + param + "/gallery",
+        ENDPOINT: API_ROUTES.lodging.room.endpoint + "/" + param + "/gallery",
         METHOD: "PATCH",
         DATA: validationFields.data,
     })
