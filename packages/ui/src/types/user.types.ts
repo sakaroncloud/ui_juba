@@ -8,6 +8,11 @@ export enum Role {
   PROPERTY_MANAGER = "PROPERTY_MANAGER",
   CUSTOMER = "CUSTOMER",
 }
+export enum ChangeableRole {
+  ADMIN = "ADMIN",
+  OPERATION_MANAGER = "OPERATION_MANAGER",
+  LISTING_MANAGER = "LISTING_MANAGER",
+}
 export enum StaffWithNoSuperAdminRole {
   ADMIN = "ADMIN",
   OPERATION_MANAGER = "OPERATION_MANAGER",
@@ -36,7 +41,7 @@ export namespace User {
     id: string;
     email: string;
     newEmail?: string;
-    emailVerified: null | string;
+    emailVerified?: string;
     customerProfile?: TBaseProfile;
     staffProfile?: TBaseProfile;
     riderProfile?: Omit<TRiderProfile, "user">;
@@ -50,6 +55,10 @@ export namespace User {
     phone?: string;
     dob?: string;
     gender: Gender;
+  };
+
+  export type TProfileWithUser = TBaseProfile & {
+    user: Pick<TUser, "id" | "email" | "role" | "emailVerified">;
   };
 
   export type TStaffProfile = TBaseProfile & {

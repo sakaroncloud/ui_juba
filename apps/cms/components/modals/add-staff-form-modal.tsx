@@ -8,6 +8,8 @@ import SubmitButton from "../form/submit-button";
 import { Form } from "@repo/ui/components/form";
 import { Gender, StaffWithNoSuperAdminRole } from "@repo/ui/types/user.types";
 import { addStaffSchema, TAddStaffSchema } from "@repo/ui/schemas/auth.schema";
+import { submitStaff } from "@/lib/actions/food/action.user";
+import { handleToast } from "@repo/ui/lib/utils";
 
 type props = {
   customButton: React.ReactNode;
@@ -28,9 +30,12 @@ export const AddStaffFormModal = ({ customButton }: props) => {
   });
 
   const onSubmit = async (values: TAddStaffSchema) => {
-    console.log(values);
-    startTransition(async () => {});
+    startTransition(async () => {
+      const response = await submitStaff(values);
+      handleToast(response, () => setOpen(false));
+    });
   };
+
   return (
     <CustomFormModal
       customButton={customButton}

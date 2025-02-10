@@ -8,26 +8,31 @@ import { getData } from "@/app/data";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { staffColumn } from "./columns";
 
-
 export const RiderTable = async () => {
-    const session = await getSession()
-    const result = await getData<ResponseWithMeta<User.TStaffProfile[]>>({
-        endPoint: API_ROUTES.profile.rider.endpoint,
-        tags: ["riders"]
-    });
+  const session = await getSession();
+  const result = await getData<ResponseWithMeta<User.TStaffProfile[]>>({
+    endPoint: API_ROUTES.profile.rider.endpoint,
+    tags: ["riders"],
+  });
 
-    const filteredData = result?.data?.map((staff) => ({
-        id: staff.user.id,
-        fullName: staff.fullName,
-        email: staff.user.email,
-        phone: staff.phone,
-        role: staff.user.role,
-        gender: staff.gender,
-    }))
-
-    return (
-        <DataTable columns={session?.user?.role === Role.SUPER_ADMIN ? superAdminStaffColumn : staffColumn} data={filteredData || []}
-            searchKey="fullName"
-        />
-    )
-}
+  const filteredData = result?.data?.map((rider) => ({
+    id: rider.user.id,
+    fullName: rider.fullName,
+    email: rider.user.email,
+    phone: rider.phone,
+    role: rider.user.role,
+    gender: rider.gender,
+    emailVerified: rider.user.emailVerified,
+  }));
+  return (
+    <DataTable
+      columns={
+        session?.user?.role === Role.SUPER_ADMIN
+          ? superAdminStaffColumn
+          : staffColumn
+      }
+      data={filteredData || []}
+      searchKey="fullName"
+    />
+  );
+};

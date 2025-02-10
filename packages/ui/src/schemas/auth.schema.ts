@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  ChangeableRole,
   EDocumentType,
   Gender,
   Role,
@@ -109,6 +110,12 @@ export type TSignUp = z.infer<typeof signUpSchema>;
 export const emailSchema = z.object({
   email: z.string().email(),
 });
+
+export const roleChangeSchema = z.object({
+  role: z.nativeEnum(ChangeableRole),
+});
+
+export type TRoleChange = z.infer<typeof roleChangeSchema>;
 
 export type TEmail = z.infer<typeof emailSchema>;
 
