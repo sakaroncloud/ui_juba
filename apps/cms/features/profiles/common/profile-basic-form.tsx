@@ -1,13 +1,12 @@
 "use client";
 import { CustomFormField } from "@/components/form/custom-form-field";
-import { FormFooter } from "@/components/form/form-field-wrapper";
 import { Form } from "@repo/ui/components/form";
 import { submitProfileBasic } from "@/lib/actions/food/action.user";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { Gender, Role } from "@repo/ui/types/user.types";
+import { Gender, User } from "@repo/ui/types/user.types";
 import {
   profileBasicSchema,
   TProfileBasic,
@@ -15,15 +14,19 @@ import {
 import { handleToast } from "@repo/ui/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import CustomButton from "@/components/form/custom-button";
+import { updateSessionWhenProfileModified } from "@/lib/actions/session";
+import { useSession } from "@/components/providers/session-context";
 
 type Props = {
-  profileId: string;
-  formValues: TProfileBasic;
-  role: Role;
+  profileId?: string;
+  formValues: TProfileBasic & {
+    user: Pick<User.TUser, "role">;
+  };
 };
 
-export const ProfileBasicForm = ({ formValues, role, profileId }: Props) => {
+export const ProfileBasicForm = ({ formValues, profileId }: Props) => {
   const querylient = useQueryClient();
+  const { change, setChange } = useSession();
   const form = useForm<TProfileBasic>({
     resolver: zodResolver(profileBasicSchema),
     defaultValues: {
@@ -35,14 +38,29 @@ export const ProfileBasicForm = ({ formValues, role, profileId }: Props) => {
   });
 
   const [isPending, startTransition] = useTransition();
-  const onSubmit = async (values: TProfileBasic) => {
+  const onSubmit = async (formData: TProfileBasic) => {
     startTransition(async () => {
-      const response = await submitProfileBasic(values, role, profileId);
+      const response = await submitProfileBasic({
+        formData,
+        role: formValues.user.role, // role determine the route - so it is mandatory
+        /**
+         *  if not provided - only can be used to update their own profile
+         *  if provided - then it will be by SUPER_ADMIN using the userId
+         */
+        param: profileId,
+      });
       handleToast(response, async () => {
+        if (!profileId) {
+          await updateSessionWhenProfileModified();
+          setChange(!change);
+        }
         querylient.invalidateQueries();
       });
     });
   };
+
+  const isDirty = form.formState.isDirty;
+  console.log(isDirty, Date());
 
   return (
     <Form {...form}>
@@ -92,6 +110,7 @@ export const ProfileBasicForm = ({ formValues, role, profileId }: Props) => {
           size={"sm"}
           label={"Update"}
           pending={isPending}
+          disabled={!isDirty}
         />
       </form>
     </Form>

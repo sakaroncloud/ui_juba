@@ -5,10 +5,12 @@ import {
   emailSchema,
   newUserSchema,
   profileBasicSchema,
+  roleChangeSchema,
   TAddStaffSchema,
   TEmail,
   TNewUser,
   TProfileBasic,
+  TRoleChange,
 } from "@repo/ui/schemas/auth.schema";
 import { Role } from "@repo/ui/types/user.types";
 
@@ -42,11 +44,13 @@ export async function submitStaff(formData: TAddStaffSchema) {
     DATA: validationFields.data,
   });
 }
-export async function submitProfileBasic(
-  formData: TProfileBasic,
-  role: Role,
-  param: string
-) {
+
+type TProps = {
+  param?: string; // if provided - then it will be by SUPER_ADMIN
+  role: Role;
+  formData: TProfileBasic;
+};
+export async function submitProfileBasic({ param, role, formData }: TProps) {
   const validationFields = profileBasicSchema.safeParse(formData);
   if (!validationFields.success) {
     return {
@@ -83,7 +87,8 @@ export async function submitProfileBasic(
   });
 }
 
-export async function updateEmail(formData: TEmail, param: string) {
+export async function updateEmail(formData: TEmail, param?: string) {
+  // if param is not provided - it means user is updating their own email
   const validationFields = emailSchema.safeParse(formData);
 
   if (!validationFields.success) {
@@ -93,10 +98,37 @@ export async function updateEmail(formData: TEmail, param: string) {
     };
   }
 
+  let endPoint = API_ROUTES.user.endpoint;
+
+  if (param) {
+    endPoint += "/" + param + "/change-email";
+  } else {
+    endPoint += "/change-my-email";
+  }
+
   return await SubmitHandler({
-    ENDPOINT: API_ROUTES.user.endpoint,
+    ENDPOINT: endPoint,
     METHOD: "PATCH",
     DATA: validationFields.data,
-    PARAM: param + "/change-email",
+  });
+}
+
+export async function updateRole(formData: TRoleChange, param: string) {
+  // if param is not provided - it means user is updating their own email
+  const validationFields = roleChangeSchema.safeParse(formData);
+
+  if (!validationFields.success) {
+    return {
+      message: "Data tempered",
+      errors: validationFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const endPoint = API_ROUTES.user.endpoint + "/" + param + "/change-role";
+
+  return await SubmitHandler({
+    ENDPOINT: endPoint,
+    METHOD: "PATCH",
+    DATA: validationFields.data,
   });
 }

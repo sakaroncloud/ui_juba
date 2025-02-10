@@ -1,6 +1,6 @@
 import { getData } from "@/app/data";
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper";
-import { ChangeEmailForm } from "@/features/profiles/common/change-email-form";
+import { AccountForm } from "@/features/profiles/common/account-form";
 import { ProfileBasicForm } from "@/features/profiles/common/profile-basic-form";
 import { CardWrapper } from "@repo/ui/components/card-wrapper";
 import { API_ROUTES } from "@repo/ui/lib/routes";
@@ -15,7 +15,7 @@ type Props = {
 const EditRiderPage = async ({ params }: Props) => {
   const { profileId } = await params;
 
-  const result = await getData<ResponseWithNoMeta<User.TCustomerProfile>>({
+  const result = await getData<ResponseWithNoMeta<User.TProfileWithUser>>({
     endPoint: API_ROUTES.profile.rider.endpoint,
     param: profileId,
     tags: ["profile", profileId],
@@ -26,14 +26,10 @@ const EditRiderPage = async ({ params }: Props) => {
   return (
     <DashboardProvider>
       <CardWrapper title={`Account - ${result.data.fullName}`}>
-        <ProfileBasicForm
-          profileId={profileId}
-          formValues={result.data}
-          role={Role.RIDER}
-        />
+        <ProfileBasicForm profileId={profileId} formValues={result.data} />
       </CardWrapper>
 
-      <ChangeEmailForm
+      <AccountForm
         userId={profileId}
         formValues={{
           email: result.data.user.email,

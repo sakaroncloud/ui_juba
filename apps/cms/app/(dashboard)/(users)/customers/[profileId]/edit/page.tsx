@@ -1,6 +1,6 @@
 import { getData } from "@/app/data";
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper";
-import { ChangeEmailForm } from "@/features/profiles/common/change-email-form";
+import { AccountForm } from "@/features/profiles/common/account-form";
 import { ProfileBasicForm } from "@/features/profiles/common/profile-basic-form";
 import { CardWrapper } from "@repo/ui/components/card-wrapper";
 import { API_ROUTES } from "@repo/ui/lib/routes";
@@ -27,13 +27,9 @@ const EditCustomerPage = async ({ params }: Props) => {
   return (
     <DashboardProvider>
       <CardWrapper title={`Account - ${result.data.fullName}`}>
-        <ProfileBasicForm
-          profileId={profileId}
-          formValues={result.data}
-          role={Role.CUSTOMER}
-        />
+        <ProfileBasicForm profileId={profileId} formValues={result.data} />
       </CardWrapper>
-      <ChangeEmailForm
+      <AccountForm
         userId={profileId}
         formValues={{
           email: result.data.user.email,

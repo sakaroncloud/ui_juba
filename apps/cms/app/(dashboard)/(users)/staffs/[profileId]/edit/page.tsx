@@ -1,11 +1,12 @@
 import { getData } from "@/app/data";
 import { DashboardProvider } from "@/components/providers/dashboard-wrapper";
-import { ChangeEmailForm } from "@/features/profiles/common/change-email-form";
+import { AccountForm } from "@/features/profiles/common/account-form";
 import { ProfileBasicForm } from "@/features/profiles/common/profile-basic-form";
+import { RoleForm } from "@/features/profiles/common/role-form";
 import { CardWrapper } from "@repo/ui/components/card-wrapper";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
-import { Role, User } from "@repo/ui/types/user.types";
+import { ChangeableRole, Role, User } from "@repo/ui/types/user.types";
 
 type Props = {
   params: Promise<{
@@ -27,19 +28,24 @@ const EditStaffPage = async ({ params }: Props) => {
   return (
     <DashboardProvider>
       <CardWrapper title={`Account - ${result.data.fullName}`}>
-        {/* Any Staff Role can be assigned to a role*/}
-        <ProfileBasicForm
-          profileId={profileId}
-          formValues={result.data}
-          role={Role.ADMIN}
-        />
+        <ProfileBasicForm profileId={profileId} formValues={result.data} />
       </CardWrapper>
-      <ChangeEmailForm
-        userId={profileId}
-        formValues={{
-          email: result.data.user.email,
-        }}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <AccountForm
+          userId={profileId}
+          formValues={{
+            email: result.data.user.email,
+          }}
+        />
+        {result.data.user.role !== Role.SUPER_ADMIN && (
+          <RoleForm
+            userId={profileId}
+            formValues={{
+              role: `${result.data.user.role}` as ChangeableRole,
+            }}
+          />
+        )}
+      </div>
     </DashboardProvider>
   );
 };

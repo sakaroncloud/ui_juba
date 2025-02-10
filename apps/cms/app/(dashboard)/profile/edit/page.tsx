@@ -1,43 +1,55 @@
-import { getData } from '@/app/data'
-import { CustomerProfileForm } from '@/features/profile/form/customer-profile-form'
-import { ProfileBasicForm } from '@/features/profiles/form/profile-basic-form'
-import { CreatePageWrapper } from '@/components/providers/create-page-wrapper'
-import { getSession } from '@/lib/actions/session'
-import { API_ROUTES } from '@repo/ui/lib/routes'
-import { ResponseWithNoMeta } from '@repo/ui/types/response.type'
-import { Role, User } from '@repo/ui/types/user.types'
-
+import { getData } from "@/app/data";
+import { CreatePageWrapper } from "@/components/providers/create-page-wrapper";
+import { DashboardProvider } from "@/components/providers/dashboard-wrapper";
+import { AccountForm } from "@/features/profiles/common/account-form";
+import { ProfileBasicForm } from "@/features/profiles/common/profile-basic-form";
+import { getSession } from "@/lib/actions/session";
+import { CardWrapper } from "@repo/ui/components/card-wrapper";
+import { API_ROUTES } from "@repo/ui/lib/routes";
+import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
+import { Role, User } from "@repo/ui/types/user.types";
 
 const ProfileEditPage = async () => {
-    const session = await getSession()
-    if (!session) return <div>Access Denied</div>
+  const session = await getSession();
+  if (!session || !session?.user?.role) return <div>Access Denied</div>;
 
-    const result = await getData<ResponseWithNoMeta<User.TUser>>({
-        endPoint: API_ROUTES.user.endpoint + "/profile",
-        tags: ["users", session.user.id]
-    });
+  let endPoint = API_ROUTES.profile.endpoint;
 
+  switch (session.user.role) {
+    case Role.CUSTOMER:
+      endPoint += "/customers/me";
+      break;
+    case Role.RIDER:
+      endPoint += "/riders/me";
+      break;
+    case Role.SUPER_ADMIN:
+    case Role.ADMIN:
+    case Role.OPERATION_MANAGER:
+    case Role.LISTING_MANAGER:
+      endPoint += "/staffs/me";
+      break;
+  }
 
-    const UserProfileForm = () => {
-        switch (session.user.role as Role) {
-            case "CUSTOMER":
-                return <CustomerProfileForm />
-            case "RIDER":
-                return <ProfileBasicForm formValues={result?.data?.riderProfile} role={Role.RIDER} />
-            case "SUPER_ADMIN":
-            case "ADMIN":
-            case "OPERATION_MANAGER":
-            case "LISTING_MANAGER":
-                return <ProfileBasicForm formValues={result?.data?.staffProfile} role={Role.LISTING_MANAGER} />
-            default:
-                return <div>Access Denied</div>
-        }
-    }
-    return (
-        <CreatePageWrapper title='Edit Profile'>
-            <UserProfileForm />
-        </CreatePageWrapper>
-    )
-}
+  const result = await getData<ResponseWithNoMeta<User.TProfileWithUser>>({
+    endPoint: endPoint,
+    tags: [session.user.role, session.user.id],
+  });
 
-export default ProfileEditPage
+  if (!result?.data) return null;
+
+  return (
+    <DashboardProvider>
+      <CardWrapper title={`Account - ${result.data.fullName}`}>
+        <ProfileBasicForm formValues={result.data} />
+      </CardWrapper>
+
+      <AccountForm
+        formValues={{
+          email: result.data.user.email,
+        }}
+      />
+    </DashboardProvider>
+  );
+};
+
+export default ProfileEditPage;

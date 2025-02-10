@@ -30,7 +30,6 @@ export const AddStaffFormModal = ({ customButton }: props) => {
   });
 
   const onSubmit = async (values: TAddStaffSchema) => {
-    console.log(values);
     startTransition(async () => {
       const response = await submitStaff(values);
       handleToast(response, () => setOpen(false));

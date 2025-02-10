@@ -6,9 +6,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getData } from "@/app/data";
 import { revalidatePath } from "next/cache";
-import { Role } from "@repo/ui/types/user.types";
+import { Role, User } from "@repo/ui/types/user.types";
 import { ResponseWithNoMeta } from "@repo/ui/types/response.type";
 import { JUBA_CMS_SESSION_KEY } from "@repo/ui/lib/constants";
+import { API_ROUTES } from "@repo/ui/lib/routes";
 
 export type Session = {
   user: {
@@ -19,7 +20,7 @@ export type Session = {
     profile?: {
       fullName?: string;
       id?: string;
-    }
+    };
   };
 
   accessToken: string;
@@ -46,7 +47,7 @@ export async function createSession(payload: Session) {
     sameSite: "lax",
     path: "/",
   });
-  revalidatePath("/")
+  revalidatePath("/");
 }
 
 export async function getSession() {
@@ -58,7 +59,6 @@ export async function getSession() {
     const { payload } = await jwtVerify(cookie, encodedKey, {
       algorithms: ["HS256"],
     });
-
 
     return payload as Session;
   } catch (err) {
@@ -74,7 +74,7 @@ export async function deleteSession() {
 export async function updateTokens({
   accessToken,
   refreshToken,
-  csrfId
+  csrfId,
 }: {
   accessToken: string;
   refreshToken: string;
@@ -95,12 +95,11 @@ export async function updateTokens({
     },
     accessToken,
     refreshToken,
-    csrfId
+    csrfId,
   };
 
   await createSession(newPayload);
 }
-
 
 export async function updateSessionWhenProfileModified() {
   const cookieStore = await cookies();
@@ -112,30 +111,47 @@ export async function updateSessionWhenProfileModified() {
 
   if (!payload) return { message: "Unauthorized" };
 
-  const result = await getData<ResponseWithNoMeta<{
-    id: string,
-    email: string,
-    role: Role,
-    fullName: string,
-    profile?: {
-      id: string
-    }
-  }>>({
-    endPoint: "/auth/profile",
-    tags: ["users", payload.user.id]
+  let endPoint = API_ROUTES.profile.endpoint;
+
+  switch (payload.user.role) {
+    case Role.CUSTOMER:
+      endPoint += "/customers/me";
+      break;
+    case Role.RIDER:
+      endPoint += "/riders/me";
+      break;
+    case Role.SUPER_ADMIN:
+    case Role.ADMIN:
+    case Role.OPERATION_MANAGER:
+    case Role.LISTING_MANAGER:
+      endPoint += "/staffs/me";
+      break;
+  }
+
+  const result = await getData<ResponseWithNoMeta<User.TProfileWithUser>>({
+    endPoint: endPoint,
+    tags: [payload.user.role, payload.user.id],
   });
 
-  const newPayload: Session = {
-    user: {
-      ...payload.user,
-      fullName: result?.data?.fullName,
-      profile: result?.data?.profile
-    },
-    accessToken: payload.accessToken,
-    refreshToken: payload.refreshToken,
-    csrfId: payload.csrfId
-  };
+  const data = result?.data;
 
-  await createSession(newPayload);
+  if (data) {
+    const newPayload: Session = {
+      user: {
+        id: data.user.id,
+        email: data.user.email,
+        role: data.user.role,
+        fullName: data.fullName,
+        profile: {
+          fullName: data.fullName,
+          id: data.id,
+        },
+      },
+      accessToken: payload.accessToken,
+      refreshToken: payload.refreshToken,
+      csrfId: payload.csrfId,
+    };
 
+    await createSession(newPayload);
+  }
 }
