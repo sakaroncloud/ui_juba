@@ -1,13 +1,12 @@
-import { clsx, type ClassValue } from "clsx"
+import { clsx, type ClassValue } from "clsx";
 import toast from "react-hot-toast";
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 import slugify from "slugify";
 import { TQueryString } from "../types/endpoints";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
-
 
 type DateFormatOptions = {
   year?: "numeric" | "2-digit";
@@ -29,7 +28,7 @@ export function formatDate(
   const defaultOptions: DateFormatOptions = {
     year: "numeric",
     month: "short",
-    day: "numeric"
+    day: "numeric",
   };
 
   const options = { ...defaultOptions, ...formatOptions };
@@ -38,8 +37,6 @@ export function formatDate(
 
   return formatter.format(date);
 }
-
-
 
 /**
  * Converts a file size from bytes to a human-readable format (KB or MB).
@@ -62,13 +59,12 @@ export function formatFileSize(sizeInBytes: number): string {
 // ---------------- breadCrumb Generator
 
 export const getBreadCrumb = (pathname: string) => {
-  const pathItems = pathname.split("/").filter(Boolean)
+  const pathItems = pathname.split("/").filter(Boolean);
   const breadCrumb = [
     { label: "Dashboard", link: "/" },
     ...pathItems.map((label, index) => {
-      const removedDoubleDash = label.split("--")[0]
+      const removedDoubleDash = label.split("--")[0];
       const formattedLabel = removedDoubleDash?.replace(/-/g, " ");
-
 
       // Replace hyphens with spaces
       const link =
@@ -77,36 +73,33 @@ export const getBreadCrumb = (pathname: string) => {
           : "/" + pathItems.slice(0, index + 1).join("/");
 
       return { label: formattedLabel, link };
-    })
-  ]
+    }),
+  ];
 
-  return breadCrumb
-}
-
+  return breadCrumb;
+};
 
 // Utility function to convert bytes to KB or MB, based on the size
 export function convertFileSize(bytes: number) {
-  const sizeInKB = bytes / 1024;  // Convert bytes to KB
+  const sizeInKB = bytes / 1024; // Convert bytes to KB
   if (sizeInKB < 1024) {
-    return sizeInKB.toFixed(2) + ' KB';  // Return in KB if less than 1MB
+    return sizeInKB.toFixed(2) + " KB"; // Return in KB if less than 1MB
   } else {
-    const sizeInMB = sizeInKB / 1024;  // Convert KB to MB if greater than or equal to 1MB
-    return sizeInMB.toFixed(2) + ' MB';  // Return in MB
+    const sizeInMB = sizeInKB / 1024; // Convert KB to MB if greater than or equal to 1MB
+    return sizeInMB.toFixed(2) + " MB"; // Return in MB
   }
 }
 
 export const generateSlug = (name: string) => {
   return slugify(name, {
-    replacement: '-',  // replace spaces with replacement character, defaults to `-`
+    replacement: "-", // replace spaces with replacement character, defaults to `-`
     remove: /[*+~.()'"!:@]/, // remove characters that match regex, defaults to `undefined`
-    lower: true,      // convert to lower case, defaults to `false`
-    strict: false,     // strip special characters except replacement, defaults to `false`
-    locale: 'vi',      // language code of the locale to use
-    trim: true         // trim leading and trailing replacement chars, defaults to `true`
-  })
-}
-
-
+    lower: true, // convert to lower case, defaults to `false`
+    strict: false, // strip special characters except replacement, defaults to `false`
+    locale: "vi", // language code of the locale to use
+    trim: true, // trim leading and trailing replacement chars, defaults to `true`
+  });
+};
 
 type TSlug = {
   propertySlug?: string;
@@ -120,7 +113,10 @@ export const getIDsFromSlug = (option: TSlug) => {
   /**
    * Utility function to extract IDs from a slug using a regex pattern
    */
-  const extractIDs = (slug: string | undefined, pattern: RegExp): (string | undefined)[] => {
+  const extractIDs = (
+    slug: string | undefined,
+    pattern: RegExp
+  ): (string | undefined)[] => {
     const match = slug?.match(pattern);
     return match ? match.slice(1) : [];
   };
@@ -133,8 +129,14 @@ export const getIDsFromSlug = (option: TSlug) => {
   /**
    * Extract IDs for Product and Menu
    */
-  const [productId, productRestaurantID] = extractIDs(option?.productSlug, /P(\d+)R(\d+)/);
-  const [menuId, menuRestaurantID] = extractIDs(option?.menuSlug, /M(\d+)R(\d+)/);
+  const [productId, productRestaurantID] = extractIDs(
+    option?.productSlug,
+    /P(\d+)R(\d+)/
+  );
+  const [menuId, menuRestaurantID] = extractIDs(
+    option?.menuSlug,
+    /M(\d+)R(\d+)/
+  );
 
   /**
    * Extract IDs for Property and Room
@@ -145,11 +147,10 @@ export const getIDsFromSlug = (option: TSlug) => {
   /**
    * Validation for slug integrity
    */
-  const isSlugTempered = (
+  const isSlugTempered =
     (productId && (!productRestaurantID || !restaurantId)) ||
     (menuId && (!menuRestaurantID || !restaurantId)) ||
-    (roomId && (!roomPropertyId || !propertyId))
-  );
+    (roomId && (!roomPropertyId || !propertyId));
 
   return {
     slugTempered: isSlugTempered,
@@ -157,33 +158,42 @@ export const getIDsFromSlug = (option: TSlug) => {
     productId,
     menuId,
     propertyId,
-    roomId
+    roomId,
   };
 };
 
 /**
  * Function responsible to handle the toast messages
- * @param response 
- * @param onSuccess 
+ * @param response
+ * @param onSuccess
  */
-export const handleToast = (response: {
-  success: boolean; message: string, data?: {
-    message?: string;
-  }
-}, onSuccess?: () => void) => {
+export const handleToast = (
+  response: {
+    success: boolean;
+    message: string;
+    data?: {
+      message?: string;
+    };
+  },
+  onSuccess?: () => void
+) => {
   if (response.success) {
-    toast.success(response?.data?.message || response.message)
-    onSuccess?.()
+    toast.success(response?.data?.message || response.message);
+    onSuccess?.();
   } else {
-    toast.error(response.message || "Something went wrong")
+    toast.error(response.message || "Something went wrong");
   }
-}
+};
 
 export const getQueryString = (query?: TQueryString[]): string => {
   if (!query || query.length === 0) return "";
 
   const params = new URLSearchParams();
-  query.forEach(({ key, value }) => params.append(key as string, value as string));
 
-  return `?${params.toString()}`;
+  query.forEach(({ key, value }) => {
+    if (value === false || value === undefined || value === null) return; // Exclude false, undefined, and null
+    params.append(key as string, String(value)); // Convert true/number/other types to string
+  });
+
+  return params.toString() ? `?${params.toString()}` : "";
 };

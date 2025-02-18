@@ -132,13 +132,17 @@ const RenderField = ({
           {label && <Label>{label}</Label>}
           <FormControl>
             {inputType === "password" ? (
-              <PasswordInput placeholder={placeholder} {...field} />
+              <PasswordInput
+                placeholder={placeholder}
+                {...field}
+                className="h-11 bg-white"
+              />
             ) : inputType === "phone" ? (
               <div className="flex h-11 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm">
                 <PhoneInput
                   {...field}
                   defaultCountry="SS"
-                  className={"input-phone-number"}
+                  className={"input-phone-number "}
                   placeholder="Enter phone number"
                   onChange={field.onChange}
                 />
@@ -151,10 +155,11 @@ const RenderField = ({
                 min={min || 0}
                 max={max || 1000000}
                 type={inputType}
+                className="h-11 bg-white"
               />
             ) : (
               <Input
-                className="h-11"
+                className="h-11 bg-white"
                 placeholder={placeholder}
                 {...field}
                 type={inputType || "text"}
@@ -175,7 +180,7 @@ const RenderField = ({
               placeholder={placeholder}
               {...field}
               rows={4}
-              className="resize-none"
+              className="resize-none bg-white"
             />
           </FormControl>
           {showError && <FormMessage />}

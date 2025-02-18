@@ -1,28 +1,18 @@
-
-import { cn } from "@repo/ui/lib/utils";
 import React, { PropsWithChildren } from "react";
 
 type Props = {
-    title: string;
-    headerClassName?: string;
+  title?: string;
 } & PropsWithChildren;
 
-export const CreatePageWrapper = ({
-    headerClassName,
-    title,
-    children,
-}: Props) => {
-    return (
-        <div className="space-y-3 px-4">
-            <header
-                className={cn(
-                    "py-6 flex items-center border-b border-dashed  border-gray-300",
-                    headerClassName
-                )}
-            >
-                <h1 className="text-xl font-medium">{title}</h1>
-            </header>
-            <div>{children}</div>
-        </div>
-    );
+export const CreatePageWrapper = ({ title, children }: Props) => {
+  return (
+    <div className="bg-white px-4 py-5 rounded-lg space-y-4 border">
+      {title && (
+        <h1 className="font-semibold tracking-wide text-lg pb-2  shadow-sm border-dotted">
+          {title}
+        </h1>
+      )}
+      <div className=" rounded-lg">{children}</div>
+    </div>
+  );
 };

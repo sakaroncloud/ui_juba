@@ -507,6 +507,9 @@ importers:
       react-phone-number-input:
         specifier: ^3.4.11
         version: 3.4.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      recharts:
+        specifier: ^2.15.1
+        version: 2.15.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       slugify:
         specifier: ^1.6.6
         version: 1.6.6
