@@ -81,22 +81,21 @@ export const RestaurantAddressForm = ({ restaurantId, formValues }: Props) => {
             label="Map Link"
             inputType="text"
             placeholder="Enter Map Link"
-            className="w-full"
+          />
+          <CustomFormField
+            elementName="select"
+            fieldId="city"
+            label="City"
+            placeholder="Select City"
+            selectOptions={
+              cities?.data?.map((city) => ({
+                value: city.slug,
+                label: city.name,
+              })) || []
+            }
           />
         </div>
-        <CustomFormField
-          elementName="select"
-          fieldId="city"
-          label="City"
-          placeholder="Select City"
-          className="w-full"
-          selectOptions={
-            cities?.data?.map((city) => ({
-              value: city.slug,
-              label: city.name,
-            })) || []
-          }
-        />
+
         <FormFooter buttonLabel="Update" pending={isPending} />
       </form>
     </Form>

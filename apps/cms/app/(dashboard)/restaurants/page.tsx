@@ -1,29 +1,19 @@
-import { DashboardProvider } from "@/components/providers/dashboard-wrapper"
-import { TableWrapperWithFilter } from "@repo/ui/components/table/table-wrapper-with-filter"
-import { AddItemButton, ShowTrashOrViewButton } from "@/components/uploads/add-item-button"
-// import { TableSearchForm } from "@repo/ui/components/table/table-search-form"
-import { RestaurantTable } from "@/features/fooding/restaurants/restaurant-table/restaurant-table"
+import { DashboardProvider } from "@/components/providers/dashboard-wrapper";
+
+import { RestaurantTable } from "@/features/fooding/restaurants/restaurant-table/restaurant-table";
 
 type Props = {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 const AllRestaurantsPage = async ({ searchParams }: Props) => {
-    const params = await searchParams
+  const params = await searchParams;
 
-    return (
-        <DashboardProvider >
-            <TableWrapperWithFilter title={params.deleted === "true" ? "Restaurants (Trash)" : "Restaurants"} headerActions={
-                <div className="flex gap-4 items-center">
-                    {/* <TableSearchForm placeholder="Search Restaurant" /> */}
-                    <AddItemButton label="Add New" path={`/restaurants/add`} />
-                    <ShowTrashOrViewButton path={`/restaurants`} showDeleted={params?.deleted === "true"} />
-                </div>
-            } >
-                <RestaurantTable showDeleted={params?.deleted === "true"} />
-            </TableWrapperWithFilter>
-        </DashboardProvider>
-    )
-}
+  return (
+    <DashboardProvider>
+      <RestaurantTable showDeleted={params?.deleted === "true"} />
+    </DashboardProvider>
+  );
+};
 
-export default AllRestaurantsPage
+export default AllRestaurantsPage;

@@ -79,21 +79,19 @@ body {
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
   }
 
   html {
-    @apply scroll-smooth
+    @apply scroll-smooth;
   }
 
   body {
     @apply bg-background text-foreground !m-0 !overflow-y-scroll;
   }
 }
-
 
 @layer utilities {
   .text__xl {

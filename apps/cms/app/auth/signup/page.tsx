@@ -1,12 +1,15 @@
-import AuthWrapper from "@/components/auth/auth-wrapper"
-import { Button } from "@repo/ui/components/button"
-import { Input } from "@repo/ui/components/input"
-import { Label } from "@repo/ui/components/label"
+import AuthWrapper from "@/features/auth/auth-wrapper";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
 
 const SignUpPage = () => {
   return (
-    <AuthWrapper cardTitle="Login" cardDescription="Enter your email below to login to your account
-    ">
+    <AuthWrapper
+      cardTitle="Login"
+      cardDescription="Enter your email below to login to your account
+    "
+    >
       <form>
         <div className="flex flex-col gap-6">
           <div className="grid gap-2">
@@ -45,8 +48,7 @@ const SignUpPage = () => {
         </div>
       </form>
     </AuthWrapper>
+  );
+};
 
-  )
-}
-
-export default SignUpPage
+export default SignUpPage;

@@ -1,22 +1,19 @@
-import { GalleryProvider } from "@/components/providers/gallery-context"
-import { AppSidebar } from "@/components/sidebar/app-sidebar"
-import { SidebarInset, SidebarProvider } from "@repo/ui/components/sidebar"
-
+import { GalleryProvider } from "@/components/providers/gallery-context";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@repo/ui/components/sidebar";
 
 type Props = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 const DashboardLayout = ({ children }: Props) => {
-    return (
-        <GalleryProvider>
-            <SidebarProvider >
-                <AppSidebar />
-                <SidebarInset className="bg-gray-100">
-                    {children}
-                </SidebarInset>
-            </SidebarProvider>
-        </GalleryProvider>
-    )
-}
+  return (
+    <GalleryProvider>
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset className="bg-white">{children}</SidebarInset>
+      </SidebarProvider>
+    </GalleryProvider>
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;

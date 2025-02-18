@@ -1,32 +1,49 @@
-import { getData } from "@/app/data";
+"use client";
 import { DataTable } from "@repo/ui/components/table/data-table";
 import { API_ROUTES } from "@repo/ui/lib/routes";
 import { Order } from "@repo/ui/types/order.types";
 import { ResponseWithMeta } from "@repo/ui/types/response.type";
 import { columns } from "./columns";
-
+import { useFetch } from "@/hooks/useFetch";
+import { useEffect, useMemo } from "react";
 
 type Props = {
-    showDeleted?: boolean
-}
+  showDeleted?: boolean;
+  status?: string;
+  search?: string;
+};
 
-export const OrderTable = async ({ showDeleted }: Props) => {
+export const OrderTable = ({ showDeleted, status, search }: Props) => {
+  const { data: result, refetch } = useFetch<ResponseWithMeta<Order.TOrder[]>>({
+    endPoint: API_ROUTES.fooding.order.endpoint,
+    queryKey: "orders",
+    query: [
+      { key: "status", value: status },
+      {
+        key: "fullName",
+        value: search,
+      },
+    ],
+  });
 
-    const result = await getData<ResponseWithMeta<Order.TOrder[]>>({
-        endPoint: API_ROUTES.fooding.order.endpoint,
-        tags: ["orders"]
-    });
+  useEffect(() => {
+    refetch();
+  }, [status, search]);
 
-
-    const filteredData = result?.data?.map((order) => ({
+  const filteredData = useMemo(
+    () =>
+      result?.data?.map((order) => ({
         ...order,
-        fullName: order.user.customerProfile?.fullName
-    }))
+        fullName: order.user.customerProfile?.fullName,
+      })) || [],
+    [result]
+  );
 
-    console.log(filteredData)
-    return (
-        <DataTable columns={columns} data={filteredData || []} showDeleted={showDeleted}
-        />
-    )
-
-}
+  return (
+    <DataTable
+      columns={columns}
+      data={filteredData || []}
+      showDeleted={showDeleted}
+    />
+  );
+};

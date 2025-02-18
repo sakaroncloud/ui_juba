@@ -142,7 +142,7 @@ const RenderField = ({
                 <PhoneInput
                   {...field}
                   defaultCountry="SS"
-                  className={"input-phone-number h-11"}
+                  className={"input-phone-number "}
                   placeholder="Enter phone number"
                   onChange={field.onChange}
                 />
